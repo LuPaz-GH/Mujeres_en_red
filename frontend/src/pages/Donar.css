@@ -1,0 +1,503 @@
+/* ==========================================================
+   Página "Donar"
+   ========================================================== */
+
+/* ---------- Impacto ---------- */
+.donate-impact {
+  background: var(--bg-about);
+  overflow: hidden;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 2.5rem;
+}
+
+.impact {
+  height: 100%;
+  padding: 2rem;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-top: 6px solid var(--c);
+  box-shadow: 0 24px 50px -30px color-mix(in srgb, var(--c) 80%, black);
+}
+
+.impact__num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--c);
+  margin-bottom: 0.8rem;
+}
+
+.impact h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.impact p {
+  margin: 0;
+  color: var(--ink);
+}
+
+@media (max-width: 860px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Formas de donar ---------- */
+.donate-methods {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 50% 35% at 5% 10%, rgba(235, 93, 157, 0.55), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 95% 30%, rgba(14, 171, 226, 0.5), transparent 70%),
+    linear-gradient(180deg, #5a2d9c 0%, #3f2275 60%, #2b1d47 100%);
+}
+
+.donate-methods > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.donate-methods .title-xl {
+  background-image: linear-gradient(100deg, #fff, #ffd1e8, #c9efff, #fff);
+}
+
+.methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  margin-top: 3rem;
+}
+
+.method {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2.2rem;
+  border-radius: 32px;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--c) 85%, white), var(--c) 45%, color-mix(in srgb, var(--c) 55%, #1a1427));
+  box-shadow: 0 30px 70px -25px color-mix(in srgb, var(--c) 80%, transparent), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.method__petal {
+  position: absolute;
+  right: -30px;
+  top: -40px;
+  width: 160px;
+  opacity: 0.14;
+  rotate: 35deg;
+  transition: rotate 0.8s var(--ease);
+}
+
+.method:hover .method__petal {
+  rotate: 215deg;
+}
+
+.method__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.method__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--c);
+  box-shadow: 0 12px 26px -10px rgba(0, 0, 0, 0.4);
+}
+
+.method__icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.method__emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.method h3 {
+  color: #fff;
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  margin: 0 0 0.2rem;
+}
+
+.method__head p {
+  margin: 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.method__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+}
+
+.method__body > .btn {
+  margin-top: auto;
+  align-self: flex-start;
+  color: color-mix(in srgb, var(--c) 60%, #1a1427);
+  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.4);
+}
+
+.method__body > .btn:hover {
+  background: #1a1427;
+  color: #fff;
+}
+
+.method__body .btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.method__body p {
+  margin: 0;
+}
+
+.method__body strong {
+  color: #fff;
+}
+
+.method__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.method__list li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-weight: 500;
+}
+
+.method__list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 800;
+}
+
+/* Pasos numerados (Mercado Pago) */
+.method__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+  counter-reset: paso;
+}
+
+.method__steps li {
+  position: relative;
+  padding-left: 2.4rem;
+  font-weight: 500;
+  line-height: 1.5;
+  counter-increment: paso;
+}
+
+.method__steps li::before {
+  content: counter(paso);
+  position: absolute;
+  left: 0;
+  top: -0.1rem;
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--c);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.method__note {
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: rgba(26, 20, 39, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+/* Opciones de pago de Mercado Pago (sin cuenta) */
+.mp-options {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.mp-options > div {
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  background: rgba(26, 20, 39, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  line-height: 1.45;
+}
+
+.mp-options strong {
+  display: block;
+  font-size: 1.02rem;
+}
+
+.mp-options span {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.mp-options b {
+  color: #fff;
+}
+
+/* Billeteras compatibles */
+.wallets__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 0.45rem;
+}
+
+.wallets__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.wallets__list span {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Código QR sobre fondo blanco para que se pueda escanear */
+.method__qr {
+  align-self: center;
+  width: min(240px, 100%);
+  padding: 14px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 16px 34px -14px rgba(0, 0, 0, 0.45);
+}
+
+.method__qr img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Datos para copiar (alias, CBU) */
+.copy-field {
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  background: rgba(26, 20, 39, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.copy-field__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 0.3rem;
+}
+
+.copy-field__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.copy-field code {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 800;
+  word-break: break-all;
+}
+
+.copy-field button {
+  flex: none;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #1a1427;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+
+.copy-field button.is-copied {
+  background: var(--verde);
+  color: #fff;
+}
+
+.method__data {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.3rem 1rem;
+  margin: 0;
+}
+
+.method__data dt {
+  font-weight: 800;
+  opacity: 0.85;
+}
+
+.method__data dd {
+  margin: 0;
+}
+
+/* ---------- Comprobante / agradecimiento ---------- */
+/* Continúa el rosa de "Elegí cómo ayudar", más oscuro hacia el pie */
+.donate-receipt {
+  padding-top: 0;
+  background: linear-gradient(180deg, var(--page-deep, #a8306a), color-mix(in srgb, var(--page-deep, #a8306a) 75%, #1a1427));
+}
+
+.receipt {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.5rem, 6vw, 4.5rem);
+  padding-right: clamp(2.5rem, 34%, 420px);
+  border-radius: 36px;
+  color: #fff;
+  background: linear-gradient(120deg, var(--violeta) 0%, #8a3fa3 40%, var(--rosa) 75%, var(--naranja) 110%);
+  background-size: 160% 160%;
+  animation: bg-drift 10s ease-in-out infinite;
+  box-shadow: 0 50px 100px -30px rgba(26, 20, 39, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+/* Logo grande girando a la derecha */
+.receipt__flower {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  width: clamp(220px, 30vw, 360px);
+  margin-top: calc(clamp(220px, 30vw, 360px) / -2);
+  padding: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 18px rgba(255, 255, 255, 0.18), 0 0 0 40px rgba(255, 255, 255, 0.08);
+  animation: spin 40s linear infinite;
+  pointer-events: none;
+}
+
+.receipt__text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Corazón que late */
+.receipt__heart {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 1.2rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--rosa);
+  font-size: 2.2rem;
+  line-height: 1;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25), 0 16px 30px -10px rgba(0, 0, 0, 0.4);
+  animation: heart-beat 1.6s ease-in-out infinite;
+}
+
+@keyframes heart-beat {
+  0%,
+  100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+}
+
+.receipt h3 {
+  color: #fff;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin-bottom: 0.6rem;
+}
+
+.receipt p {
+  max-width: 560px;
+  margin: 0;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.receipt p a {
+  color: #fff;
+  font-weight: 800;
+}
+
+.receipt .btn--white {
+  color: var(--violeta);
+}
+
+.receipt .btn--white:hover {
+  background: #1a1427;
+  color: #fff;
+}
+
+.receipt__wa {
+  background: #25d366;
+  color: #fff;
+}
+
+.receipt__wa:hover {
+  background: #1fbf5b;
+}
+
+.receipt .btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 760px) {
+  .receipt {
+    padding-right: clamp(2rem, 6vw, 3rem);
+    padding-bottom: 210px;
+  }
+
+  .receipt__flower {
+    top: auto;
+    bottom: -90px;
+    right: 50%;
+    width: 250px;
+    margin: 0 -125px 0 0;
+  }
+}

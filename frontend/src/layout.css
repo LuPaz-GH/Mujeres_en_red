@@ -1,0 +1,334 @@
+/* ==========================================================
+   Color de cada página
+   Las secciones de fondo (que antes eran oscuras o pastel) toman el color de su página.
+   Para cambiar el color de una página, cambiar --page y --page-deep.
+   ========================================================== */
+
+main[data-page='inicio'],
+main[data-page='quienes-somos'],
+main[data-page='contacto'] {
+  --page: var(--violeta);
+  --page-deep: #3a2463;
+}
+
+main[data-page='portfolio'] {
+  --page: var(--naranja);
+  --page-deep: #9c4210;
+}
+
+main[data-page='equipo'],
+main[data-page='donar'] {
+  --page: var(--rosa);
+  --page-deep: #a8306a;
+}
+
+main[data-page='blog'] {
+  --page: var(--celeste);
+  --page-deep: #0a5f86;
+}
+
+main[data-page='catalogo'] {
+  --page: var(--verde);
+  --page-deep: #3f6b12;
+}
+
+/* Degradé intenso del color de la página, con una luz arriba y sombra abajo */
+main[data-page] .qs-statement,
+main[data-page] .portfolio-section,
+main[data-page] .team,
+main[data-page] .donate-methods,
+main[data-page] .blog-page,
+main[data-page] .post-main,
+main[data-page] .post-related,
+main[data-page] .post-cta-wrap,
+main[data-page] .catalog,
+main[data-page] .contact,
+main[data-page] .contact-extra {
+  background:
+    radial-gradient(ellipse 55% 45% at 8% 0%, rgba(255, 255, 255, 0.22), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 95% 100%, rgba(26, 20, 39, 0.28), transparent 70%),
+    linear-gradient(135deg, var(--page) 0%, color-mix(in srgb, var(--page) 55%, var(--page-deep)) 50%, var(--page-deep) 100%);
+  animation: none;
+}
+
+/* En cada nota del blog, la zona alrededor de la portada también toma el color */
+main[data-page] .blog-post {
+  background: var(--page);
+}
+
+/* Donar: "Elegí cómo ayudar" baja en vertical hasta el mismo tono con que empieza el agradecimiento,
+   así no se nota el corte entre las dos secciones */
+main[data-page] .donate-methods {
+  background:
+    radial-gradient(ellipse 55% 45% at 8% 0%, rgba(255, 255, 255, 0.22), transparent 70%),
+    linear-gradient(180deg, var(--page) 0%, color-mix(in srgb, var(--page) 50%, var(--page-deep)) 55%, var(--page-deep) 100%);
+}
+
+/* Secciones seguidas del mismo color: se ven como una sola */
+main[data-page] .contact-extra,
+main[data-page] .post-cta-wrap {
+  background: linear-gradient(180deg, var(--page-deep), color-mix(in srgb, var(--page-deep) 80%, #1a1427));
+}
+
+main[data-page] .post-related {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--page) 55%, var(--page-deep)), var(--page-deep));
+}
+
+/* Títulos y textos sueltos en blanco sobre el color */
+main[data-page] .blog-page .title-xl,
+main[data-page] .post-related .title-xl,
+main[data-page] .catalog .title-xl {
+  background-image: linear-gradient(100deg, #fff, #ffe3f1, #e0f6ff, #fff);
+}
+
+main[data-page] .blog-page .results-info,
+main[data-page] .catalog .results-info,
+main[data-page] .blog-page .empty,
+main[data-page] .catalog .empty {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Sobre fondos de color, los pétalos flotantes en blanco translúcido se ven mejor */
+main[data-page] .portfolio-section .floating-petal,
+main[data-page] .team .floating-petal,
+main[data-page] .donate-methods .floating-petal {
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.18)) saturate(0.6) brightness(1.6);
+}
+
+main[data-page] .post-main__petal {
+  opacity: 0.35;
+  filter: brightness(1.5) saturate(0.6);
+}
+
+/* Las tarjetas resaltan con un borde blanco sobre el color de la página */
+main[data-page] .team .member__face {
+  box-shadow: 0 30px 70px -24px rgba(26, 20, 39, 0.55), 0 0 0 3px rgba(255, 255, 255, 0.55);
+}
+
+main[data-page] .portfolio-section .portfolio-card,
+main[data-page] .post-card,
+main[data-page] .featured-post,
+main[data-page] .biz,
+main[data-page] .channel,
+main[data-page] .contact__form,
+main[data-page] .extra-card {
+  box-shadow: 0 30px 60px -28px rgba(26, 20, 39, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.45);
+}
+
+main[data-page] .donate-methods .method {
+  box-shadow: 0 30px 70px -26px rgba(26, 20, 39, 0.5), 0 0 0 3px rgba(255, 255, 255, 0.45);
+}
+
+main[data-page] .post-paper {
+  box-shadow: 0 40px 90px -30px rgba(26, 20, 39, 0.6);
+}
+
+/* Anterior / siguiente (blog): sobre celeste se separan con borde blanco */
+main[data-page] .adjacent {
+  box-shadow: 0 24px 50px -26px rgba(26, 20, 39, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.45);
+}
+
+/* ==========================================================
+   Menú lateral en las páginas internas (solo en pantallas grandes)
+   En la portada sigue la píldora flotante de arriba; en celular, el menú de siempre.
+   ========================================================== */
+
+:root {
+  --sidebar-w: 272px;
+}
+
+/* El botón "Menú" para volver a abrirla solo existe en pantallas grandes */
+.menu-reopen,
+.menu-collapse {
+  display: none;
+}
+
+@media (min-width: 1081px) {
+  /* Con la barra abierta, todo el contenido se corre a la derecha */
+  #root {
+    transition: padding-left 0.55s var(--ease);
+  }
+
+  html.sidebar-open #root {
+    padding-left: var(--sidebar-w);
+  }
+
+  /* Sin menú arriba, las portadas internas no necesitan tanto espacio superior */
+  html.has-sidebar .page-intro,
+  html.has-sidebar .qs-hero,
+  html.has-sidebar .pi-hero {
+    padding-top: 90px;
+  }
+
+  html.has-sidebar .blog-post {
+    padding-top: 28px;
+  }
+
+  html.has-sidebar .page-hero {
+    padding-top: 90px;
+  }
+
+  .site-header.is-side {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    width: var(--sidebar-w);
+    padding: 0;
+  }
+
+  .site-header.is-side .site-header__inner {
+    height: 100vh;
+    max-width: none;
+    margin: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding: 26px 16px 24px;
+    border: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0 32px 32px 0;
+    background:
+      radial-gradient(ellipse 80% 30% at 0% 0%, rgba(235, 93, 157, 0.25), transparent 70%),
+      radial-gradient(ellipse 80% 30% at 100% 100%, rgba(14, 171, 226, 0.2), transparent 70%),
+      linear-gradient(180deg, #2b1d47, #1a1427);
+    box-shadow: 20px 0 50px -20px rgba(26, 20, 39, 0.5);
+    overflow-y: auto;
+    scrollbar-width: none; /* en pantallas bajas se puede bajar, pero sin barra gris a la vista */
+    transition: transform 0.55s var(--ease);
+  }
+
+  /* Línea de colores vertical en el borde derecho */
+  .site-header.is-side .site-header__inner::after {
+    left: auto;
+    right: 0;
+    top: 32px;
+    bottom: 32px;
+    width: 3px;
+    height: auto;
+    background: linear-gradient(180deg, var(--naranja) 0 20%, var(--rosa) 20% 40%, var(--violeta) 40% 60%, var(--celeste) 60% 80%, var(--verde) 80%);
+  }
+
+  .site-header.is-side.is-scrolled .site-header__inner {
+    padding-top: 26px;
+    padding-bottom: 24px;
+  }
+
+  /* Oculta: la barra se va hacia la izquierda */
+  .site-header.is-side.is-collapsed .site-header__inner {
+    transform: translateX(-110%);
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  .site-header.is-side .brand {
+    padding: 0 44px 0 6px;
+  }
+
+  .site-header.is-side .brand__name {
+    font-size: 1.35rem;
+    white-space: normal;
+    line-height: 1.05;
+  }
+
+  /* Opciones una debajo de la otra */
+  .site-header.is-side .site-nav {
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .site-header.is-side .site-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+  }
+
+  .site-header.is-side .site-nav ul a {
+    padding: 0.85rem 1.1rem;
+    font-size: 1.08rem;
+  }
+
+  /* Redes abajo de todo */
+  .site-header.is-side .site-header__social {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.1rem 0 0;
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Botón para ocultar la barra (arriba a la derecha de la barra) */
+  .site-header.is-side .menu-collapse {
+    position: absolute;
+    top: 30px;
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.35s var(--ease);
+  }
+
+  .site-header.is-side .menu-collapse:hover {
+    background: var(--rosa);
+    transform: translateX(-2px);
+  }
+
+  .menu-collapse svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Botón "Menú" para volver a mostrarla */
+  .menu-reopen {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 6px 16px 6px 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: linear-gradient(100deg, rgba(43, 29, 71, 0.96), rgba(26, 20, 39, 0.96));
+    color: #fff;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 14px 34px -12px rgba(26, 20, 39, 0.7);
+    transition: transform 0.35s var(--ease);
+  }
+
+  .menu-reopen:hover {
+    transform: translateX(3px);
+  }
+
+  .menu-reopen svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .brand__ring--sm {
+    width: 36px;
+    height: 36px;
+  }
+
+  .menu-reopen .brand__iso {
+    position: relative;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+  }
+}

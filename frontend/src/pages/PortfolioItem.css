@@ -1,0 +1,459 @@
+/* ==========================================================
+   Página de cada proyecto del portfolio
+   --accent: color del pétalo de este proyecto
+   ========================================================== */
+
+/* ---------- Portada a todo color ---------- */
+.pi-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: min(100vh, 920px);
+  display: flex;
+  align-items: center;
+  padding: 150px 0 100px;
+  color: #fff;
+  background:
+    radial-gradient(ellipse 50% 50% at 90% 10%, rgba(255, 255, 255, 0.25), transparent 70%),
+    radial-gradient(ellipse 60% 60% at 0% 100%, color-mix(in srgb, var(--accent) 50%, var(--rosa)), transparent 70%),
+    linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 55%, var(--violeta)) 60%, var(--violeta) 100%);
+  background-size: 140% 140%;
+  animation: bg-drift 14s ease-in-out infinite;
+}
+
+.pi-hero__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.pi-back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.3s var(--ease), color 0.2s;
+}
+
+.pi-back:hover {
+  color: #fff;
+  transform: translateX(-4px);
+}
+
+.pi-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Hashtags del proyecto */
+.pi-tag {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba(26, 20, 39, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.pi-kind {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  background: #fff;
+  color: color-mix(in srgb, var(--accent) 60%, #1a1427);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.4);
+}
+
+.pi-hero h1 {
+  color: #fff;
+  font-size: clamp(2.8rem, 5.6vw, 5.2rem);
+  line-height: 0.98;
+  perspective: 800px;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.pi-hero .word {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  white-space: pre;
+}
+
+/* Vidrio oscuro: el texto blanco se lee bien sobre cualquier color (incluso verde o celeste claros) */
+.pi-hero__lead {
+  max-width: 580px;
+  margin: 0;
+  padding: 1.4rem 1.6rem;
+  border-radius: 22px;
+  background: rgba(26, 20, 39, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.55);
+  font-size: clamp(1.12rem, 1.5vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.65;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Frases resaltadas: blanco sólido con letra oscura */
+.pi-hero__lead strong,
+.pi-hero__lead b {
+  color: #1a1427;
+  background: #fff;
+  padding: 0.05em 0.35em;
+  border-radius: 6px;
+  text-shadow: none;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.pi-hero .buttons .btn {
+  font-size: 1.08rem;
+  padding: 1.05em 2.3em;
+  box-shadow: 0 16px 34px -12px rgba(0, 0, 0, 0.5);
+}
+
+.pi-hero .btn--white {
+  color: #1a1427;
+}
+
+.pi-hero .btn--white:hover {
+  background: #1a1427;
+  color: #fff;
+}
+
+/* "Donar": oscuro sólido en lugar del contorno fino */
+.pi-hero .pi-donate {
+  background: #1a1427;
+  border-color: #1a1427;
+  color: #fff;
+}
+
+.pi-hero .pi-donate:hover {
+  background: var(--rosa);
+  border-color: var(--rosa);
+}
+
+.pi-back {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(26, 20, 39, 0.35);
+}
+
+/* Foto en marco 3D con una tarjeta de color detrás */
+.pi-hero__media {
+  position: relative;
+  aspect-ratio: 4 / 3.4;
+}
+
+.pi-hero__backdrop {
+  position: absolute;
+  inset: 8% -4% -6% 10%;
+  border-radius: 40px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  rotate: 6deg;
+}
+
+.pi-hero__frame {
+  position: absolute;
+  inset: 0 6% 6% 0;
+  border-radius: 36px;
+  overflow: hidden;
+  border: 8px solid #fff;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.6);
+  rotate: -3deg;
+}
+
+.pi-hero__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.2);
+}
+
+.pi-hero__petal {
+  position: absolute;
+  z-index: 2;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.3));
+  animation: float 5s ease-in-out infinite;
+}
+
+.pi-hero__petal--1 { width: 70px; top: -24px; right: 2%; rotate: 30deg; }
+.pi-hero__petal--2 { width: 54px; bottom: -6px; left: -14px; rotate: -150deg; animation-delay: -2s; }
+
+@media (max-width: 900px) {
+  .pi-hero {
+    min-height: auto;
+    padding-top: 130px;
+  }
+
+  .pi-hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pi-hero__media {
+    order: -1;
+    max-width: 520px;
+  }
+}
+
+/* ---------- Ejes ---------- */
+.pi-keys {
+  background: var(--bg-programs);
+  overflow: hidden;
+}
+
+.pi-keys__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+.pi-key {
+  position: relative;
+  height: 100%;
+  min-height: 300px;
+  padding: 2.2rem 2rem;
+  border-radius: 32px;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--c) 80%, white), var(--c) 45%, color-mix(in srgb, var(--c) 60%, var(--violeta)));
+  box-shadow: 0 30px 60px -28px var(--c);
+}
+
+.pi-key__num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.pi-key__petal {
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: 150px;
+  opacity: 0.18;
+  rotate: 35deg;
+  transition: rotate 0.8s var(--ease);
+}
+
+.pi-key:hover .pi-key__petal {
+  rotate: 215deg;
+}
+
+.pi-key h3 {
+  color: #fff;
+  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+  margin-bottom: 0.6rem;
+}
+
+.pi-key p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ---------- Texto en paneles ---------- */
+.pi-body {
+  background: var(--bg-about);
+  overflow: hidden;
+}
+
+/* De a 2 por fila; si queda uno suelto al final, ocupa todo el ancho */
+.pi-body__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.pi-body__grid > :last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+  .pi-body__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pi-panel {
+  position: relative;
+  height: 100%;
+  padding: 2.2rem 2.2rem 2.2rem 2.6rem;
+  border-radius: 30px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 24px 50px -30px color-mix(in srgb, var(--c) 80%, black);
+}
+
+/* Barra de color a la izquierda */
+.pi-panel::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background: var(--c);
+}
+
+.pi-panel__petal {
+  position: absolute;
+  right: -20px;
+  bottom: -30px;
+  width: 110px;
+  opacity: 0.2;
+  rotate: -30deg;
+}
+
+.pi-panel p {
+  position: relative;
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.pi-panel strong,
+.pi-panel b {
+  color: color-mix(in srgb, var(--c) 70%, #1a1427);
+}
+
+/* ---------- Frase destacada ---------- */
+.pi-quote {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5rem, 12vw, 9rem) 0;
+  background: linear-gradient(120deg, var(--violeta), color-mix(in srgb, var(--accent) 70%, var(--violeta)) 55%, var(--accent));
+  background-size: 160% 160%;
+  animation: bg-drift 12s ease-in-out infinite;
+  color: #fff;
+  text-align: center;
+}
+
+.pi-quote .container {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+}
+
+.pi-quote__mark {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 9rem;
+  font-weight: 800;
+  line-height: 0.6;
+  opacity: 0.5;
+}
+
+.pi-quote p {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 3.6vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.pi-quote strong,
+.pi-quote b {
+  color: #fff;
+  background: linear-gradient(transparent 60%, rgba(255, 255, 255, 0.3) 60%);
+}
+
+/* ---------- Invitación ---------- */
+.pi-cta {
+  background: var(--bg-news);
+}
+
+.pi-cta__card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.5rem, 6vw, 4.5rem);
+  padding-right: clamp(2.5rem, 34%, 420px);
+  border-radius: 36px;
+  color: #fff;
+  background: linear-gradient(120deg, #eb5d9d 0%, #f2708a 45%, #f08a4b 80%, #de6f20 100%);
+  background-size: 160% 160%;
+  animation: bg-drift 10s ease-in-out infinite;
+  box-shadow: 0 50px 100px -30px rgba(235, 93, 157, 0.6);
+}
+
+.pi-cta__flower {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  width: clamp(220px, 30vw, 380px);
+  margin-top: calc(clamp(220px, 30vw, 380px) / -2);
+  padding: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.35), 0 0 0 18px rgba(255, 255, 255, 0.18), 0 0 0 40px rgba(255, 255, 255, 0.08);
+  animation: spin 40s linear infinite;
+  pointer-events: none;
+}
+
+.pi-cta__text {
+  position: relative;
+  z-index: 1;
+}
+
+.pi-cta__card h2 {
+  color: #fff;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+.pi-cta__card p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.pi-cta__card .btn--white {
+  color: #1fa855;
+}
+
+.pi-cta__card .btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 760px) {
+  .pi-cta__card {
+    padding-right: clamp(2rem, 6vw, 3rem);
+    padding-bottom: 210px;
+  }
+
+  .pi-cta__flower {
+    top: auto;
+    bottom: -90px;
+    right: 50%;
+    width: 250px;
+    margin: 0 -125px 0 0;
+  }
+}
+
+/* ---------- Otros proyectos ---------- */
+.pi-more h2 {
+  color: #fff;
+}
