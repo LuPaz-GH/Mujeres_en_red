@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
-import { contentImages, featuredImage, formatDate, getAdjacentPosts, getRelatedPosts, postTerms } from '../api/wp'
+import { formatDate } from '../api/api'
 import PostImage from '../components/PostImage'
-import { useWp } from '../api/useWp'
 import WpContent from '../components/WpContent'
 import PostCard from '../components/PostCard'
 import Lightbox from '../components/Lightbox'
@@ -16,12 +15,6 @@ import './pages.css'
 import './Post.css'
 
 const GALLERY_PREVIEW = 12 // fotos que se ven antes de "Ver todas"
-
-const decode = (html) => {
-  const el = document.createElement('textarea')
-  el.innerHTML = html
-  return el.value
-}
 
 function readingMinutes(html) {
   const words = html.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length
@@ -73,16 +66,12 @@ export default function Post({ post }) {
   const heroRef = useRef(null)
   const [lightbox, setLightbox] = useState({ images: [], index: null })
 
-  const title = decode(post.title.rendered)
-  const image = featuredImage(post, 'full')
-  const hasVisual = Boolean(image) || contentImages(post, 1).length > 0
-  const { categories, tags } = postTerms(post)
-  const author = post._embedded?.author?.[0]?.name
-  const minutes = useMemo(() => readingMinutes(post.content.rendered), [post])
+  const title = post.titulo
+  const image = post.foto
+  const hasVisual = Boolean(image) || post.imagenes.length > 0
+  const { categorias: categories, etiquetas: tags, autora: author, anterior: prev, siguiente: next, relacionadas: related } = post
+  const minutes = useMemo(() => readingMinutes(post.contenido), [post])
   const accent = PETAL_COLORS[post.id % PETAL_COLORS.length]
-
-  const related = useWp(() => getRelatedPosts(post), [post.id])
-  const adjacent = useWp(() => getAdjacentPosts(post), [post.id])
 
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
@@ -144,7 +133,7 @@ export default function Post({ post }) {
             <div className="post-cats">
               {categories.map((c, i) => (
                 <span key={c.id} style={{ '--c': PETAL_COLORS[(i + 1) % 5] }}>
-                  {decode(c.name)}
+                  {c.nombre}
                 </span>
               ))}
             </div>
@@ -157,7 +146,7 @@ export default function Post({ post }) {
             {title}
           </motion.h1>
           <div className="post-meta">
-            <span>📅 {formatDate(post.date)}</span>
+            <span>📅 {formatDate(post.fecha)}</span>
             <span>⏱ {minutes} min de lectura</span>
             {author && <span>✍️ {author}</span>}
           </div>
@@ -194,13 +183,13 @@ export default function Post({ post }) {
 
           <div className="post-paper">
             <div ref={bodyRef} onClick={handleClick}>
-              <WpContent html={post.content.rendered} className="post-body" />
+              <WpContent html={post.contenido} className="post-body" />
             </div>
 
             {tags.length > 0 && (
               <div className="post-tags">
                 {tags.map((t) => (
-                  <span key={t.id}>#{decode(t.name)}</span>
+                  <span key={t.id}>#{t.nombre}</span>
                 ))}
               </div>
             )}
@@ -221,27 +210,27 @@ export default function Post({ post }) {
       </section>
 
       {/* ---------- Anterior / siguiente ---------- */}
-      {adjacent.data && (adjacent.data.prev || adjacent.data.next) && (
+      {(prev || next) && (
         <nav className="post-adjacent container" aria-label="Más notas">
-          {adjacent.data.prev ? (
-            <Link to={`/${adjacent.data.prev.slug}`} className="adjacent adjacent--prev">
+          {prev ? (
+            <Link to={`/${prev.slug}`} className="adjacent adjacent--prev">
               <span>← Nota anterior</span>
-              <strong>{decode(adjacent.data.prev.title.rendered)}</strong>
+              <strong>{prev.titulo}</strong>
             </Link>
           ) : (
             <span />
           )}
-          {adjacent.data.next && (
-            <Link to={`/${adjacent.data.next.slug}`} className="adjacent adjacent--next">
+          {next && (
+            <Link to={`/${next.slug}`} className="adjacent adjacent--next">
               <span>Nota siguiente →</span>
-              <strong>{decode(adjacent.data.next.title.rendered)}</strong>
+              <strong>{next.titulo}</strong>
             </Link>
           )}
         </nav>
       )}
 
       {/* ---------- Seguí leyendo ---------- */}
-      {related.data?.length > 0 && (
+      {related.length > 0 && (
         <section className="section post-related">
           <div className="container">
             <Reveal as="p" className="eyebrow">
@@ -251,7 +240,7 @@ export default function Post({ post }) {
               Más historias de la red
             </Reveal>
             <div className="post-grid">
-              {related.data.map((p, i) => (
+              {related.map((p, i) => (
                 <Reveal key={p.id} delay={i * 0.1}>
                   <PostCard post={p} accent={PETAL_COLORS[(i + 1) % 5]} />
                 </Reveal>

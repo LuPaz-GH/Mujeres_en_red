@@ -1,0 +1,77 @@
+/* Botón flotante de WhatsApp: círculo verde abajo a la derecha; con el mouse encima muestra "¿Hablamos?" */
+.wa-flotante {
+  position: fixed;
+  right: clamp(14px, 3vw, 28px);
+  bottom: clamp(14px, 3vw, 28px);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  height: 60px;
+  min-width: 60px;
+  padding: 0 17px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 10px 26px -6px rgba(18, 140, 70, 0.6);
+  transition: transform 0.25s, box-shadow 0.25s, gap 0.25s;
+}
+
+.wa-flotante svg {
+  flex: none;
+  width: 26px;
+  height: 26px;
+}
+
+.wa-flotante__texto {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 0.3s ease;
+}
+
+.wa-flotante:hover,
+.wa-flotante:focus-visible {
+  gap: 0.5rem;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -8px rgba(18, 140, 70, 0.7);
+}
+
+.wa-flotante:hover .wa-flotante__texto,
+.wa-flotante:focus-visible .wa-flotante__texto {
+  max-width: 120px;
+}
+
+.wa-flotante:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Un pulso suave cada tanto, para que se note */
+.wa-flotante::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  animation: wa-pulso 3s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes wa-pulso {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  60%, 100% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-flotante,
+  .wa-flotante__texto {
+    transition: none;
+  }
+
+  .wa-flotante::after {
+    animation: none;
+  }
+}

@@ -501,3 +501,48 @@
     margin: 0 -125px 0 0;
   }
 }
+
+/* Transparencia: datos legales de la fundación, debajo del agradecimiento */
+.transparencia {
+  max-width: 760px;
+  margin: 2.5rem auto 0;
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  text-align: center;
+}
+
+.transparencia h3 {
+  margin: 0 0 0.4rem;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.transparencia p {
+  margin: 0 auto 1.25rem;
+  max-width: 560px;
+}
+
+.transparencia dl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 2rem;
+  margin: 0 0 1.25rem;
+}
+
+.transparencia dt {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.transparencia dd {
+  margin: 0.15rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}

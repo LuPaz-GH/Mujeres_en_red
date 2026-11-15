@@ -1387,6 +1387,7 @@
 
 .contact__form .contact-form input[type='text'],
 .contact__form .contact-form input[type='email'],
+.contact__form .contact-form input[type='tel'],
 .contact__form .contact-form textarea {
   background: rgba(255, 255, 255, 0.16);
   border: 1.5px solid rgba(255, 255, 255, 0.4);
@@ -1474,4 +1475,74 @@
   .contact-extra__grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ---------- Eventos ---------- */
+.eventos-page {
+  position: relative;
+  overflow: hidden;
+}
+
+.eventos-page > .container {
+  position: relative;
+}
+
+.eventos-page__titulo {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.eventos-page__titulo--pasados {
+  margin-top: clamp(3.5rem, 8vw, 5.5rem);
+}
+
+.eventos-page__vacio {
+  margin-top: 1.5rem;
+  padding: 2rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.15rem;
+}
+
+.eventos-page__vacio p {
+  margin: 0 0 1rem;
+}
+
+/* Inicio: "Próximos eventos" */
+.home-eventos .eventos-grid {
+  margin-top: 2rem;
+}
+
+/* ---------- Política de privacidad: texto en una tarjeta blanca sobre el color de la página ---------- */
+.privacidad__texto {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 5vw, 3.25rem);
+  border-radius: 28px;
+  background: #fff;
+  color: var(--ink-soft);
+  box-shadow: 0 30px 60px -36px rgba(26, 20, 39, 0.8);
+}
+
+.privacidad__texto h2 {
+  margin: 2rem 0 0.6rem;
+  color: var(--ink);
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+}
+
+.privacidad__texto h2:first-child {
+  margin-top: 0;
+}
+
+.privacidad__texto p {
+  margin: 0 0 0.9rem;
+  line-height: 1.7;
+}
+
+.privacidad__fecha {
+  margin-top: 2rem !important;
+  color: var(--muted);
+  font-size: 0.9rem;
 }

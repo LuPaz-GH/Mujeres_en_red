@@ -1,0 +1,50 @@
+[
+    {
+        "nombre": "Gabriela Llobril",
+        "cargo": "Presidente",
+        "foto": "/img/sitio/2024/01/5.jpg",
+        "bio": [
+            "Lic. en Comunicación Social",
+            "Coach Ontológico",
+            "Jefa del departamento de Comunicación en Liceo RESM",
+            "Docente de escuelas secundarias"
+        ],
+        "redes": {
+            "linkedin": "https://www.linkedin.com/in/gabrielallobril/",
+            "instagram": "https://www.instagram.com/gaby_llobril/"
+        },
+        "color": "rosa"
+    },
+    {
+        "nombre": "Priscila Vargas Teruel",
+        "cargo": "Lic. en Recursos Humanos",
+        "foto": "/img/sitio/2024/01/2.jpg",
+        "bio": [
+            "Generalista de RRHH",
+            "Analista de Selección de personal",
+            "Miembro de Comisión Directiva de ACILTRA Tucumán",
+            "Co-coordinadora de Subcomisión de ACILTHRA Tucumán"
+        ],
+        "redes": {
+            "linkedin": "https://www.linkedin.com/in/lic-priscila-vargas-teruel/",
+            "instagram": "https://www.instagram.com/lic.priscilavargasteruel_rrhh/"
+        },
+        "color": "celeste"
+    },
+    {
+        "nombre": "Paola Santucho",
+        "cargo": "Lic. en Trabajo Social",
+        "foto": "/img/sitio/2024/01/4.jpg",
+        "bio": [
+            "Coach Ontológico Profesional",
+            "Especializada en Programación Neurolingüística (PNL)",
+            "Risoterapia"
+        ],
+        "redes": {
+            "instagram": "https://www.instagram.com/paolasantucho.coach",
+            "facebook": "https://www.facebook.com/share/1GF3u6dNVw/",
+            "tiktok": "https://www.tiktok.com/@pao.santucho.coac"
+        },
+        "color": "verde"
+    }
+]

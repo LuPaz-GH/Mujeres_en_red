@@ -1,0 +1,628 @@
+{
+    "rubros": [
+        "Gastronomía, Catering y Eventos",
+        "Indumentaria. Moda. Accesorios",
+        "Salud. Belleza. Bienestar",
+        "Decoración. Hogar. Diseño",
+        "Marketing. Comunicación. Tecnología",
+        "Servicios Profesionales"
+    ],
+    "fichas": [
+        {
+            "nombre": "La Freezada",
+            "rubro": "Gastronomía, Catering y Eventos",
+            "descripcion": "Elaboración y venta de Comida Casera Freezada lista para calentar. Rica y saludable!!",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/LA-FREEZADA-LOGO.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/twvwbe",
+                    "texto": "3815134073"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/lafreezada/",
+                    "texto": "@lafreezada"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/lafreezada.alimentosfreezados",
+                    "texto": "@lafreezadacomidascaserasfreezadas"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@lafreezada?lang=es-419",
+                    "texto": "@lafreezada"
+                }
+            ]
+        },
+        {
+            "nombre": "Alfajorcitos Maicelita",
+            "rubro": "Gastronomía, Catering y Eventos",
+            "descripcion": "Diseñadora de Alfajores Temáticos . Te ofrezco una experiencia personalizada para cada celebración. Disfruta en cada bocado estos deliciosos y únicos Alfajores.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Screenshot_20260125_204544_Gmail-Maria-Marcela-1.jpg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/99gnke",
+                    "texto": "3814577191"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/alfajorcitosmaicelita/",
+                    "texto": "@alfajorcitosmaicelita"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/maicelitaalfajores",
+                    "texto": "Alfajorcitos Maicelita"
+                }
+            ]
+        },
+        {
+            "nombre": "Caserito sin tacc",
+            "rubro": "Gastronomía, Catering y Eventos",
+            "descripcion": "Panadería y pastas sin TACC, sin aditivos ni conservantes, hechos en un hogar de celíacos garantizando que no existe contaminación cruzada.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/file_00000000a69c61f788e070892570bbcb-cecilia-romero.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/y8ct2s",
+                    "texto": "3813044502"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/caseritotucu?igsh=YmlodG9peTU3aXQ2",
+                    "texto": "https://www.instagram.com/caseritotucu?igsh=YmlodG9peTU3aXQ2"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/share/1Z26CNbLeE/",
+                    "texto": "https://www.facebook.com/share/1Z26CNbLeE/"
+                }
+            ]
+        },
+        {
+            "nombre": "La Tiendita",
+            "rubro": "Indumentaria. Moda. Accesorios",
+            "descripcion": "Personal shopper de importados: ropa europea original Zara, H&M y más. Prendas favoritas en todos los talles para sentirte única.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/la-tiendita.jpeg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/1mggdt",
+                    "texto": "3813 41-9830"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/latienditadeimportadosbycee/",
+                    "texto": "https://www.instagram.com/latienditadeimportadosbycee/"
+                }
+            ]
+        },
+        {
+            "nombre": "Dra Yasmin Cabello Latife",
+            "rubro": "Salud. Belleza. Bienestar",
+            "descripcion": "Soy médica de familia: acompaño historias, cuido personas y camino junto a vos y tu familia en cada etapa de la vida",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Maria-MArcela-Coronel.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/napeth",
+                    "texto": "3815567201"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/drayasmincabello?igsh=dXJzMXRrYXlmb3Vh",
+                    "texto": "https://www.instagram.com/drayasmincabello?igsh=dXJzMXRrYXlmb3Vh"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/share/16ZNdaT3ie/",
+                    "texto": "https://www.facebook.com/share/16ZNdaT3ie/"
+                }
+            ]
+        },
+        {
+            "nombre": "Dr. Gutierrez Yapur – PAMI – Diabetes y Obesidad",
+            "rubro": "Salud. Belleza. Bienestar",
+            "descripcion": "Médico de Cabecera de PAMI Diplomado en Diabetes y Obesidad. Prevencion Diagnostico y tratamiento integralcon enfoque personalizado.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Dr.-Gutierrez.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/gii6uf",
+                    "texto": "3813929847"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/dr.andres.gutierrez/",
+                    "texto": "https://www.instagram.com/dr.andres.gutierrez/"
+                }
+            ]
+        },
+        {
+            "nombre": "Dra Huerto Díaz – Dermatología clínica y estética",
+            "rubro": "Salud. Belleza. Bienestar",
+            "descripcion": "Dermatología clínica y estética. Diplomada en Psoriasis. Hospital público y consultorio privado. Te acompaño en el cuidado de tu piel.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/02/Dra-Huerto-diaz-Catpalog-e1771362898219-269x300-1.jpeg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/vb2drb",
+                    "texto": "3815671158"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/dra.huertodiaz/?hl=es-la",
+                    "texto": "dra.huertodiaz"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/search?q=dra.huertodiaz&t=1771368998238",
+                    "texto": "dra.huertodiaz"
+                }
+            ]
+        },
+        {
+            "nombre": "Lady Eva – Centro de Estética",
+            "rubro": "Salud. Belleza. Bienestar",
+            "descripcion": "Lady Eva es un centro de estética integral donde cuidamos tu piel, tu cuerpo y tu bienestar con atención personalizada.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/02/LOGO-LADY2.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/mzhe94",
+                    "texto": "381-3254000"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/ladyeva_belleza/?hl=es-la",
+                    "texto": "@ladyeva_belleza"
+                }
+            ]
+        },
+        {
+            "nombre": "UGA – Make Up",
+            "rubro": "Salud. Belleza. Bienestar",
+            "descripcion": "Ugamakeup es perfumería y maquillaje con marcas seleccionadas para realzar tu belleza todos los días.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/02/logo-uga-sin-fondo.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/ag5b1x",
+                    "texto": "3816481453"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/ugamakeupok/?hl=es-la",
+                    "texto": "@ugamakeupok"
+                }
+            ]
+        },
+        {
+            "nombre": "Empoderate con el orden",
+            "rubro": "Decoración. Hogar. Diseño",
+            "descripcion": "💫TRANSFORMO la energía de tus espacios con soluciones simples de DISEÑO, ORDEN y ORGANIZACIÓN. 🛒Productos y Servicios que facilitan tu vida.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/REFRESH-LOGO-NATY-16-Naty-Saul.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/hkrszr",
+                    "texto": "3813343737"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/arq.natysaul.op/",
+                    "texto": "https://www.instagram.com/arq.natysaul.op/"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/naty.saul",
+                    "texto": "https://www.facebook.com/naty.saul"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@empoderateconelorden",
+                    "texto": "https://www.tiktok.com/@empoderateconelorden"
+                }
+            ]
+        },
+        {
+            "nombre": "Estudio V7",
+            "rubro": "Decoración. Hogar. Diseño",
+            "descripcion": "Estudio V7 diseña interiores contemporáneos con alma, donde el espacio dialoga con las emociones, la forma de habitar y los detalles.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Estudio-V7-Veronica-Gutierrez-Yapur.jpeg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/npp5r6",
+                    "texto": "3814173956"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/estudio_v7/",
+                    "texto": "@estudio_v7"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/veronica.gutierrezyapur",
+                    "texto": "Verónica Gutiérrez Yapur"
+                }
+            ]
+        },
+        {
+            "nombre": "NiKa – Aromas Artesanales",
+            "rubro": "Decoración. Hogar. Diseño",
+            "descripcion": "Todo en aromas: textiles, autos, difusores con rattan, piedras aromáticas, velas de soja y souvenirs. Hecho a mano para ambientar tus espacios.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Aromas-Artesanales_page-0001.jpg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/c1e4ry",
+                    "texto": "3814 77-1117"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/aromasartesanalesnyka/",
+                    "texto": "https://www.instagram.com/aromasartesanalesnyka/"
+                }
+            ]
+        },
+        {
+            "nombre": "Magna Gestoria de Redes",
+            "rubro": "Marketing. Comunicación. Tecnología",
+            "descripcion": "Gestión integral de redes sociales para profesionales y emprendedores: estrategia, planificación y creación de contenidos alineados a tu negocio.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Untitled-design-Any-Azar-Soraire.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/wh8nyf",
+                    "texto": "3814963239"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/magna.gestoriaderedes.tuc/",
+                    "texto": "@magna.gestoriaderedes.tuc"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/magnagestoriaderedes/",
+                    "texto": "Facebook.com/magnagestoriaderedes/"
+                }
+            ]
+        },
+        {
+            "nombre": "Estereotipodg",
+            "rubro": "Marketing. Comunicación. Tecnología",
+            "descripcion": "Diseño Creativo ✏ -Trabajos Personalizados🎁 -Diseño Institucional👩‍💻",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/IMG-20260120-WA0031-maria-alejandra-olmedo.jpg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/pn9ykt",
+                    "texto": "38115943133"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/estereotipodg",
+                    "texto": "https://www.instagram.com/estereotipodg"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/share/1cZKM8AoUW/",
+                    "texto": "https://www.facebook.com/share/1cZKM8AoUW/"
+                }
+            ]
+        },
+        {
+            "nombre": "Camila Robles – Comunicación",
+            "rubro": "Marketing. Comunicación. Tecnología",
+            "descripcion": "Servicios de Comunicación: Redacción periodística | Producción audiovisual | Comunicación Institucional | Gestión de redes | Creación de contenido | Edición de vídeos Mail: lourdescamilarobles@gmail.com",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Camila-Robles.jpeg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/xd4s4w",
+                    "texto": "3815283931"
+                },
+                {
+                    "tipo": "web",
+                    "url": "https://iayelestiloghibli.my.canva.site/camilaroblesportafolio",
+                    "texto": "https://iayelestiloghibli.my.canva.site/camilaroblesportafolio"
+                }
+            ]
+        },
+        {
+            "nombre": "VM Estudio Fotográfico",
+            "rubro": "Marketing. Comunicación. Tecnología",
+            "descripcion": "Somos un estudio de creación de contenido audiovisual para dueños de negocios que buscan comunicar y potenciar la esencia de su marca.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/VeroMedrano_Sintesis_Bajada_Dorado_rgb-Veronica-Medrano.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/0qg31j",
+                    "texto": "3815093269"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/vmestudiofotografico",
+                    "texto": "https://www.instagram.com/vmestudiofotografico"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@vmestudiofotografico?_r=1&_t=ZS-93NEUexzfTY",
+                    "texto": "https://www.tiktok.com/@vmestudiofotografico?_r=1&_t=ZS-93NEUexzfTY"
+                }
+            ]
+        },
+        {
+            "nombre": "Cami Breccia",
+            "rubro": "Marketing. Comunicación. Tecnología",
+            "descripcion": "Community Manager, Copywriter y Mentora de Comunicación de profesionales de la salud",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2017/01/Logotipo-3-Cami-Breccia.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/0qg31j",
+                    "texto": ""
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/camibrecciacopy/?hl=es-la%20https%3A%2F%2Fwww.instagram.com%2Fcamibrecciacopy%2F",
+                    "texto": "Instagram: @camibrecciacopy"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/cbredcreativa?locale=es_LA",
+                    "texto": "CamiBrecciaCopy"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@vmestudiofotografico?_r=1&_t=ZS-93NEUexzfTY",
+                    "texto": "@camibrecciacopy"
+                }
+            ]
+        },
+        {
+            "nombre": "Elos Digital",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "Expertos en desarrollo web y Digital Commerce. Partner oficial de Tiendanube. Impulsamos tu negocio con soluciones a medida.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Logo-Elos-Base-Elos-Digital.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/d9e5wp",
+                    "texto": "2216760131"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/elosdigital/",
+                    "texto": "https://www.instagram.com/elosdigital/"
+                },
+                {
+                    "tipo": "web",
+                    "url": "https://elosdigital.com/",
+                    "texto": "https://elosdigital.com/"
+                }
+            ]
+        },
+        {
+            "nombre": "Coach Paola SANTUCHO",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "Facilita sesiones , talleres y espacios formativos que potencian la confianza, la claridad y la capacidad de acción, fortaleciendo la obtención de resultados",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Paola-Santucho-1.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/llgyr7",
+                    "texto": "3814131092"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/paolasantucho.coach?igsh=MWE4aTJucGF1dm95Ng==",
+                    "texto": "https://www.instagram.com/paolasantucho.coach?igsh=MWE4aTJucGF1dm95Ng=="
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/share/1GF3u6dNVw/",
+                    "texto": "https://www.facebook.com/share/1GF3u6dNVw/"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@pao.santucho.coac?_r=1&_t=ZS-93NaYOi8NFN",
+                    "texto": "https://www.tiktok.com/@pao.santucho.coac?_r=1&_t=ZS-93NaYOi8NFN"
+                }
+            ]
+        },
+        {
+            "nombre": "Andy Villarruel & CO",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "Acompaño a desafiar y romper mapas limitantes. Líder en procesos de expansión personal y organizacional. Creadora de contextos sostenibles de bienestar y plenitud.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Logo-Andy-Villarruel-01-Andy-Villarruel.jpg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/c4przj",
+                    "texto": "3816040414"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/andycoachvital/",
+                    "texto": "https://www.instagram.com/andycoachvital/"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/profile.php?id=100067033471597",
+                    "texto": "https://www.facebook.com/profile.php?id=100067033471597"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@andycoachvital",
+                    "texto": "https://www.tiktok.com/@andycoachvital"
+                }
+            ]
+        },
+        {
+            "nombre": "Fundación Expresar",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "A través de nuestras acciones y capacitaciones transformamos el miedo en palabra para fortalecer voces, liderazgos y generar impacto social.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/EXPRESAR.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/6uhg76",
+                    "texto": "3816231742"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/expresarfundacion/",
+                    "texto": "https://www.instagram.com/expresarfundacion/"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/expresarfundacion",
+                    "texto": "https://www.facebook.com/expresarfundacion"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@expresarfundacion",
+                    "texto": "https://www.tiktok.com/@expresarfundacion"
+                }
+            ]
+        },
+        {
+            "nombre": "Natalia Sánchez – Psicóloga",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "Psicóloga. Especialista en duelos naturales, gestión emocional y vínculos de pareja. Acompaño procesos de elaboración y transformación.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/Natalia-Sanchez.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/wq6gdf",
+                    "texto": "3815714261"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/psicologa.sancheznatalia?igsh=bndwZmZoZHc3Y2My",
+                    "texto": "https://www.instagram.com/psicologa.sancheznatalia?igsh=bndwZmZoZHc3Y2My"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/share/17q8f5dqyx/",
+                    "texto": "https://www.facebook.com/share/17q8f5dqyx/"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@psicologia.emociones?_r=1&_t=ZM-934O2fLVPvY",
+                    "texto": "https://www.tiktok.com/@psicologia.emociones?_r=1&_t=ZM-934O2fLVPvY"
+                }
+            ]
+        },
+        {
+            "nombre": "Cra. Gabriela Moreira Mora",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "Servicios Impositivos, Contables y de Gestión. Acompaño a emprendedores y empresas en la organización el cumplimiento fiscal, organización de sus finanzas y la toma de decisiones",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/IMG_4422-Gaby-Moreira-Mora.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/tbums9",
+                    "texto": "3815477153"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/gabymoreiramora/",
+                    "texto": "@gabymoreiramora"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/gabymoreiramora",
+                    "texto": "Gaby Moreira Mora"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@gabymoreiramora21?lang=es-419",
+                    "texto": "@gabymoreiramora21"
+                }
+            ]
+        },
+        {
+            "nombre": "Yokasta Hinojosa – Asesora Financiera",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "Servicios de asesoramiento y educación de finanzas personales, para personas o emprendimiento.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/01/1769386216894-Yokasta-Hinojosa.png",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/zw18mb",
+                    "texto": "3865251575"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/yokasta_asesorafinanciera?igsh=ZDA0MWFkZ3Jqdnpp",
+                    "texto": "ttps://www.instagram.com/yokasta_asesorafinanciera?igsh=ZDA0MWFkZ3Jqdnpp"
+                },
+                {
+                    "tipo": "facebook",
+                    "url": "https://www.facebook.com/share/1GVzKUgxKe/",
+                    "texto": "https://www.facebook.com/share/1GVzKUgxKe/"
+                },
+                {
+                    "tipo": "tiktok",
+                    "url": "https://www.tiktok.com/@yoka_asesorafinanciera?_r=1&_t=ZS-93NZjwwzake",
+                    "texto": "https://www.tiktok.com/@yoka_asesorafinanciera?_r=1&_t=ZS-93NZjwwzake"
+                }
+            ]
+        },
+        {
+            "nombre": "Leonor Herrera",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "– Estudio Jurídico Abogada y Docente comprometida a brindarte herramientas legales para buscar soluciones a tus conflictos, en cordial atención. Asesoramiento con enfoque transversal y multidisciplinario para las áreas de Familia, Sucesiones, Violencia de género, Penal. Resuelve tus dudas! mail: leonorh2ra@gmail.com",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/02/IMG_20260202_153705-LEONOR-LAH.jpg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/xln1gf",
+                    "texto": "3815357621"
+                }
+            ]
+        },
+        {
+            "nombre": "Abogada Verónica Goldman",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "Abogada especialista en derecho del consumidor y rama civil.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/02/estudio-juridico.jpg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/o0ewei",
+                    "texto": "3816009705"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/estudiogag/?hl=es-la",
+                    "texto": "estudiogag"
+                }
+            ]
+        },
+        {
+            "nombre": "ESTUDIO JURÍDICO SUAREZ MOYA",
+            "rubro": "Servicios Profesionales",
+            "descripcion": "Derecho de familia y sucesiones con enfoque estratégico y humano. También formo a jóvenes abogados en el ejercicio profesional.",
+            "foto": "https://mujeresenred.com.ar/wp-content/uploads/2017/01/inbound185341916695731878-ADRIANA-NATIVIDAD-SUAREZ-MOYA.jpg",
+            "links": [
+                {
+                    "tipo": "whatsapp",
+                    "url": "https://wa.link/gzwyvr",
+                    "texto": "3812164469"
+                },
+                {
+                    "tipo": "instagram",
+                    "url": "https://www.instagram.com/estudiojuridico.suarezmoya/",
+                    "texto": "@estudiojuridico.suarezmoya"
+                }
+            ]
+        }
+    ]
+}

@@ -1,9 +1,13 @@
-# Hace que todas las rutas de React (/quienes-somos, /blog, etc.) carguen index.html
+# La portada y todas las rutas de React (/quienes-somos, /blog, /mi-nota...) las entrega index.php:
+# es el mismo index.html, pero con el título, la descripción y la foto de cada página
+# (para WhatsApp, Facebook y Google). También arma /sitemap.xml.
+DirectoryIndex index.php index.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  RewriteRule ^index\.html$ - [L]
+  RewriteRule ^index\.(php|html)$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  RewriteRule . /index.php [L]
 </IfModule>

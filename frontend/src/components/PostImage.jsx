@@ -1,13 +1,11 @@
-import { contentImages, featuredImage } from '../api/wp'
 import { PetalShape } from './motion/FloatingPetals'
 
-// Foto de una nota. Si no tiene foto propia (o tiene la imagen gris genérica),
-// arma un mosaico con las imágenes que hay dentro de la nota; si tampoco hay, muestra la flor sobre color.
-export default function PostImage({ post, size = 'medium_large', className = '' }) {
-  const img = featuredImage(post, size)
-  if (img) return <img src={img} alt="" loading="lazy" className={className} />
+// Foto de una nota. Si no tiene foto propia, arma un mosaico con las imágenes que hay dentro de la nota;
+// si tampoco hay, muestra la flor sobre color.
+export default function PostImage({ post, className = '' }) {
+  if (post.foto) return <img src={post.foto} alt="" loading="lazy" className={className} />
 
-  const inside = contentImages(post, 4)
+  const inside = post.imagenes || []
   if (inside.length > 0) {
     return (
       <div className={`post-mosaic post-mosaic--${inside.length} ${className}`}>

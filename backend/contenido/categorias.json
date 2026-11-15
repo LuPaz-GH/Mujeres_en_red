@@ -1,0 +1,47 @@
+[
+    {
+        "id": 54,
+        "nombre": "Artesanías y Regalos Personalizados",
+        "slug": "artesanias-y-regalos-personalizados"
+    },
+    {
+        "id": 47,
+        "nombre": "Catálogo 2026",
+        "slug": "catalogo-2026"
+    },
+    {
+        "id": 51,
+        "nombre": "Decoración. Hogar. Diseño.",
+        "slug": "decoracion-hogar-diseno"
+    },
+    {
+        "id": 48,
+        "nombre": "Gastronomía. Catering. Eventos.",
+        "slug": "gastronomia-catering-eventos"
+    },
+    {
+        "id": 49,
+        "nombre": "Indumentaria. Moda.Accesorios.",
+        "slug": "indumentaria-moda-accesorios"
+    },
+    {
+        "id": 53,
+        "nombre": "Marketing. Comunicación. Tecnología.",
+        "slug": "marketing-comunicacion-tecnologia"
+    },
+    {
+        "id": 21,
+        "nombre": "Noticias",
+        "slug": "noticias"
+    },
+    {
+        "id": 50,
+        "nombre": "Salud. Belleza. Bienestar.",
+        "slug": "salud-belleza-bienestar"
+    },
+    {
+        "id": 52,
+        "nombre": "Servicios Profesionales y Consultorías",
+        "slug": "servicios-profesionales-y-consultorias"
+    }
+]

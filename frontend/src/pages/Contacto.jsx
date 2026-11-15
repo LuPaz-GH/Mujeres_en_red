@@ -6,18 +6,22 @@ import Reveal from '../components/motion/Reveal'
 import Tilt from '../components/motion/Tilt'
 import { FacebookIcon, InstagramIcon, LinkedinIcon, MailIcon, WhatsappIcon } from '../components/Icons'
 import { BRAND } from '../data/brand'
-import { CONTACT_EMAIL, SOCIAL, WHATSAPP_NUMBER, WHATSAPP_URL } from '../data/site'
+import { usuarioDe, useSitio } from '../api/useSitio'
 import './pages.css'
 
-const CHANNELS = [
-  { label: 'Email', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}`, icon: MailIcon, color: BRAND.violeta },
-  { label: 'Instagram', value: '@mujeresenred', href: SOCIAL.instagram, icon: InstagramIcon, color: BRAND.rosa },
-  { label: 'WhatsApp', value: WHATSAPP_NUMBER, href: WHATSAPP_URL, icon: WhatsappIcon, color: BRAND.verde },
-  { label: 'Facebook', value: 'mujeresenredtucuman', href: SOCIAL.facebook, icon: FacebookIcon, color: BRAND.celeste },
-  { label: 'LinkedIn', value: 'Mujeres en Red', href: SOCIAL.linkedin, icon: LinkedinIcon, color: BRAND.naranja },
-].filter((c) => c.href && c.href !== '#') // WhatsApp aparece cuando se cargue el número en site.js
-
 export default function Contacto() {
+  const sitio = useSitio()
+  const CONTACT_EMAIL = sitio.email
+  const { social } = sitio
+  // Los que se dejan vacíos en el panel (Datos de la web) no aparecen
+  const CHANNELS = [
+    { label: 'Email', value: sitio.email, href: sitio.email && `mailto:${sitio.email}`, icon: MailIcon, color: BRAND.violeta },
+    { label: 'Instagram', value: `@${usuarioDe(social.instagram)}`, href: social.instagram, icon: InstagramIcon, color: BRAND.rosa },
+    { label: 'WhatsApp', value: sitio.whatsapp, href: sitio.whatsappUrl, icon: WhatsappIcon, color: BRAND.verde },
+    { label: 'Facebook', value: usuarioDe(social.facebook), href: social.facebook, icon: FacebookIcon, color: BRAND.celeste },
+    { label: 'LinkedIn', value: 'Mujeres en Red', href: social.linkedin, icon: LinkedinIcon, color: BRAND.naranja },
+  ].filter((c) => c.href)
+
   useEffect(() => {
     document.title = 'Contacto – Mujeres en Red'
   }, [])

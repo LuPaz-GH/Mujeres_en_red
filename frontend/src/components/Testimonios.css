@@ -1,0 +1,92 @@
+/* Inicio: testimonios. Fondo rosa y naranja del logo, tarjetas blancas */
+.section.testimonios {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.25), transparent 35%),
+    radial-gradient(circle at 90% 90%, rgba(97, 68, 145, 0.45), transparent 40%),
+    linear-gradient(135deg, var(--rosa), #c94a86 45%, var(--naranja));
+}
+
+.section.testimonios > .container {
+  position: relative;
+}
+
+.testimonios .title-xl {
+  background-image: linear-gradient(100deg, #fff, #fff1e0, #fff);
+}
+
+.testimonios__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 1.5rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.testimonio figure {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 2.2rem 1.6rem 1.5rem;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 24px 40px -24px rgba(40, 10, 30, 0.6);
+}
+
+.testimonio__comillas {
+  position: absolute;
+  top: -0.35em;
+  left: 1.2rem;
+  color: var(--color);
+  font-family: Georgia, serif;
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.testimonio blockquote {
+  flex: 1;
+  margin: 0 0 1.25rem;
+  color: var(--ink);
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+.testimonio figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.testimonio__foto {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.testimonio__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonio figcaption strong {
+  display: block;
+  color: var(--ink);
+}
+
+.testimonio figcaption small {
+  color: var(--ink-soft);
+}

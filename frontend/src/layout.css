@@ -6,7 +6,8 @@
 
 main[data-page='inicio'],
 main[data-page='quienes-somos'],
-main[data-page='contacto'] {
+main[data-page='contacto'],
+main[data-page='privacidad'] {
   --page: var(--violeta);
   --page-deep: #3a2463;
 }
@@ -22,7 +23,8 @@ main[data-page='donar'] {
   --page-deep: #a8306a;
 }
 
-main[data-page='blog'] {
+main[data-page='blog'],
+main[data-page='eventos'] {
   --page: var(--celeste);
   --page-deep: #0a5f86;
 }
@@ -42,6 +44,8 @@ main[data-page] .post-main,
 main[data-page] .post-related,
 main[data-page] .post-cta-wrap,
 main[data-page] .catalog,
+main[data-page] .eventos-page,
+main[data-page] .privacidad,
 main[data-page] .contact,
 main[data-page] .contact-extra {
   background:

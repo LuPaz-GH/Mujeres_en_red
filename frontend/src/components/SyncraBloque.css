@@ -1,0 +1,276 @@
+/* Inicio: bloque de SYNCRA Studios, con los colores de su marca (syncrastudios.com.ar):
+   casi negro, una grilla fina, un resplandor amarillo y detalles en amarillo */
+.syncra {
+  --syncra-amarillo: #f5b800;
+  --syncra-negro: #0e0e0e;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4rem, 9vw, 7rem) 0;
+  background:
+    radial-gradient(circle at 72% 45%, rgba(245, 184, 0, 0.22), transparent 38%),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
+    var(--syncra-negro);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Pastillas grises y puntos amarillos arriba a la derecha (como en su web) */
+.syncra__adorno {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(46%, 560px);
+  height: 300px;
+  pointer-events: none;
+  mask-image: linear-gradient(200deg, #000 30%, transparent 85%);
+}
+
+.syncra__adorno span {
+  position: absolute;
+  left: calc(var(--i) * 7%);
+  top: var(--arriba);
+}
+
+.syncra__adorno .is-pastilla {
+  width: 30px;
+  height: var(--alto);
+  border-radius: 999px;
+  background: #2a2a2a;
+  animation: syncra-sube 6s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * -0.4s);
+}
+
+.syncra__adorno .is-punto {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--syncra-amarillo);
+  opacity: 0.55;
+}
+
+@keyframes syncra-sube {
+  to { transform: translateY(-18px); }
+}
+
+.syncra__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.syncra__etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0.4rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.syncra__etiqueta span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--syncra-amarillo);
+  box-shadow: 0 0 10px var(--syncra-amarillo);
+}
+
+/* El nombre como su logo: SYNCRA con letras separadas y STUDIOS chico debajo */
+.syncra__titulo {
+  display: flex;
+  flex-direction: column;
+  margin: 1.1rem 0 1rem;
+  line-height: 1;
+}
+
+.syncra__marca {
+  color: #fff;
+  font-size: clamp(3rem, 7.5vw, 5.4rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.syncra__studios {
+  margin-top: 0.5rem;
+  color: var(--syncra-amarillo);
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.62em;
+}
+
+.syncra__bajada {
+  margin: 0 0 1.25rem;
+  color: #fff;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 700;
+}
+
+.syncra__texto > p {
+  max-width: 600px;
+}
+
+.syncra__servicios {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.75rem 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.syncra__servicios li {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.syncra__servicios strong {
+  display: block;
+  color: #fff;
+}
+
+.syncra__icono {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid rgba(245, 184, 0, 0.35);
+  border-radius: 14px;
+  background: rgba(245, 184, 0, 0.1);
+  font-size: 1.3rem;
+}
+
+/* Botón amarillo con letra negra, como el "Contacto" de su web */
+.syncra__boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.8rem;
+  border-radius: 999px;
+  background: var(--syncra-amarillo);
+  color: #111;
+  font-size: 1.08rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 12px 30px -10px rgba(245, 184, 0, 0.55);
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.syncra__boton:hover {
+  background: #ffc61a;
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px -12px rgba(245, 184, 0, 0.7);
+}
+
+.syncra__boton:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Pantalla con el subtítulo escribiéndose */
+.syncra__pantalla {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 260px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 35%, rgba(245, 184, 0, 0.14), transparent 70%),
+    linear-gradient(160deg, #1d1d1d, #080808);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9);
+}
+
+.syncra__vivo {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: var(--syncra-amarillo);
+  color: #111;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.syncra__subtitulo {
+  width: 100%;
+  min-height: 3.4em;
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.syncra__cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--syncra-amarillo);
+  animation: syncra-cursor 1s steps(1) infinite;
+}
+
+@keyframes syncra-cursor {
+  50% { opacity: 0; }
+}
+
+.syncra__frase {
+  margin: 1.5rem 0 0;
+  padding: 0 0 0 1rem;
+  border-left: 4px solid var(--syncra-amarillo);
+  color: #fff;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 700;
+}
+
+.syncra__frase cite {
+  display: block;
+  margin-top: 0.4rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .syncra__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .syncra__pantalla {
+    min-height: 200px;
+  }
+
+  .syncra__adorno {
+    width: 70%;
+    height: 200px;
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .syncra__cursor,
+  .syncra__adorno .is-pastilla {
+    animation: none;
+  }
+
+  .syncra__boton {
+    transition: none;
+  }
+}

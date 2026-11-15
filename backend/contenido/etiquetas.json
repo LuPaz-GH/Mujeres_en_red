@@ -1,0 +1,132 @@
+[
+    {
+        "id": 43,
+        "nombre": "Artesanías. Regalos Personalizados.",
+        "slug": "artesanias-regalos-personalizados"
+    },
+    {
+        "id": 35,
+        "nombre": "Catálogo 22026",
+        "slug": "catalogo-22026"
+    },
+    {
+        "id": 46,
+        "nombre": "cultura y educación",
+        "slug": "cultura-y-educacion"
+    },
+    {
+        "id": 40,
+        "nombre": "Decoración . Hogar. Diseño.",
+        "slug": "decoracion-hogar-diseno"
+    },
+    {
+        "id": 24,
+        "nombre": "empoderamiento femenino",
+        "slug": "empoderamiento-femenino"
+    },
+    {
+        "id": 32,
+        "nombre": "Emprendedoras",
+        "slug": "emprendedoras"
+    },
+    {
+        "id": 27,
+        "nombre": "emprender",
+        "slug": "emprender"
+    },
+    {
+        "id": 45,
+        "nombre": "Fundación sin fines de lucro. Arte",
+        "slug": "fundacion-sin-fines-de-lucro-arte"
+    },
+    {
+        "id": 36,
+        "nombre": "Gastronoía",
+        "slug": "gastronoia"
+    },
+    {
+        "id": 37,
+        "nombre": "Gastronomía. Katering. Eventos",
+        "slug": "gastronomia-katering-eventos"
+    },
+    {
+        "id": 38,
+        "nombre": "Indumentaria. Moda. Accesorios.",
+        "slug": "indumentaria-moda-accesorios"
+    },
+    {
+        "id": 19,
+        "nombre": "Ing. Noelia Carrizo",
+        "slug": "ing-noelia-carrizo"
+    },
+    {
+        "id": 20,
+        "nombre": "Lic. Gabriela Llobril",
+        "slug": "lic-gabriela-llobril"
+    },
+    {
+        "id": 28,
+        "nombre": "Los que Ayudan",
+        "slug": "los-que-ayudan"
+    },
+    {
+        "id": 42,
+        "nombre": "Marketing. Comunicación. Tecnología.",
+        "slug": "marketing-comunicacion-tecnologia"
+    },
+    {
+        "id": 30,
+        "nombre": "MPF",
+        "slug": "mpf"
+    },
+    {
+        "id": 22,
+        "nombre": "mujer tucumana",
+        "slug": "mujer-tucumana"
+    },
+    {
+        "id": 44,
+        "nombre": "Otros Servicios.",
+        "slug": "otros-servicios"
+    },
+    {
+        "id": 31,
+        "nombre": "Protección de Datos Digitales",
+        "slug": "proteccion-de-datos-digitales"
+    },
+    {
+        "id": 39,
+        "nombre": "Salud. Belleza. Bienestar.",
+        "slug": "salud-belleza-bienestar"
+    },
+    {
+        "id": 41,
+        "nombre": "Servicios Profesionales.",
+        "slug": "servicios-profesionales"
+    },
+    {
+        "id": 16,
+        "nombre": "solidaridad",
+        "slug": "solidaridad"
+    },
+    {
+        "id": 25,
+        "nombre": "Tucumán",
+        "slug": "tucuman-2"
+    },
+    {
+        "id": 23,
+        "nombre": "Tucuman",
+        "slug": "tucuman"
+    },
+    {
+        "id": 18,
+        "nombre": "Universidad San Pablo T",
+        "slug": "universidad-san-pablo-t"
+    },
+    {
+        "id": 26,
+        "nombre": "UNT",
+        "slug": "unt"
+    }
+]

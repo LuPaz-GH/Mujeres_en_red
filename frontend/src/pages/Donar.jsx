@@ -5,8 +5,8 @@ import Tilt from '../components/motion/Tilt'
 import FloatingPetals, { PetalShape } from '../components/motion/FloatingPetals'
 import { GlobeIcon, MailIcon, WhatsappIcon } from '../components/Icons'
 import { BRAND } from '../data/brand'
-import { BILLETERAS, DONACIONES } from '../data/donaciones'
-import { CONTACT_EMAIL, WHATSAPP_URL } from '../data/site'
+import { useSitio } from '../api/useSitio'
+import { BILLETERAS } from '../data/donaciones'
 import './pages.css'
 import './Donar.css'
 
@@ -89,6 +89,12 @@ function Method({ color, icon, title, subtitle, children, delay }) {
 }
 
 export default function Donar() {
+  // Formas de donar, correo y WhatsApp: se cambian desde el panel (Datos de la web). Las vacías no aparecen.
+  const sitio = useSitio()
+  const DONACIONES = sitio.donaciones
+  const CONTACT_EMAIL = sitio.email
+  const WHATSAPP_URL = sitio.whatsappUrl
+
   useEffect(() => {
     document.title = 'Donar – Mujeres en Red'
   }, [])
@@ -300,8 +306,43 @@ export default function Donar() {
               </div>
             </Tilt>
           </Reveal>
+          <Transparencia datos={sitio.transparencia} />
         </div>
       </section>
     </>
+  )
+}
+
+// Datos legales de la fundación (se cargan en el panel: Datos de la web). Si no hay ninguno, no aparece.
+function Transparencia({ datos }) {
+  const filas = [
+    ['Nombre legal', datos.razonSocial],
+    ['CUIT', datos.cuit],
+    ['Personería jurídica', datos.personeria],
+  ].filter(([, valor]) => valor)
+  if (!filas.length && !datos.memoria) return null
+
+  return (
+    <Reveal className="transparencia">
+      <h3>
+        <span aria-hidden="true">🛡️</span> Transparencia
+      </h3>
+      <p>Somos una fundación sin fines de lucro. Estos son nuestros datos, para que sepas a quién estás ayudando.</p>
+      {filas.length > 0 && (
+        <dl>
+          {filas.map(([nombre, valor]) => (
+            <div key={nombre}>
+              <dt>{nombre}</dt>
+              <dd>{valor}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {datos.memoria && (
+        <a href={datos.memoria} target="_blank" rel="noreferrer" className="btn btn--white">
+          Ver memoria y balance ↗
+        </a>
+      )}
+    </Reveal>
   )
 }

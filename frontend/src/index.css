@@ -1306,6 +1306,147 @@ strong {
   }
 }
 
+/* Tarjetas del mismo tamaño que llenan el ancho (si hay una sola, ocupa toda la fila) */
+.portfolio-grid.portfolio-grid--parejo {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  grid-auto-rows: 340px;
+  margin-top: 2rem;
+}
+
+.portfolio-grid--parejo > :first-child {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.portfolio-grid--parejo > :first-child .portfolio-card h3 {
+  font-size: inherit;
+}
+
+/* "Qué hacemos": botones Programas / Proyectos / Networking */
+.que-hacemos-botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* Cada botón usa el color de su categoría (--cat): blanco con ícono de color, y el elegido se pinta entero */
+.que-hacemos-boton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 230px;
+  padding: 0.7rem 1.5rem 0.7rem 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #2a1f3d;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(30, 15, 50, 0.18);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s, background 0.25s, color 0.25s;
+}
+
+.que-hacemos-boton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(30, 15, 50, 0.25);
+}
+
+.que-hacemos-boton:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.que-hacemos-boton__icono {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--cat) 15%, #fff);
+  color: var(--cat);
+  transition: background 0.25s, color 0.25s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.que-hacemos-boton__icono svg {
+  width: 1.55rem;
+  height: 1.55rem;
+}
+
+.que-hacemos-boton:hover .que-hacemos-boton__icono {
+  transform: rotate(-10deg) scale(1.08);
+}
+
+.que-hacemos-boton__texto {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.que-hacemos-boton__texto small {
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--cat) 75%, #2a1f3d);
+  transition: color 0.25s;
+}
+
+/* El elegido: relleno con su color, más grande y con un brillo del mismo tono */
+.que-hacemos-boton.is-activo {
+  background: linear-gradient(135deg, var(--cat), color-mix(in srgb, var(--cat) 70%, #2a1f3d));
+  color: #fff;
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    0 16px 34px color-mix(in srgb, var(--cat) 55%, transparent);
+}
+
+.que-hacemos-boton.is-activo .que-hacemos-boton__icono {
+  background: #fff;
+}
+
+.que-hacemos-boton.is-activo .que-hacemos-boton__texto small {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 560px) {
+  .que-hacemos-boton {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .que-hacemos-boton,
+  .que-hacemos-boton__icono {
+    transition: none;
+  }
+}
+
+.que-hacemos-grupo {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.que-hacemos-grupo .portfolio-grid {
+  text-align: left;
+}
+
+.que-hacemos-grupo__bajada {
+  margin: 0 auto;
+  max-width: 640px;
+  font-size: 1.15rem;
+}
+
+.que-hacemos-grupo__vacio {
+  margin: 3rem 0;
+  font-size: 1.15rem;
+}
+
 /* ---------- Programas ---------- */
 .program-grid {
   display: grid;
@@ -1555,7 +1696,7 @@ strong {
 }
 
 .news-feature:hover .news-feature__more svg {
-  transform: rotate(45deg);
+  transform: translateX(5px);
 }
 
 /* Lista de notas con foto chica */
@@ -1917,7 +2058,7 @@ strong {
 
 .social-cta__item:hover svg {
   color: #fff;
-  transform: rotate(45deg) scale(1.2);
+  transform: translateX(6px) scale(1.15);
 }
 
 @media (max-width: 760px) {
@@ -2073,6 +2214,7 @@ strong {
 
 .contact-form input[type='text'],
 .contact-form input[type='email'],
+.contact-form input[type='tel'],
 .contact-form textarea {
   width: 100%;
   padding: 0.9rem 1.1rem;
@@ -2291,5 +2433,57 @@ strong {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Pie: abajo de todo. Botón de SYNCRA Studios (se usa en el bloque del inicio, components/SyncraBloque.jsx) */
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.syncra-boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 1.25rem 0.6rem 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(120deg, var(--violeta), var(--rosa), var(--naranja));
+  background-size: 200% 100%;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 10px 24px -10px rgba(235, 93, 157, 0.7);
+  transition: background-position 0.5s, transform 0.25s, box-shadow 0.25s;
+}
+
+.syncra-boton:hover {
+  background-position: 100% 0;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px -12px rgba(235, 93, 157, 0.85);
+}
+
+.syncra-boton:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.syncra-boton__chispa {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--rosa);
+  font-size: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .syncra-boton {
+    transition: none;
   }
 }

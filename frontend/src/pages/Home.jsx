@@ -1,8 +1,13 @@
 import { Suspense, lazy, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
-import { WP_URL, formatDate, getPortfolio, getPosts } from '../api/wp'
-import { useWp } from '../api/useWp'
+import { formatDate, getEventos, getNotas, getPortfolio } from '../api/api'
+import EventoCard from '../components/EventoCard'
+import SyncraBloque from '../components/SyncraBloque'
+import Instituciones from '../components/Instituciones'
+import Impacto from '../components/Impacto'
+import Testimonios from '../components/Testimonios'
+import { useApi } from '../api/useApi'
 import PortfolioGrid from '../components/PortfolioGrid'
 import { ArrowIcon } from '../components/Icons'
 import PostImage from '../components/PostImage'
@@ -15,12 +20,13 @@ import { BRAND, PETAL_COLORS } from '../data/brand'
 // La flor 3D se carga aparte para que el resto de la página aparezca enseguida
 const Flower3D = lazy(() => import('../components/three/Flower3D'))
 
-const img = (path) => `${WP_URL}/wp-content/uploads/${path}`
+// Fotos fijas del diseño (en public/img/sitio)
+const img = (path) => `/img/sitio/${path}`
 
 const PROGRAMS = [
-  { title: 'Voluntariado', image: img('2025/05/DSC_0199-1024x683.jpg'), color: BRAND.verde, to: '#' },
-  { title: 'Comunicar para Transformar', image: img('2025/10/2-1024x768.jpg'), color: BRAND.celeste, to: '#' },
-  { title: 'Coaching Fest', image: img('2025/12/DSC_0035-1024x683.jpg'), color: BRAND.naranja, to: '#' },
+  { title: 'Voluntariado', image: img('2025/05/DSC_0199.jpg'), color: BRAND.verde, to: '#' },
+  { title: 'Comunicar para Transformar', image: img('2025/10/2.jpg'), color: BRAND.celeste, to: '#' },
+  { title: 'Coaching Fest', image: img('2025/12/DSC_0035.jpg'), color: BRAND.naranja, to: '#' },
 ]
 
 const HERO_WORDS = ['acompañan', 'sostienen', 'transforman']
@@ -137,7 +143,7 @@ function About() {
           </motion.div>
           <motion.div className="about__photo about__photo--front" style={{ y: frontY }}>
             <Tilt max={14}>
-              <img src={img('2025/04/20240928_1109471-1-1024x577.jpg')} alt="Emprender Coaching Fest" loading="lazy" />
+              <img src={img('2025/04/20240928_1109471-1.jpg')} alt="Emprender Coaching Fest" loading="lazy" />
             </Tilt>
           </motion.div>
           <PetalShape color={BRAND.rosa} className="about__petal" />
@@ -184,7 +190,7 @@ function Donate() {
     <section className="donate" ref={ref}>
       <motion.div
         className="donate__bg"
-        style={{ y: bgY, backgroundImage: `url(${img('2025/12/DSC_0073-1024x683.jpg')})` }}
+        style={{ y: bgY, backgroundImage: `url(${img('2025/12/DSC_0073.jpg')})` }}
       />
       <div className="donate__overlay" />
       <div className="container">
@@ -211,8 +217,9 @@ function Donate() {
 }
 
 export default function Home() {
-  const portfolio = useWp(() => getPortfolio(6), [])
-  const posts = useWp(() => getPosts(5), [])
+  const portfolio = useApi(() => getPortfolio(6), [])
+  const eventos = useApi(() => getEventos(3), [])
+  const posts = useApi(() => getNotas({ porPagina: 5 }).then((r) => r.notas), [])
 
   useEffect(() => {
     document.title = 'Mujeres en Red – Construir redes de apoyo, formación y transformación.'
@@ -223,21 +230,24 @@ export default function Home() {
       <Hero />
       <About />
 
-      {/* Portfolio */}
+      {/* Números de impacto (se cambian en el panel: Datos de la web) */}
+      <Impacto />
+
+      {/* Qué hacemos (portfolio) */}
       <section className="portfolio-section" id="portfolio">
         <FloatingPetals opacity={0.3} />
         <div className="container">
           <Reveal as="p" className="eyebrow eyebrow--light">
-            Lo que hacemos
+            Qué hacemos
           </Reveal>
           <Reveal as="h2" className="title-xl">
-            Proyectos
+            Programas y proyectos
           </Reveal>
           {portfolio.loading && <Loader />}
           {portfolio.data && <PortfolioGrid items={portfolio.data} />}
           <Reveal className="buttons buttons--center">
             <Link to="/portfolio" className="btn btn--light-outline">
-              Ver todos los proyectos
+              Ver todo lo que hacemos
             </Link>
           </Reveal>
         </div>
@@ -279,7 +289,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Próximos eventos: solo aparece si hay alguno cargado en el panel */}
+      {eventos.data?.proximos.length > 0 && (
+        <section className="section home-eventos" id="eventos">
+          <div className="container">
+            <Reveal as="p" className="eyebrow">
+              Agendá
+            </Reveal>
+            <Reveal as="h2" className="title-xl">
+              Próximos eventos
+            </Reveal>
+            <ul className="eventos-grid">
+              {eventos.data.proximos.map((e, i) => (
+                <li key={e.id}>
+                  <EventoCard evento={e} index={i} />
+                </li>
+              ))}
+            </ul>
+            <Reveal className="buttons buttons--center">
+              <Link to="/eventos" className="btn btn--gradient">
+                Ver todos los eventos
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
       <Donate />
+
+      {/* SYNCRA Studios: subtitulado inclusivo */}
+      <SyncraBloque />
+
+      {/* Instituciones que nos acompañan (se cargan en el panel) */}
+      <Instituciones />
+
+      {/* Testimonios: solo aparece si hay alguno cargado en el panel */}
+      <Testimonios />
 
       {/* Blog */}
       <section className="section news" id="news">
@@ -297,12 +342,12 @@ export default function Home() {
               <Reveal className="news-mag__main">
                 <Tilt className="news-feature" style={{ '--accent': PETAL_COLORS[1] }} max={6}>
                   <Link to={`/${posts.data[0].slug}`}>
-                    <PostImage post={posts.data[0]} size="large" className="news-feature__img" />
+                    <PostImage post={posts.data[0]} className="news-feature__img" />
                     <span className="news-feature__shade" />
                     <span className="news-feature__badge">Lo último</span>
                     <div className="news-feature__body">
-                      <time dateTime={posts.data[0].date}>{formatDate(posts.data[0].date)}</time>
-                      <h3 dangerouslySetInnerHTML={{ __html: posts.data[0].title.rendered }} />
+                      <time dateTime={posts.data[0].fecha}>{formatDate(posts.data[0].fecha)}</time>
+                      <h3>{posts.data[0].titulo}</h3>
                       <span className="news-feature__more">
                         Leer nota <ArrowIcon />
                       </span>
@@ -317,11 +362,11 @@ export default function Home() {
                   <Reveal as="li" key={post.id} delay={i * 0.08} style={{ '--accent': PETAL_COLORS[(i + 2) % 5] }}>
                     <Link to={`/${post.slug}`} className="news-item">
                       <span className="news-item__img">
-                        <PostImage post={post} size="medium" />
+                        <PostImage post={post} />
                       </span>
                       <span className="news-item__body">
-                        <time dateTime={post.date}>{formatDate(post.date)}</time>
-                        <h3 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                        <time dateTime={post.fecha}>{formatDate(post.fecha)}</time>
+                        <h3>{post.titulo}</h3>
                       </span>
                       <span className="news-item__arrow">
                         <ArrowIcon />

@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import { sendContactForm } from '../api/wp'
-import { CONTACT_FORM_ID } from '../data/site'
+import { enviarContacto } from '../api/api'
 
-const EMPTY = { 'your-name': '', 'your-email': '', 'your-subject': '', 'your-message': '' }
+const EMPTY = { nombre: '', email: '', telefono: '', asunto: '', mensaje: '' }
 
-// Formulario de contacto. Envía al mismo Contact Form 7 que usa hoy WordPress,
-// así los mensajes siguen llegando al mismo correo.
+// Formulario de contacto. El mensaje llega por mail a la fundación y queda guardado en el panel.
 export default function ContactForm() {
   const [fields, setFields] = useState(EMPTY)
   const [human, setHuman] = useState(false)
@@ -21,20 +19,13 @@ export default function ContactForm() {
     }
     setStatus({ state: 'sending', message: '' })
     try {
-      const res = await sendContactForm(CONTACT_FORM_ID, {
-        ...fields,
-        kc_captcha: 'kc_human',
-        kc_honeypot: e.target.elements.kc_honeypot.value,
-      })
-      if (res.status === 'mail_sent') {
-        setStatus({ state: 'ok', message: res.message || '¡Gracias! Tu mensaje fue enviado.' })
-        setFields(EMPTY)
-        setHuman(false)
-      } else {
-        setStatus({ state: 'error', message: res.message || 'No se pudo enviar el mensaje.' })
-      }
-    } catch {
-      setStatus({ state: 'error', message: 'No se pudo enviar el mensaje. Intentá de nuevo más tarde.' })
+      const res = await enviarContacto({ ...fields, trampa: e.target.elements.trampa.value })
+      setStatus({ state: 'ok', message: res.mensaje || '¡Gracias! Tu mensaje fue enviado.' })
+      setFields(EMPTY)
+      setHuman(false)
+    } catch (error) {
+      const message = error.status && error.status < 500 ? error.message : 'No se pudo enviar el mensaje. Intentá de nuevo más tarde.'
+      setStatus({ state: 'error', message })
     }
   }
 
@@ -42,23 +33,27 @@ export default function ContactForm() {
     <form className="contact-form" onSubmit={handleSubmit}>
       <label>
         Tu nombre
-        <input name="your-name" type="text" required autoComplete="name" value={fields['your-name']} onChange={update} />
+        <input name="nombre" type="text" required autoComplete="name" value={fields.nombre} onChange={update} />
       </label>
       <label>
         Tu correo electrónico
-        <input name="your-email" type="email" required autoComplete="email" value={fields['your-email']} onChange={update} />
+        <input name="email" type="email" required autoComplete="email" value={fields.email} onChange={update} />
+      </label>
+      <label>
+        Tu WhatsApp (opcional, para responderte por ahí)
+        <input name="telefono" type="tel" autoComplete="tel" placeholder="Ej. 381 5134073" value={fields.telefono} onChange={update} />
       </label>
       <label>
         Asunto
-        <input name="your-subject" type="text" required value={fields['your-subject']} onChange={update} />
+        <input name="asunto" type="text" required value={fields.asunto} onChange={update} />
       </label>
       <label>
         Tu mensaje (opcional)
-        <textarea name="your-message" rows="8" value={fields['your-message']} onChange={update} />
+        <textarea name="mensaje" rows="8" value={fields.mensaje} onChange={update} />
       </label>
 
       {/* Campo trampa para bots: las personas no lo ven */}
-      <input type="text" name="kc_honeypot" tabIndex="-1" autoComplete="off" className="hp-field" />
+      <input type="text" name="trampa" tabIndex="-1" autoComplete="off" className="hp-field" />
 
       <label className="contact-form__check">
         <input type="checkbox" checked={human} onChange={(e) => setHuman(e.target.checked)} />

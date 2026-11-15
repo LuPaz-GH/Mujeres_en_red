@@ -1,27 +1,27 @@
 import { useEffect } from 'react'
-import { getPage } from '../api/wp'
-import { useWp } from '../api/useWp'
+import { getPagina } from '../api/api'
+import { useApi } from '../api/useApi'
 import WpContent, { cleanWpHtml } from '../components/WpContent'
 import { ErrorMessage, Loader, NotFound, PageHero } from '../components/Status'
 
-// Página cuyo contenido se edita desde WordPress (Quiénes somos, Equipo, Catálogo, Contacto...)
+// Página suelta que vino de WordPress (ej. "Qué hacemos")
 export function WpPageView({ page }) {
   useEffect(() => {
-    document.title = `${page.title.rendered.replace(/&#8211;/g, '–')} – Mujeres en Red`
+    document.title = `${page.titulo} – Mujeres en Red`
   }, [page])
 
-  const { startsWithCover } = cleanWpHtml(page.content.rendered)
+  const { startsWithCover } = cleanWpHtml(page.contenido)
 
   return (
     <>
-      {!startsWithCover && <PageHero title={page.title.rendered} />}
-      <WpContent html={page.content.rendered} className="wp-page" />
+      {!startsWithCover && <PageHero title={page.titulo} />}
+      <WpContent html={page.contenido} className="wp-page" />
     </>
   )
 }
 
 export default function WpPage({ slug }) {
-  const { data: page, loading, error } = useWp(() => getPage(slug), [slug])
+  const { data: page, loading, error } = useApi(() => getPagina(slug), [slug])
 
   if (loading) return <Loader />
   if (error) return <ErrorMessage error={error} />

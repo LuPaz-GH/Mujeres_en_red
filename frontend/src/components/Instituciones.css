@@ -1,0 +1,173 @@
+/* Inicio: "Instituciones que nos acompañan". Fondo violeta vivo del logo (las tarjetas siguen blancas por los logos) */
+.section.instituciones {
+  position: relative;
+  overflow: hidden;
+  /* Malla con los cinco colores del logo sobre violeta profundo, y una trama de puntitos */
+  background:
+    radial-gradient(circle at 10% 15%, rgba(235, 93, 157, 0.7), transparent 38%),
+    radial-gradient(circle at 92% 10%, rgba(222, 111, 32, 0.6), transparent 34%),
+    radial-gradient(circle at 85% 92%, rgba(14, 171, 226, 0.6), transparent 40%),
+    radial-gradient(circle at 12% 95%, rgba(120, 184, 51, 0.5), transparent 36%),
+    radial-gradient(circle at 50% 50%, rgba(97, 68, 145, 0.6), transparent 60%),
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1.5px) 0 0 / 22px 22px,
+    linear-gradient(135deg, #4a2c7d, #23163a);
+}
+
+/* Un brillo que se mueve muy despacio por detrás de las tarjetas */
+.section.instituciones::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: conic-gradient(from 0deg at 50% 50%, rgba(235, 93, 157, 0.18), rgba(14, 171, 226, 0.18), rgba(120, 184, 51, 0.15), rgba(222, 111, 32, 0.18), rgba(235, 93, 157, 0.18));
+  filter: blur(60px);
+  animation: instituciones-giro 40s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes instituciones-giro {
+  to { transform: rotate(360deg); }
+}
+
+.section.instituciones > .container {
+  position: relative;
+}
+
+.instituciones .title-xl {
+  background-image: linear-gradient(100deg, #fff, #ffd1e8, #c9efff, #fff);
+}
+
+
+/* 4 por fila en la compu; 2 en tablet y celular */
+.instituciones__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 900px) {
+  .instituciones__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+  }
+
+  .institucion > a,
+  .institucion > div {
+    padding: 1.1rem 0.8rem;
+  }
+
+  .institucion__nombre {
+    font-size: 0.92rem;
+  }
+}
+
+.institucion > a,
+.institucion > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 1.5rem 1.1rem 1.4rem;
+  border: 2px solid transparent;
+  border-radius: 22px;
+  background: #fff;
+  color: var(--ink);
+  text-align: center;
+  text-decoration: none;
+  border-top: 6px solid var(--color);
+  box-shadow: 0 24px 40px -22px rgba(10, 5, 20, 0.75);
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.institucion > a:hover {
+  border-color: var(--color);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 40px -24px rgba(26, 20, 39, 0.6);
+}
+
+.institucion > a:focus-visible {
+  outline: 3px solid var(--color);
+  outline-offset: 3px;
+}
+
+.institucion__logo {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 96px;
+  margin-bottom: 1rem;
+}
+
+/* Alto fijo (no en %): los logos altos, como el de la Municipalidad, si no se salen del recuadro */
+.institucion__logo img {
+  width: auto;
+  height: auto;
+  max-width: 88%;
+  max-height: 96px;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .institucion__logo {
+    height: 72px;
+  }
+
+  .institucion__logo img {
+    max-height: 72px;
+  }
+
+  .institucion__logo > span {
+    width: 66px;
+    height: 66px;
+    font-size: 1.25rem;
+  }
+}
+
+/* Sin logo: las iniciales en un círculo del color del logo de la fundación */
+.institucion__logo > span {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--color);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 22px -10px var(--color);
+}
+
+.institucion__nombre {
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.institucion__detalle {
+  margin-top: 0.35rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .institucion > a {
+    transition: none;
+  }
+
+  .section.instituciones::before {
+    animation: none;
+  }
+}
+
+/* En el celular el círculo de iniciales va al mismo tamaño que los logos (va al final para ganarle a la regla general) */
+@media (max-width: 900px) {
+  .institucion__logo > span {
+    width: 66px;
+    height: 66px;
+    font-size: 1.25rem;
+  }
+}

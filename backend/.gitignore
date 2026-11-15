@@ -1,0 +1,8 @@
+# Contraseña de la base de datos del hosting
+api/config.php
+
+# Base de datos de prueba de la compu
+datos/
+
+# Fotos de la web (84 MB): se suben al hosting y las nuevas se cargan desde el panel; no van a GitHub
+uploads/

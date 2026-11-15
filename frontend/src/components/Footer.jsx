@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { MENU, SOCIAL, WHATSAPP_URL, CONTACT_EMAIL } from '../data/site'
+import { useSitio } from '../api/useSitio'
+import { MENU } from '../data/site'
 import { ArrowIcon, FacebookIcon, InstagramIcon, LinkedinIcon, TwitterIcon } from './Icons'
 import Reveal from './motion/Reveal'
 import Tilt from './motion/Tilt'
@@ -7,14 +8,16 @@ import FloatingPetals from './motion/FloatingPetals'
 
 const YEAR = new Date().getFullYear()
 
-const CONNECT = [
-  { label: 'Contacto', to: '/contacto', color: 'var(--celeste)' },
-  { label: 'Instagram', href: SOCIAL.instagram, color: 'var(--rosa)' },
-  { label: 'WhatsApp', href: WHATSAPP_URL, color: 'var(--verde)' },
-]
-
 // Bloque "¡Conectate con nosotras!" + pie de página
 export default function Footer() {
+  const sitio = useSitio()
+  const { social } = sitio
+  const connect = [
+    { label: 'Contacto', to: '/contacto', color: 'var(--celeste)' },
+    { label: 'Instagram', href: social.instagram, color: 'var(--rosa)' },
+    { label: 'WhatsApp', href: sitio.whatsappUrl, color: 'var(--verde)' },
+  ].filter((c) => c.to || c.href)
+
   return (
     <>
       <section className="social-cta">
@@ -22,7 +25,7 @@ export default function Footer() {
         <div className="container">
           <Reveal as="h2">¡Conectate con nosotras!</Reveal>
           <div className="social-cta__grid">
-            {CONNECT.map((c, i) => {
+            {connect.map((c, i) => {
               const content = (
                 <>
                   <span>{c.label}</span>
@@ -81,27 +84,40 @@ export default function Footer() {
           <div>
             <h3>Seguinos</h3>
             <div className="site-footer__social">
-              <a href={SOCIAL.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
-                <InstagramIcon />
-              </a>
-              <a href={SOCIAL.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
-                <FacebookIcon />
-              </a>
-              <a href={SOCIAL.twitter} target="_blank" rel="noreferrer" aria-label="Twitter">
-                <TwitterIcon />
-              </a>
-              <a href={SOCIAL.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                <LinkedinIcon />
-              </a>
+              {social.instagram && (
+                <a href={social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
+                  <InstagramIcon />
+                </a>
+              )}
+              {social.facebook && (
+                <a href={social.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
+                  <FacebookIcon />
+                </a>
+              )}
+              {social.twitter && (
+                <a href={social.twitter} target="_blank" rel="noreferrer" aria-label="Twitter">
+                  <TwitterIcon />
+                </a>
+              )}
+              {social.linkedin && (
+                <a href={social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                  <LinkedinIcon />
+                </a>
+              )}
             </div>
-            <p className="site-footer__mail">
-              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-            </p>
+            {sitio.email && (
+              <p className="site-footer__mail">
+                <a href={`mailto:${sitio.email}`}>{sitio.email}</a>
+              </p>
+            )}
           </div>
         </div>
         <div className="container site-footer__bottom">
-          <p>© {YEAR} Fundación Mujeres en Red · Tucumán, Argentina</p>
-        </div>
+          <p>
+            © {YEAR} Fundación Mujeres en Red · Tucumán, Argentina
+            {sitio.transparencia.cuit && ` · CUIT ${sitio.transparencia.cuit}`} · <Link to="/privacidad">Privacidad</Link> ·{' '}
+            <Link to="/admin">Acceso</Link>
+          </p>        </div>
       </footer>
     </>
   )

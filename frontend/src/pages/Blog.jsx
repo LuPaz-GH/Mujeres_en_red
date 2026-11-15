@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { formatDate, getCategories, getPostsFiltered } from '../api/wp'
-import { useWp } from '../api/useWp'
+import { formatDate, getCategorias, getNotas } from '../api/api'
+import { useApi } from '../api/useApi'
 import PageIntro from '../components/PageIntro'
 import PostCard from '../components/PostCard'
 import PostImage from '../components/PostImage'
@@ -19,21 +19,19 @@ const PER_PAGE = 9
 const FILTER_SLUGS = ['noticias', 'catalogo-2026']
 const TODAY = new Date().toISOString().slice(0, 10)
 
-const excerpt = (html) => html.replace(/<[^>]+>/g, '').replace(/\[&hellip;\]|&hellip;/g, '…').replace(/&#8211;/g, '–')
-
 function FeaturedPost({ post }) {
   return (
     <Reveal>
       <Tilt className="featured-post" max={5}>
         <Link to={`/${post.slug}`}>
           <div className="featured-post__img">
-            <PostImage post={post} size="large" />
+            <PostImage post={post} />
             <span className="featured-post__badge">Lo último</span>
           </div>
           <div className="featured-post__body">
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
-            <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-            <p>{excerpt(post.excerpt.rendered)}</p>
+            <time dateTime={post.fecha}>{formatDate(post.fecha)}</time>
+            <h2>{post.titulo}</h2>
+            <p>{post.resumen}</p>
             <span className="btn btn--gradient">Leer nota →</span>
           </div>
         </Link>
@@ -53,11 +51,11 @@ export default function Blog() {
   const page = Number(params.get('pagina')) || 1
 
   const [query, setQuery] = useState(search)
-  const [result, setResult] = useState({ posts: [], total: 0, totalPages: 1 })
+  const [result, setResult] = useState({ notas: [], total: 0, paginas: 1 })
   const [state, setState] = useState({ loading: true, error: null })
   const listTop = useRef(null)
   const reduce = useReducedMotion()
-  const categories = useWp(getCategories, [])
+  const categories = useApi(getCategorias, [])
 
   // Cambia uno o más filtros en la dirección; los vacíos se sacan.
   // Salvo que se cambie la página, se vuelve a la página 1.
@@ -98,7 +96,7 @@ export default function Blog() {
     if (invalidRange) return
     let active = true
     setState({ loading: true, error: null })
-    getPostsFiltered({ perPage: PER_PAGE, page, category, search, from, to })
+    getNotas({ porPagina: PER_PAGE, pagina: page, categoria: category, buscar: search, desde: from, hasta: to })
       .then((res) => {
         if (!active) return
         setResult(res)
@@ -126,7 +124,7 @@ export default function Blog() {
 
   const filters = (categories.data || []).filter((c) => FILTER_SLUGS.includes(c.slug))
   const hasFilters = Boolean(category || search || from || to)
-  const { posts, total, totalPages } = result
+  const { notas: posts, total, paginas: totalPages } = result
   // La nota destacada grande solo aparece en la primera página y sin filtros
   const showFeatured = !hasFilters && page === 1 && posts.length > 0
   const [featured, ...rest] = showFeatured ? posts : [null, ...posts]
@@ -183,7 +181,7 @@ export default function Blog() {
                   style={{ '--accent': PETAL_COLORS[(i + 1) % 5] }}
                   onClick={() => selectCategory(c.id)}
                 >
-                  {c.name}
+                  {c.nombre}
                 </button>
               ))}
             </div>

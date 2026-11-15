@@ -49,8 +49,9 @@ export function PageHero({ title, image }) {
         animate={{ opacity: 1, y: 0, rotateX: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         style={{ transformPerspective: 800 }}
-        dangerouslySetInnerHTML={{ __html: title }}
-      />
+      >
+        {title}
+      </motion.h1>
     </section>
   )
 }

@@ -1,14 +1,15 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { animate, motion, useInView, useMotionValue, useScroll, useTransform } from 'motion/react'
-import { WP_URL } from '../api/wp'
 import Reveal from '../components/motion/Reveal'
 import Tilt from '../components/motion/Tilt'
 import FloatingPetals, { PetalShape } from '../components/motion/FloatingPetals'
 import { BRAND } from '../data/brand'
+import { EQUIPO_VISIBLE } from '../data/site'
 import './QuienesSomos.css'
 
-const img = (path) => `${WP_URL}/wp-content/uploads/${path}`
+// Fotos fijas del diseño (en public/img/sitio)
+const img = (path) => `/img/sitio/${path}`
 
 const PILLARS = [
   {
@@ -100,28 +101,28 @@ const HISTORY = [
   {
     year: '2012 – 2014',
     title: 'Charlas y conversatorios',
-    image: img('2024/01/HISTORIA-2014-1024x683.jpg'),
+    image: img('2024/01/HISTORIA-2014.jpg'),
     color: BRAND.verde,
     text: 'Organizamos charlas de debate y conversatorios sobre género y cómo lo transitan las mujeres en sus distintas profesiones. Avanzamos también en el emprendedurismo femenino, siempre apoyándonos en la capacitación.',
   },
   {
     year: '2015 – 2016',
     title: 'Convocatoria masiva',
-    image: img('2024/01/HISTORIA-2015-1024x683.jpg'),
+    image: img('2024/01/HISTORIA-2015.jpg'),
     color: BRAND.violeta,
     text: 'En alianza con Voces Vitales comenzamos a realizar actividades y capacitaciones masivas. Nuestro primer gran desafío: la Global Mentoring Walk, Caminata de Mentoreo, edición Tucumán 2015.',
   },
   {
     year: '2017 – 2023',
     title: 'Redes que crecen',
-    image: img('2024/01/HISTORIA-2020-1024x576.jpg'),
+    image: img('2024/01/HISTORIA-2020.jpg'),
     color: BRAND.rosa,
     text: 'Las redes que fuimos creando y la necesidad de trabajar por la equidad de género y el liderazgo femenino de las futuras generaciones nos mantienen en este camino. Cada acción, por pequeña que parezca, representa el cambio que queremos ver.',
   },
   {
     year: '2025',
     title: 'Marca Tucumán',
-    image: img('2025/12/20251117_105836-1024x576.jpg'),
+    image: img('2025/12/20251117_105836.jpg'),
     color: BRAND.naranja,
     text: 'El IDEP nos otorgó la distinción Marca Tucumán, un reconocimiento a nuestro compromiso con el desarrollo social y digital de la región.',
     link: '/mujeres-en-red-recibe-la-distincion-marca-tucuman-un-sello-de-calidad-y-orgullo-provincial',
@@ -134,8 +135,8 @@ const STATEMENT =
 /* ---------- Portada ---------- */
 function Hero() {
   const photos = [
-    { src: img('2024/01/portada1-1024x500.jpg'), cls: 'qs-hero__photo--1', color: BRAND.rosa },
-    { src: img('2024/01/HISTORIA-2015-1024x683.jpg'), cls: 'qs-hero__photo--2', color: BRAND.celeste },
+    { src: img('2024/01/portada1.jpg'), cls: 'qs-hero__photo--1', color: BRAND.rosa },
+    { src: img('2024/01/HISTORIA-2015.jpg'), cls: 'qs-hero__photo--2', color: BRAND.celeste },
     { src: img('2025/12/DSC_0204-scaled.jpg'), cls: 'qs-hero__photo--3', color: BRAND.verde },
   ]
 
@@ -165,10 +166,12 @@ function Hero() {
             2012 diseñamos y gestionamos proyectos para mejorar las oportunidades de las mujeres tucumanas.
           </Reveal>
           <Reveal className="buttons" delay={0.6}>
-            <Link to="/equipo" className="btn btn--gradient btn--large">
-              Conocé al equipo
-            </Link>
-            <a href="#historia" className="btn btn--outline btn--large">
+            {EQUIPO_VISIBLE && (
+              <Link to="/equipo" className="btn btn--gradient btn--large">
+                Conocé al equipo
+              </Link>
+            )}
+            <a href="#historia" className={`btn btn--large ${EQUIPO_VISIBLE ? 'btn--outline' : 'btn--gradient'}`}>
               Nuestra historia
             </a>
           </Reveal>

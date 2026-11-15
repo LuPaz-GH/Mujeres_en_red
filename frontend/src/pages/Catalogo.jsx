@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { getPage } from '../api/wp'
-import { useWp } from '../api/useWp'
-import { parseCatalog } from '../api/catalog'
+import { getCatalogo } from '../api/api'
+import { useApi } from '../api/useApi'
 import PageIntro from '../components/PageIntro'
 import Pagination from '../components/Pagination'
 import Tilt from '../components/motion/Tilt'
@@ -46,43 +45,43 @@ const PER_PAGE = 6
 const normalize = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 
 function BusinessCard({ entry, color }) {
-  const whatsapp = entry.links.find((l) => l.type === 'whatsapp')
+  const whatsapp = entry.links.find((l) => l.tipo === 'whatsapp')
   const others = entry.links.filter((l) => l !== whatsapp)
 
   return (
     <Tilt className="biz" style={{ '--accent': color }} max={8}>
       {/* Cabecera de color con el logo grande flotando */}
       <div className="biz__cover">
-        {entry.img && <div className="biz__cover-bg" style={{ backgroundImage: `url(${entry.img})` }} />}
+        {entry.foto && <div className="biz__cover-bg" style={{ backgroundImage: `url(${entry.foto})` }} />}
         <PetalShape color="rgba(255,255,255,.22)" className="biz__deco biz__deco--1" />
         <PetalShape color="rgba(255,255,255,.16)" className="biz__deco biz__deco--2" />
-        <span className="biz__tag">{entry.category}</span>
+        <span className="biz__tag">{entry.rubro}</span>
         <div className="biz__logo-ring">
           <div className="biz__logo">
-            {entry.img ? <img src={entry.img} alt={entry.name} loading="lazy" /> : <span>{entry.name[0]}</span>}
+            {entry.foto ? <img src={entry.foto} alt={entry.nombre} loading="lazy" /> : <span>{entry.nombre[0]}</span>}
           </div>
         </div>
       </div>
 
       <div className="biz__body">
-        <h3>{entry.name}</h3>
-        <p className="biz__desc">{entry.description}</p>
+        <h3>{entry.nombre}</h3>
+        <p className="biz__desc">{entry.descripcion}</p>
         <div className="biz__actions">
           {whatsapp && (
-            <a href={whatsapp.href} target="_blank" rel="noreferrer" className="biz__wa">
+            <a href={whatsapp.url} target="_blank" rel="noreferrer" className="biz__wa">
               <WhatsappIcon />
               <span>
                 <strong>Escribir por WhatsApp</strong>
-                {whatsapp.label && <small>{whatsapp.label}</small>}
+                {whatsapp.texto && <small>{whatsapp.texto}</small>}
               </span>
             </a>
           )}
           {others.length > 0 && (
             <div className="biz__social">
               {others.map((l) => {
-                const Icon = ICONS[l.type]
+                const Icon = ICONS[l.tipo] || GlobeIcon
                 return (
-                  <a key={l.href} href={l.href} target="_blank" rel="noreferrer" aria-label={LABELS[l.type]} title={LABELS[l.type]}>
+                  <a key={l.url} href={l.url} target="_blank" rel="noreferrer" aria-label={LABELS[l.tipo]} title={LABELS[l.tipo]}>
                     <Icon />
                   </a>
                 )
@@ -96,7 +95,7 @@ function BusinessCard({ entry, color }) {
 }
 
 export default function Catalogo() {
-  const { data: page, loading, error } = useWp(() => getPage('catalogo'), [])
+  const { data: catalog, loading, error } = useApi(getCatalogo, [])
   const [category, setCategory] = useState(null)
   const [query, setQuery] = useState('')
   const [pageNum, setPageNum] = useState(1)
@@ -126,16 +125,16 @@ export default function Catalogo() {
     document.title = 'Catálogo 2026 – Mujeres en Red'
   }, [])
 
-  const catalog = useMemo(() => (page ? parseCatalog(page.content.rendered) : null), [page])
-  const colorOf = (cat) => PETAL_COLORS[(catalog?.categories.indexOf(cat) ?? 0) % PETAL_COLORS.length]
+  const categories = useMemo(() => (catalog ? catalog.rubros.map((r) => r.nombre) : []), [catalog])
+  const colorOf = (cat) => PETAL_COLORS[Math.max(categories.indexOf(cat), 0) % PETAL_COLORS.length]
 
   const visible = useMemo(() => {
     if (!catalog) return []
     const q = normalize(query.trim())
-    return catalog.entries.filter(
+    return catalog.fichas.filter(
       (e) =>
-        (!category || e.category === category) &&
-        (!q || normalize(`${e.name} ${e.description} ${e.category}`).includes(q)),
+        (!category || e.rubro === category) &&
+        (!q || normalize(`${e.nombre} ${e.descripcion} ${e.rubro}`).includes(q)),
     )
   }, [catalog, category, query])
 
@@ -152,11 +151,11 @@ export default function Catalogo() {
       >
         <div className="intro-stats">
           <div>
-            <strong>{catalog ? catalog.entries.length : '—'}</strong>
+            <strong>{catalog ? catalog.fichas.length : '—'}</strong>
             <span>emprendimientos</span>
           </div>
           <div>
-            <strong>{catalog ? catalog.categories.length : '—'}</strong>
+            <strong>{catalog ? categories.length : '—'}</strong>
             <span>rubros</span>
           </div>
           <Link to="/contacto" className="btn btn--gradient btn--large">
@@ -184,7 +183,7 @@ export default function Catalogo() {
                 <button className={`chip ${!category ? 'is-active' : ''}`} onClick={() => changeCategory(null)}>
                   Todos
                 </button>
-                {catalog.categories.map((c) => (
+                {categories.map((c) => (
                   <button
                     key={c}
                     className={`chip ${category === c ? 'is-active' : ''}`}
@@ -212,7 +211,7 @@ export default function Catalogo() {
             <AnimatePresence mode="popLayout">
               {pageItems.map((e, i) => (
                 <motion.div
-                  key={e.name + e.category}
+                  key={e.id}
                   layout
                   initial={reduce ? false : { opacity: 0, scale: 0.8, rotateY: -30 }}
                   animate={{ opacity: 1, scale: 1, rotateY: 0 }}
@@ -220,7 +219,7 @@ export default function Catalogo() {
                   transition={{ duration: 0.5, delay: Math.min(i, 8) * 0.04, ease: [0.16, 1, 0.3, 1] }}
                   style={{ transformPerspective: 1000 }}
                 >
-                  <BusinessCard entry={e} color={colorOf(e.category)} />
+                  <BusinessCard entry={e} color={colorOf(e.rubro)} />
                 </motion.div>
               ))}
             </AnimatePresence>

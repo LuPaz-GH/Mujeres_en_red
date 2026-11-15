@@ -1,17 +1,17 @@
-// Ayudas para mostrar los proyectos del portfolio que vienen de WordPress
+// Ayudas para mostrar las fichas de "Qué hacemos" (la sección vive en /portfolio)
 
-const decode = (html) => {
-  const el = document.createElement('textarea')
-  el.innerHTML = html
-  return el.value
-}
+// Cómo se agrupa cada ficha en la página "Qué hacemos" (mismo orden en que se muestran)
+export const CATEGORIAS = [
+  { id: 'programa', singular: 'Programa', plural: 'Programas', bajada: 'Acompañamos a las mujeres todo el año con formación y apoyo.' },
+  { id: 'proyecto', singular: 'Proyecto', plural: 'Proyectos', bajada: 'Campañas y acciones sobre temas que nos importan.' },
+  { id: 'networking', singular: 'Networking', plural: 'Networking', bajada: 'Encuentros para conocernos, conectarnos y crecer juntas.' },
+]
 
-// "Proyecto: Coaching Fest" -> { kind: 'Proyecto', name: 'Coaching Fest' }
-export function splitTitle(rendered) {
-  const title = decode(rendered)
-  const m = title.match(/^(Proyecto|Programa)\s*:\s*(.+)$/i)
-  if (m) return { kind: m[1][0].toUpperCase() + m[1].slice(1).toLowerCase(), name: m[2] }
-  return { kind: 'Proyecto', name: title }
+// Ficha -> { kind: 'Programa', name: 'Mujer Emprendedora' }
+// (si el título todavía dice "Programa: ..." o "Proyecto: ..." se saca, porque ya se muestra como etiqueta)
+export function splitTitle(item) {
+  const kind = (CATEGORIAS.find((c) => c.id === item.categoria) ?? CATEGORIAS[1]).singular
+  return { kind, name: item.titulo.replace(/^(Proyecto|Programa)\s*:\s*/i, '') }
 }
 
 // Convierte el contenido en bloques para poder diseñar cada parte por separado:

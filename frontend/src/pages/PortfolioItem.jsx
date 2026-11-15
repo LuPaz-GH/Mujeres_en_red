@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
-import { featuredImage, getPortfolio, getPortfolioItem } from '../api/wp'
+import { getPortfolio, getProyecto } from '../api/api'
 import { parseProject, splitTitle } from '../api/portfolio'
-import { useWp } from '../api/useWp'
+import { useApi } from '../api/useApi'
 import PortfolioGrid from '../components/PortfolioGrid'
 import Reveal from '../components/motion/Reveal'
 import Tilt from '../components/motion/Tilt'
@@ -11,22 +11,23 @@ import FloatingPetals, { PetalShape } from '../components/motion/FloatingPetals'
 import { WhatsappIcon } from '../components/Icons'
 import { ErrorMessage, Loader, NotFound } from '../components/Status'
 import { PETAL_COLORS } from '../data/brand'
-import { WHATSAPP_URL } from '../data/site'
+import { useSitio } from '../api/useSitio'
 import './pages.css'
 import './PortfolioItem.css'
 
 export default function PortfolioItem() {
   const { slug } = useParams()
   const reduce = useReducedMotion()
-  const { data: item, loading, error } = useWp(() => getPortfolioItem(slug), [slug])
-  const all = useWp(() => getPortfolio(), [])
+  const { data: item, loading, error } = useApi(() => getProyecto(slug), [slug])
+  const all = useApi(() => getPortfolio(), [])
+  const WHATSAPP_URL = useSitio().whatsappUrl
 
   const index = all.data ? all.data.findIndex((p) => p.slug === slug) : 0
   const color = PETAL_COLORS[Math.max(index, 0) % PETAL_COLORS.length]
   const others = all.data ? all.data.filter((p) => p.slug !== slug).slice(0, 3) : []
 
-  const title = item ? splitTitle(item.title.rendered) : null
-  const project = useMemo(() => (item ? parseProject(item.content.rendered) : null), [item])
+  const title = item ? splitTitle(item) : null
+  const project = useMemo(() => (item ? parseProject(item.contenido) : null), [item])
 
   const pageName = title?.name
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function PortfolioItem() {
   if (error) return <ErrorMessage error={error} />
   if (!item) return <NotFound />
 
-  const image = featuredImage(item, 'full')
+  const image = item.foto
   const kindLower = title.kind.toLowerCase()
 
   return (
@@ -48,7 +49,7 @@ export default function PortfolioItem() {
         <div className="container pi-hero__grid">
           <div className="pi-hero__text">
             <Link to="/portfolio" className="pi-back">
-              ← Portfolio
+              ← Qué hacemos
             </Link>
             {/* Con "reducir movimiento" activado se muestran directo, sin animación */}
             <motion.div
@@ -199,7 +200,7 @@ export default function PortfolioItem() {
         </div>
       </section>
 
-      {/* ---------- Otros proyectos ---------- */}
+      {/* ---------- Más de lo que hacemos ---------- */}
       {others.length > 0 && (
         <section className="portfolio-section pi-more">
           <div className="container">
@@ -212,7 +213,7 @@ export default function PortfolioItem() {
             <PortfolioGrid items={others} />
             <Reveal className="buttons buttons--center">
               <Link to="/portfolio" className="btn btn--light-outline btn--large">
-                Ver todo el portfolio
+                Ver todo lo que hacemos
               </Link>
             </Reveal>
           </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 // Hook genérico: ejecuta una función async de la API y devuelve { data, loading, error }
-export function useWp(fn, deps = []) {
+export function useApi(fn, deps = []) {
   const [state, setState] = useState({ data: null, loading: true, error: null })
 
   useEffect(() => {

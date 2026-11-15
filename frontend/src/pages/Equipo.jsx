@@ -6,8 +6,11 @@ import Reveal from '../components/motion/Reveal'
 import Tilt from '../components/motion/Tilt'
 import FloatingPetals, { PetalShape } from '../components/motion/FloatingPetals'
 import { FacebookIcon, InstagramIcon, LinkedinIcon, MailIcon, TiktokIcon } from '../components/Icons'
-import { EQUIPO } from '../data/equipo'
-import { CONTACT_EMAIL } from '../data/site'
+import { getEquipo } from '../api/api'
+import { useApi } from '../api/useApi'
+import { useSitio } from '../api/useSitio'
+import { ErrorMessage, Loader } from '../components/Status'
+import { BRAND } from '../data/brand'
 import './pages.css'
 
 const SOCIAL_ICONS = {
@@ -66,7 +69,7 @@ function MemberCard({ m, index }) {
         >
           <div className="member__face member__front">
             <div className="member__photo">
-              <img src={m.photo} alt={m.name} loading="lazy" />
+              <img src={m.photo || '/img/iso.png'} alt={m.name} loading="lazy" />
             </div>
             <PetalShape color={m.color} className="member__petal" />
             <div className="member__info">
@@ -105,7 +108,13 @@ function MemberCard({ m, index }) {
   )
 }
 
+// Integrante como viene de la API -> como la usa la tarjeta
+const aTarjeta = (m) => ({ name: m.nombre, role: m.cargo, photo: m.foto, bio: m.bio, social: m.redes, color: BRAND[m.color] ?? BRAND.rosa })
+
 export default function Equipo() {
+  // Las integrantes se cargan y ordenan desde el panel (Equipo)
+  const equipo = useApi(() => getEquipo(), [])
+  const CONTACT_EMAIL = useSitio().email
   useEffect(() => {
     document.title = 'Equipo – Mujeres en Red'
   }, [])
@@ -121,9 +130,11 @@ export default function Equipo() {
       <section className="section team">
         <FloatingPetals opacity={0.45} />
         <div className="container">
+          {equipo.loading && <Loader />}
+          {equipo.error && <ErrorMessage error={equipo.error} />}
           <div className="team__grid">
-            {EQUIPO.map((m, i) => (
-              <MemberCard key={m.name} m={m} index={i} />
+            {equipo.data?.map((m, i) => (
+              <MemberCard key={m.id} m={aTarjeta(m)} index={i} />
             ))}
           </div>
 

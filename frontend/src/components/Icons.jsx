@@ -59,7 +59,7 @@ export const SearchIcon = () => (
 )
 
 export const ArrowIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M20.19 6.48 3.29 23.43a1.9 1.9 0 0 1-2.72 0 1.9 1.9 0 0 1 0-2.72L17.52 3.81H3.05a1.9 1.9 0 1 1 0-3.81h19.05A1.9 1.9 0 0 1 24 1.9v19.05a1.9 1.9 0 1 1-3.81 0V6.48z" />
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 12h17M13 5l7 7-7 7" />
   </svg>
 )

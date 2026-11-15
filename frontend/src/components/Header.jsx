@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
-import { MENU, SOCIAL } from '../data/site'
+import { useSitio } from '../api/useSitio'
+import { MENU } from '../data/site'
 import { PETAL_COLORS } from '../data/brand'
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from './Icons'
 
@@ -35,6 +36,7 @@ export default function Header() {
   const { pathname } = useLocation()
   const isHome = pathname === '/'
   const collapsed = hidden && !isHome
+  const { social } = useSitio()
 
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 40))
 
@@ -103,15 +105,21 @@ export default function Header() {
             ))}
           </ul>
           <div className="site-header__social">
-            <a href={SOCIAL.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="is-ig">
-              <InstagramIcon />
-            </a>
-            <a href={SOCIAL.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="is-fb">
-              <FacebookIcon />
-            </a>
-            <a href={SOCIAL.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="is-li">
-              <LinkedinIcon />
-            </a>
+            {social.instagram && (
+              <a href={social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="is-ig">
+                <InstagramIcon />
+              </a>
+            )}
+            {social.facebook && (
+              <a href={social.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="is-fb">
+                <FacebookIcon />
+              </a>
+            )}
+            {social.linkedin && (
+              <a href={social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="is-li">
+                <LinkedinIcon />
+              </a>
+            )}
           </div>
         </nav>
 

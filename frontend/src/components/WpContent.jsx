@@ -1,12 +1,12 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useNavigate } from 'react-router-dom'
-import { WP_URL } from '../api/wp'
 import ContactForm from './ContactForm'
 
+const SITE_URL = 'https://mujeresenred.com.ar'
 const SITE_HOSTS = ['mujeresenred.com.ar', 'www.mujeresenred.com.ar']
 
-// Limpia el HTML que devuelve WordPress:
+// Limpia el HTML de las notas y páginas (el que vino de WordPress y el que se escribe en el panel):
 // - saca el encabezado/menú que algunas páginas tienen copiado adentro (lo dibuja React)
 // - saca scripts y estilos sueltos
 // - convierte los links internos en rutas de React
@@ -18,8 +18,9 @@ export function cleanWpHtml(html) {
 
   doc.querySelectorAll('a[href]').forEach((a) => {
     try {
-      const url = new URL(a.getAttribute('href'), WP_URL)
-      const isInternal = SITE_HOSTS.includes(url.hostname) && !url.pathname.startsWith('/wp-content')
+      const url = new URL(a.getAttribute('href'), SITE_URL)
+      // Las fotos (/uploads, y /wp-content en links viejos) y la API no son páginas de la web
+      const isInternal = SITE_HOSTS.includes(url.hostname) && !/^\/(uploads|wp-content|api)\//.test(url.pathname)
       if (isInternal) {
         let path = url.pathname.replace(/\/$/, '') || '/'
         path = path.replace(/^\/portfolio_item\//, '/portfolio/')
