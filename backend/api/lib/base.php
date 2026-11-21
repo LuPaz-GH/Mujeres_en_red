@@ -138,7 +138,37 @@ function slugify(string $texto): string {
 const SLUGS_RESERVADOS = ['inicio', 'quienes-somos', 'portfolio', 'eventos', 'privacidad', 'sitemap', 'equipo', 'blog', 'catalogo', 'contacto', 'donar', 'admin', 'api', 'uploads'];
 
 // Cómo se agrupa cada ficha en la página "Qué hacemos" (/portfolio)
-const CATEGORIAS_PORTFOLIO = ['programa', 'proyecto', 'networking'];
+// ("proyecto" ya no tiene botón en la web: las fichas viejas quedan guardadas pero hay que pasarlas a otra)
+const CATEGORIAS_PORTFOLIO = ['programa', 'networking', 'voluntariado', 'deporvida'];
+
+// Galería de fotos y videos de una ficha: [{tipo: foto|video|youtube|instagram, url}], guardada como JSON.
+// Solo se aceptan archivos subidos a la web (uploads) o links de YouTube e Instagram.
+function limpiarGaleria($items): array {
+    $limpia = [];
+    foreach (is_array($items) ? $items : [] as $it) {
+        $tipo = $it['tipo'] ?? '';
+        $url = trim((string) ($it['url'] ?? ''));
+        if ($tipo === 'youtube') {
+            if (!($id = idYoutube($url))) continue;
+            $url = "https://www.youtube.com/watch?v=$id";
+        } elseif ($tipo === 'instagram') {
+            if (!preg_match('#instagram\.com/(?:[\w.]+/)?(p|reels?|tv)/([\w-]+)#', $url, $m)) continue;
+            $url = 'https://www.instagram.com/' . ($m[1] === 'p' ? 'p' : 'reel') . "/{$m[2]}/";
+        } elseif (!in_array($tipo, ['foto', 'video'], true) || !preg_match('#^(/uploads/|https?://)[^"\'<>\s]+$#', $url)) {
+            continue;
+        }
+        $limpia[] = ['tipo' => $tipo, 'url' => $url];
+    }
+    return array_slice($limpia, 0, 300);
+}
+
+function idYoutube(string $url): ?string {
+    return preg_match('#(?:youtube\.com/(?:watch\?(?:.*&)?v=|shorts/|embed/|live/)|youtu\.be/)([\w-]{11})#', $url, $m) ? $m[1] : null;
+}
+
+function leerGaleria(?string $json): array {
+    return $json ? (json_decode($json, true) ?: []) : [];
+}
 
 // Agrega -2, -3... si la dirección ya existe en la tabla
 function slugUnico(string $base, string $tabla, ?int $id = null): string {

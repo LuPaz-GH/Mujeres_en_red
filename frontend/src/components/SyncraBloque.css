@@ -1,5 +1,6 @@
-/* Inicio: bloque de SYNCRA Studios, con los colores de su marca (syncrastudios.com.ar):
-   casi negro, una grilla fina, un resplandor amarillo y detalles en amarillo */
+/* Inicio: bloque de SYNCRA Studios.
+   Fondo violeta fuerte del logo de la fundación, con letras blancas y detalles en rosa.
+   Solo el logo (recuadro negro con SYNCRA en blanco y STUDIOS en amarillo) conserva los colores de su marca. */
 .syncra {
   --syncra-amarillo: #f5b800;
   --syncra-negro: #0e0e0e;
@@ -7,14 +8,13 @@
   overflow: hidden;
   padding: clamp(4rem, 9vw, 7rem) 0;
   background:
-    radial-gradient(circle at 72% 45%, rgba(245, 184, 0, 0.22), transparent 38%),
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
-    var(--syncra-negro);
-  color: rgba(255, 255, 255, 0.78);
+    radial-gradient(circle at 85% 15%, rgba(235, 93, 157, 0.55), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(14, 171, 226, 0.35), transparent 40%),
+    linear-gradient(150deg, #4e3478 0%, var(--violeta) 55%, #7a3f8e 100%);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-/* Pastillas grises y puntos amarillos arriba a la derecha (como en su web) */
+/* Pastillas y puntos de colores arriba a la derecha */
 .syncra__adorno {
   position: absolute;
   top: 0;
@@ -35,7 +35,7 @@
   width: 30px;
   height: var(--alto);
   border-radius: 999px;
-  background: #2a2a2a;
+  background: rgba(255, 255, 255, 0.12);
   animation: syncra-sube 6s ease-in-out infinite alternate;
   animation-delay: calc(var(--i) * -0.4s);
 }
@@ -44,8 +44,8 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--syncra-amarillo);
-  opacity: 0.55;
+  background: var(--rosa);
+  opacity: 0.5;
 }
 
 @keyframes syncra-sube {
@@ -66,8 +66,9 @@
   gap: 0.55rem;
   margin: 0;
   padding: 0.4rem 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
   font-size: 0.8rem;
   font-weight: 800;
@@ -79,21 +80,24 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--syncra-amarillo);
-  box-shadow: 0 0 10px var(--syncra-amarillo);
+  background: var(--rosa);
 }
 
-/* El nombre como su logo: SYNCRA con letras separadas y STUDIOS chico debajo */
+/* El logo, con los colores originales de SYNCRA: recuadro negro, SYNCRA blanco y STUDIOS amarillo */
 .syncra__titulo {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  margin: 1.1rem 0 1rem;
+  margin: 1.1rem 0 1.25rem;
+  padding: clamp(1rem, 2.5vw, 1.5rem) clamp(1.25rem, 3vw, 2rem);
+  border-radius: 20px;
+  background: var(--syncra-negro);
+  box-shadow: var(--shadow);
   line-height: 1;
 }
 
 .syncra__marca {
   color: #fff;
-  font-size: clamp(3rem, 7.5vw, 5.4rem);
+  font-size: clamp(2.6rem, 6.5vw, 4.6rem);
   font-weight: 700;
   letter-spacing: 0.14em;
 }
@@ -101,9 +105,14 @@
 .syncra__studios {
   margin-top: 0.5rem;
   color: var(--syncra-amarillo);
-  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  font-size: clamp(0.9rem, 1.6vw, 1.15rem);
   font-weight: 700;
   letter-spacing: 0.62em;
+}
+
+.syncra__texto > .syncra__titulo {
+  display: flex;
+  width: fit-content;
 }
 
 .syncra__bajada {
@@ -142,32 +151,31 @@
   place-items: center;
   width: 2.8rem;
   height: 2.8rem;
-  border: 1px solid rgba(245, 184, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 14px;
-  background: rgba(245, 184, 0, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   font-size: 1.3rem;
 }
 
-/* Botón amarillo con letra negra, como el "Contacto" de su web */
+/* Botón con el degradé de la fundación, como los otros botones de la web */
 .syncra__boton {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.95rem 1.8rem;
   border-radius: 999px;
-  background: var(--syncra-amarillo);
-  color: #111;
+  background: linear-gradient(100deg, var(--rosa), var(--naranja));
+  color: #fff;
   font-size: 1.08rem;
   font-weight: 800;
   text-decoration: none;
-  box-shadow: 0 12px 30px -10px rgba(245, 184, 0, 0.55);
-  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .syncra__boton:hover {
-  background: #ffc61a;
   transform: translateY(-3px);
-  box-shadow: 0 18px 36px -12px rgba(245, 184, 0, 0.7);
+  box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.55);
 }
 
 .syncra__boton:focus-visible {
@@ -175,19 +183,18 @@
   outline-offset: 3px;
 }
 
-/* Pantalla con el subtítulo escribiéndose */
+/* Pantalla con el subtítulo escribiéndose (oscura porque representa un video) */
 .syncra__pantalla {
   position: relative;
   display: flex;
   align-items: flex-end;
   min-height: 260px;
   padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 24px;
   background:
-    radial-gradient(ellipse 70% 60% at 50% 35%, rgba(245, 184, 0, 0.14), transparent 70%),
-    linear-gradient(160deg, #1d1d1d, #080808);
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9);
+    radial-gradient(ellipse 70% 60% at 50% 35%, rgba(235, 93, 157, 0.25), transparent 70%),
+    linear-gradient(160deg, #3a2d55, var(--ink));
+  box-shadow: var(--shadow);
 }
 
 .syncra__vivo {
@@ -196,8 +203,8 @@
   left: 1rem;
   padding: 0.25rem 0.7rem;
   border-radius: 999px;
-  background: var(--syncra-amarillo);
-  color: #111;
+  background: var(--rosa);
+  color: #fff;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -209,7 +216,7 @@
   margin: 0;
   padding: 0.6rem 0.9rem;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
   color: #fff;
   font-size: clamp(1.1rem, 2.2vw, 1.4rem);
   font-weight: 700;
@@ -222,7 +229,7 @@
   height: 1.1em;
   margin-left: 2px;
   vertical-align: text-bottom;
-  background: var(--syncra-amarillo);
+  background: #fff;
   animation: syncra-cursor 1s steps(1) infinite;
 }
 
@@ -233,7 +240,7 @@
 .syncra__frase {
   margin: 1.5rem 0 0;
   padding: 0 0 0 1rem;
-  border-left: 4px solid var(--syncra-amarillo);
+  border-left: 4px solid var(--rosa);
   color: #fff;
   font-size: clamp(1.15rem, 2vw, 1.35rem);
   font-weight: 700;
@@ -242,7 +249,7 @@
 .syncra__frase cite {
   display: block;
   margin-top: 0.4rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.65);
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 600;

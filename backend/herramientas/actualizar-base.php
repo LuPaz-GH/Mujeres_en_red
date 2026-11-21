@@ -29,6 +29,9 @@ foreach (['usuarias', 'categorias', 'notas', 'portfolio', 'paginas', 'rubros', '
 }
 agregarColumna('emprendimientos', 'creada DATETIME');
 agregarColumna('mensajes', 'telefono VARCHAR(40)');
+// Galería de fotos y videos de cada ficha, y notas asociadas a una ficha (noviembre 2026)
+agregarColumna('portfolio', db()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite' ? 'galeria TEXT' : 'galeria MEDIUMTEXT');
+agregarColumna('notas', 'portfolio_id INTEGER');
 
 // Equipo y datos de la web (WhatsApp, redes, donaciones), que ahora se cambian desde el panel
 cargarDatosIniciales();
@@ -44,6 +47,27 @@ if (agregarColumna('portfolio', "categoria VARCHAR(20) NOT NULL DEFAULT 'proyect
         if ($titulo !== $p['titulo']) q('UPDATE portfolio SET titulo = ? WHERE id = ?', [$titulo, $p['id']]);
     }
 }
+// Noviembre 2026: "Qué hacemos" pasa a Programas, Networking, Voluntariado y DeporVida (sin Proyectos).
+// Solo cambia lo que todavía está como venía de antes, para no pisar lo que se haya cambiado en el panel.
+q("UPDATE portfolio SET categoria = 'voluntariado' WHERE id = 1775 AND categoria = 'networking'");
+q("UPDATE portfolio SET publicada = 0 WHERE categoria = 'proyecto'"); // quedan en el panel para pasarlas a otra categoría
+// Fichas nuevas (Movimiento Rosa y Evento ACTIVA) y fotos de Coaching Fest y Voluntariado, si todavía no están
+require_once dirname(__DIR__) . '/api/lib/importar.php';
+foreach (json_decode(file_get_contents(dirname(__DIR__) . '/contenido/portfolio.json'), true) as $p) {
+    if (!in_array($p['slug'], ['movimiento-rosa', 'evento-activa', 'proyecto-coaching-fest', 'reuniones-de-voluntariado'], true)) continue;
+    $galeria = array_map(fn($g) => ['tipo' => $g['tipo'], 'url' => fotoLocal($g['url'])], $p['galeria'] ?? []);
+    $existe = q('SELECT id, galeria FROM portfolio WHERE slug = ?', [$p['slug']])->fetch();
+    if ($existe) {
+        // Coaching Fest y Voluntariado ya estaban: se les suma el texto nuevo y las fotos, solo si todavía no tiene galería
+        if (!leerGaleria($existe['galeria'])) q('UPDATE portfolio SET contenido = ?, galeria = ?, foto = ? WHERE id = ?',
+            [fotosLocales($p['contenido']), json_encode($galeria, JSON_UNESCAPED_SLASHES), fotoLocal($p['foto']), $existe['id']]);
+        continue;
+    }
+    q('INSERT INTO portfolio (slug, titulo, categoria, fecha, contenido, foto, galeria, publicada) VALUES (?, ?, ?, ?, ?, ?, ?, 1)',
+        [$p['slug'], $p['titulo'], $p['categoria'], str_replace('T', ' ', $p['fecha']), fotosLocales($p['contenido']), fotoLocal($p['foto']),
+            json_encode($galeria, JSON_UNESCAPED_SLASHES)]);
+}
+
 try {
     db()->exec("ALTER TABLE usuarias ADD COLUMN rol VARCHAR(20) NOT NULL DEFAULT 'empleada'");
     db()->exec("UPDATE usuarias SET rol = 'admin'");

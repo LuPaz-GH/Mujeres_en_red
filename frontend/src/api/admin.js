@@ -147,3 +147,11 @@ export async function subirFoto(archivo) {
   const { url } = await pedido('/admin/fotos', { method: 'POST', body: form })
   return url
 }
+
+// Videos: van tal cual (no se achican). El hosting tiene un límite de tamaño por archivo.
+export async function subirVideo(archivo) {
+  const form = new FormData()
+  form.append('video', archivo)
+  const { url } = await pedido('/admin/videos', { method: 'POST', body: form })
+  return url
+}

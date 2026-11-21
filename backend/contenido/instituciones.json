@@ -1,8 +1,5 @@
 [
-    { "nombre": "Municipalidad de San Miguel de Tucumán", "detalle": "", "logo": "/img/instituciones/municipalidad-smt.png", "link": "https://smt.gob.ar/" },
     { "nombre": "Marca Tucumán", "detalle": "Distinción otorgada por el IDEP", "logo": "/img/instituciones/marca-tucuman.png", "link": "https://idep.gov.ar/" },
-    { "nombre": "Ministerio de Educación de Tucumán", "detalle": "Dirección de Educación Profesional", "logo": "/img/instituciones/ministerio-educacion-tucuman.png", "link": "https://www.educaciontuc.gov.ar/" },
-    { "nombre": "Universidad San Pablo Tucumán", "detalle": "", "logo": "/img/instituciones/universidad-san-pablo-t.png", "link": "https://uspt.edu.ar/" },
-    { "nombre": "Universidad Nacional de Tucumán", "detalle": "Facultad de Ciencias Naturales e IML", "logo": "/img/instituciones/unt-ciencias-naturales.png", "link": "https://csnat.unt.edu.ar/" },
-    { "nombre": "Fundación La Vidalita", "detalle": "", "logo": "/img/instituciones/fundacion-la-vidalita.png", "link": "https://www.instagram.com/fundacionlavidalita/" }
+    { "nombre": "RACI", "detalle": "Red Argentina para la Cooperación Internacional", "logo": "/img/instituciones/raci.png", "link": "https://raci.org.ar/" },
+    { "nombre": "Municipalidad de San Miguel de Tucumán", "detalle": "", "logo": "/img/instituciones/municipalidad-smt.png", "link": "https://smt.gob.ar/" }
 ]

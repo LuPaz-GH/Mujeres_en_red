@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { splitTitle } from '../api/portfolio'
+import { TEMAS, splitTitle } from '../api/portfolio'
 import { PETAL_COLORS } from '../data/brand'
 import Reveal from './motion/Reveal'
 import Tilt from './motion/Tilt'
@@ -12,7 +12,7 @@ export default function PortfolioGrid({ items, offset = 0, parejo = false }) {
     <ul className={`portfolio-grid${parejo ? ' portfolio-grid--parejo' : ''}`}>
       {items.map((item, i) => {
         const { kind, name } = splitTitle(item)
-        const color = PETAL_COLORS[(i + offset) % PETAL_COLORS.length]
+        const color = TEMAS[item.slug]?.color ?? PETAL_COLORS[(i + offset) % PETAL_COLORS.length]
         return (
           <Reveal as="li" key={item.id} delay={(i % 3) * 0.1}>
             <Tilt className="portfolio-card" style={{ '--accent': color }} max={8}>

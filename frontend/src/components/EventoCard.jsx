@@ -23,7 +23,12 @@ export default function EventoCard({ evento, index = 0, pasado = false }) {
     <Reveal delay={(index % 3) * 0.1}>
       <Tilt className={`evento${pasado ? ' is-pasado' : ''}`} style={{ '--accent': color }} max={6}>
         <article id={evento.slug}>
-          {evento.foto && <img className="evento__foto" src={evento.foto} alt="" loading="lazy" />}
+          {evento.foto && (
+            // La imagen entera, centrada; atrás la misma imagen borrosa rellena el espacio que sobra
+            <div className="evento__media" style={{ '--foto': `url("${evento.foto}")` }}>
+              <img className="evento__foto" src={evento.foto} alt="" loading="lazy" />
+            </div>
+          )}
           <div className="evento__cuerpo">
             <time className="evento__fecha" dateTime={evento.fecha}>
               <strong>{f.dia}</strong>

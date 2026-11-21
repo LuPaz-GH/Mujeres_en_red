@@ -16,7 +16,7 @@ $absoluta = fn(?string $url) => !$url ? '' : (preg_match('#^https?://#', $url) ?
 const PAGINAS_FIJAS = [
     '/' => ['Mujeres en Red – Construir redes de apoyo, formación y transformación', 'Fundación de Tucumán que acompaña a mujeres en su desarrollo personal, profesional y comunitario: capacitaciones, bienestar, liderazgo y emprendimiento.'],
     '/quienes-somos' => ['Quiénes somos – Mujeres en Red', 'Somos una organización de mujeres comprometidas con el cambio social. Desde 2012 creamos proyectos para mejorar las oportunidades de las mujeres tucumanas.'],
-    '/portfolio' => ['Qué hacemos – Mujeres en Red', 'Programas, proyectos y espacios de networking para mujeres de Tucumán y el NOA: capacitación, bienestar, liderazgo y emprendimiento.'],
+    '/portfolio' => ['Qué hacemos – Mujeres en Red', 'Programas, networking, voluntariado y DeporVida para mujeres de Tucumán y el NOA: capacitación, bienestar, liderazgo y emprendimiento.'],
     '/eventos' => ['Eventos – Mujeres en Red', 'Talleres, encuentros y celebraciones para conocernos, aprender y crecer juntas. Enterate de los próximos eventos.'],
     '/blog' => ['Blog – Mujeres en Red', 'Novedades, actividades y logros de la Fundación Mujeres en Red.'],
     '/catalogo' => ['Catálogo de emprendedoras – Mujeres en Red', 'Emprendimientos y servicios profesionales de mujeres de nuestra red: gastronomía, moda, salud, bienestar, decoración y más.'],
@@ -130,4 +130,7 @@ $html = str_replace('</head>', "    $etiquetas\n  </head>", $html);
 
 http_response_code($codigo);
 header('Content-Type: text/html; charset=utf-8');
+// Que el navegador pregunte siempre si hay una versión nueva (el hosting por defecto la guarda 7 días
+// y los cambios no se veían). Lo pesado (assets/ con nombres que cambian en cada versión) sí se guarda.
+header('Cache-Control: no-cache');
 echo $html;

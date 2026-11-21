@@ -1,8 +1,9 @@
 /* Tarjeta de evento (página Eventos y bloque "Próximos eventos" del inicio) */
+/* Un evento por fila, a todo el ancho: la imagen completa y el texto al lado, con líneas largas */
 .eventos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
   margin: 2.5rem 0 0;
   padding: 0;
   list-style: none;
@@ -22,11 +23,31 @@
   height: 100%;
 }
 
-.evento__foto {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+/* La imagen se ve entera (sin recortar), con su forma original.
+   Detrás, la misma imagen borrosa rellena el espacio que sobra (en compu la columna es más alta que la imagen) */
+.evento__media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   border-bottom: 6px solid var(--accent);
+  background: var(--ink);
+}
+
+.evento__media::before {
+  content: '';
+  position: absolute;
+  inset: -30px;
+  background: var(--foto) center / cover;
+  filter: blur(28px) brightness(0.75);
+}
+
+.evento__foto {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .evento__cuerpo {
@@ -78,10 +99,11 @@
   line-height: 1.2;
 }
 
+/* Fecha, hora y lugar uno al lado del otro (bajan de renglón si no entran) */
 .evento__datos {
   display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
   margin: 0 0 0.75rem;
   color: var(--ink-soft);
   font-size: 0.95rem;
@@ -113,7 +135,29 @@
   box-shadow: none;
 }
 
-@media (max-width: 420px) {
+/* Compu y tablet: imagen a la izquierda, texto a la derecha */
+@media (min-width: 760px) {
+  .evento article {
+    flex-direction: row;
+  }
+
+  .evento__media {
+    flex: 0 0 50%;
+    border-bottom: 0;
+    border-right: 6px solid var(--accent);
+  }
+
+  .evento__cuerpo {
+    padding: 1.75rem 2rem;
+  }
+
+  .evento h3 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Celular: la fecha arriba, para que el texto use todo el ancho */
+@media (max-width: 759px) {
   .evento__cuerpo {
     flex-direction: column;
   }

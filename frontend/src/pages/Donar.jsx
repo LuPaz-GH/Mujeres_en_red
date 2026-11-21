@@ -10,20 +10,24 @@ import { BILLETERAS } from '../data/donaciones'
 import './pages.css'
 import './Donar.css'
 
+// En qué se usa cada donación. num: lo que se ve grande arriba de cada tarjeta
 const IMPACT = [
   {
-    title: 'Capacitación',
-    text: 'Talleres y ciclos gratuitos de formación en liderazgo, emprendimiento, finanzas y comunicación.',
+    num: '150',
+    title: 'jefas de hogar',
+    text: 'Acompañamos a mujeres que sostienen sus hogares en Villa Muñecas, el barrio Victoria y Manantial.',
     color: BRAND.celeste,
   },
   {
-    title: 'Acompañamiento',
-    text: 'Espacios de bienestar y contención para mujeres en situación de vulnerabilidad.',
+    num: '♥',
+    title: 'Movimiento Rosa',
+    text: 'Preparamos los materiales con los que trabajan las mujeres de Movimiento Rosa en cada encuentro.',
     color: BRAND.rosa,
   },
   {
-    title: 'Emprendimiento',
-    text: 'Impulso a proyectos productivos de mujeres que sostienen la economía de sus barrios.',
+    num: '✿',
+    title: 'Voluntariado',
+    text: 'Sostenemos el voluntariado: la formación y los encuentros de las voluntarias que llevan adelante nuestros programas.',
     color: BRAND.verde,
   },
 ]
@@ -120,11 +124,14 @@ export default function Donar() {
           <Reveal as="h2" className="title-xl">
             ¿Qué hacemos con tu aporte?
           </Reveal>
+          <Reveal as="p" className="lead">
+            Tu donación llega directo a los barrios. Esto es lo que hacemos hoy, gracias a quienes nos ayudan:
+          </Reveal>
           <div className="impact-grid">
             {IMPACT.map((it, idx) => (
               <Reveal key={it.title} delay={idx * 0.1}>
                 <div className="impact" style={{ '--c': it.color }}>
-                  <span className="impact__num">0{idx + 1}</span>
+                  <span className="impact__num">{it.num}</span>
                   <h3>{it.title}</h3>
                   <p>{it.text}</p>
                 </div>

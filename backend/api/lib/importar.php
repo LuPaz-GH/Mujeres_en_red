@@ -59,9 +59,13 @@ function importarContenido(string $dir): array {
         // Qué hacemos (portfolio) y páginas sueltas
         $portfolio = $leer('portfolio.json');
         foreach ($portfolio as $p) {
-            q('INSERT INTO portfolio (id, slug, titulo, categoria, fecha, contenido, foto, publicada) VALUES (?, ?, ?, ?, ?, ?, ?, 1)',
-                [$p['id'], $p['slug'], $p['titulo'], $p['categoria'] ?? 'proyecto', $fecha($p['fecha']),
-                    fotosLocales($p['contenido'], $sinFoto), fotoLocal($p['foto'], $sinFoto)]);
+            // Las de una categoría sin botón en la web (ej. "proyecto") quedan guardadas sin publicar
+            $categoria = $p['categoria'] ?? 'proyecto';
+            $galeria = array_map(fn($g) => ['tipo' => $g['tipo'], 'url' => $g['tipo'] === 'youtube' ? $g['url'] : fotoLocal($g['url'], $sinFoto)], $p['galeria'] ?? []);
+            q('INSERT INTO portfolio (id, slug, titulo, categoria, fecha, contenido, foto, galeria, publicada) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                [$p['id'], $p['slug'], $p['titulo'], $categoria, $fecha($p['fecha']),
+                    fotosLocales($p['contenido'], $sinFoto), fotoLocal($p['foto'], $sinFoto), json_encode($galeria, JSON_UNESCAPED_SLASHES),
+                    in_array($categoria, CATEGORIAS_PORTFOLIO, true) ? 1 : 0]);
         }
         $paginas = $leer('paginas.json');
         foreach ($paginas as $p) {

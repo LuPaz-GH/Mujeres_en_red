@@ -1,14 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getPortfolio } from '../api/api'
 import { CATEGORIAS } from '../api/portfolio'
 import { useApi } from '../api/useApi'
 import PageIntro from '../components/PageIntro'
+import Pagination from '../components/Pagination'
 import PortfolioGrid from '../components/PortfolioGrid'
 import FloatingPetals from '../components/motion/FloatingPetals'
 import Reveal from '../components/motion/Reveal'
 import { ErrorMessage, Loader } from '../components/Status'
 import './pages.css'
+
+const POR_PAGINA = 6
 
 // Color (del logo) e ícono de cada botón
 const ESTILO = {
@@ -16,16 +19,6 @@ const ESTILO = {
     color: 'var(--violeta)',
     icono: (
       <path d="M4 19.5V5.5A2.5 2.5 0 0 1 6.5 3H20v14H6.5A2.5 2.5 0 0 0 4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5M8 7h8M8 11h6" />
-    ),
-  },
-  proyecto: {
-    color: 'var(--rosa)',
-    icono: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <circle cx="12" cy="12" r="5" />
-        <circle cx="12" cy="12" r="1.2" fill="currentColor" />
-      </>
     ),
   },
   networking: {
@@ -38,9 +31,24 @@ const ESTILO = {
       </>
     ),
   },
+  voluntariado: {
+    color: 'var(--rosa)',
+    icono: (
+      <path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10Z" />
+    ),
+  },
+  deporvida: {
+    color: 'var(--verde)',
+    icono: (
+      <>
+        <rect x="9" y="2.5" width="6" height="11" rx="3" />
+        <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7" />
+      </>
+    ),
+  },
 }
 
-// "Qué hacemos" (antes Portfolio): un botón por categoría (Programas, Proyectos, Networking)
+// "Qué hacemos" (antes Portfolio): un botón por categoría (Programas, Networking, Voluntariado, DeporVida)
 // y abajo solo las fichas de la elegida. La elegida queda en la dirección: /portfolio#networking
 export default function Portfolio() {
   const { data: items, loading, error } = useApi(() => getPortfolio(), [])
@@ -49,6 +57,10 @@ export default function Portfolio() {
   const elegida = CATEGORIAS.find((c) => `#${c.id}` === hash) ?? CATEGORIAS[0]
   const cantidad = (id) => items.filter((p) => (p.categoria || 'proyecto') === id).length
   const fichas = items ? items.filter((p) => (p.categoria || 'proyecto') === elegida.id) : []
+  const [pagina, setPagina] = useState({ categoria: elegida.id, numero: 1 })
+  const numero = pagina.categoria === elegida.id ? pagina.numero : 1 // al cambiar de botón vuelve a la primera
+  const totalPaginas = Math.ceil(fichas.length / POR_PAGINA)
+  const fichasDeLaPagina = fichas.slice((numero - 1) * POR_PAGINA, numero * POR_PAGINA)
 
   useEffect(() => {
     document.title = 'Qué hacemos – Mujeres en Red'
@@ -59,7 +71,7 @@ export default function Portfolio() {
       <PageIntro
         eyebrow="Qué hacemos"
         title="Acciones que *transforman* *vidas*"
-        lead="Programas, proyectos y espacios de networking que impulsamos junto a mujeres de Tucumán y el NOA: capacitación, bienestar, liderazgo y emprendimiento."
+        lead="Programas, espacios de networking, voluntariado y DeporVida que impulsamos junto a mujeres de Tucumán y el NOA: capacitación, bienestar, liderazgo y emprendimiento."
       />
       <section className="portfolio-section">
         <FloatingPetals opacity={0.35} />
@@ -100,7 +112,10 @@ export default function Portfolio() {
                 {elegida.bajada}
               </Reveal>
               {fichas.length > 0 ? (
-                <PortfolioGrid items={fichas} parejo />
+                <>
+                  <PortfolioGrid items={fichasDeLaPagina} offset={(numero - 1) * POR_PAGINA} parejo />
+                  <Pagination page={numero} totalPages={totalPaginas} onChange={(n) => setPagina({ categoria: elegida.id, numero: n })} />
+                </>
               ) : (
                 <p className="que-hacemos-grupo__vacio">Pronto vas a encontrar novedades acá.</p>
               )}

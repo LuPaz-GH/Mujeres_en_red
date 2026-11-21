@@ -29,6 +29,7 @@ function prepararNotas(array $filas, bool $completa = false): array {
         'foto' => $n['foto'],
         'autora' => $n['autora'],
         'publicada' => (bool) $n['publicada'],
+        'portfolio_id' => !empty($n['portfolio_id']) ? (int) $n['portfolio_id'] : null,
         'categorias' => $categorias[$n['id']] ?? [],
         'etiquetas' => $etiquetas[$n['id']] ?? [],
         'imagenes' => imagenesDe($n['contenido']),
@@ -130,6 +131,7 @@ function prepararProyecto(array $p): array {
         'fecha' => iso($p['fecha']),
         'foto' => $p['foto'],
         'contenido' => $p['contenido'],
+        'galeria' => leerGaleria($p['galeria'] ?? null),
         'publicada' => (bool) $p['publicada'],
     ];
 }
@@ -144,7 +146,9 @@ function listarPortfolio(): never {
 function verProyecto(string $slug): never {
     $p = q('SELECT * FROM portfolio WHERE slug = ? AND publicada = 1 AND borrada IS NULL', [$slug])->fetch();
     if (!$p) error('No encontramos ese proyecto', 404);
-    responder(prepararProyecto($p));
+    // Notas del blog que se escribieron sobre esta ficha
+    $notas = q('SELECT * FROM notas WHERE portfolio_id = ? AND publicada = 1 AND borrada IS NULL ORDER BY fecha DESC LIMIT 60', [$p['id']])->fetchAll();
+    responder(prepararProyecto($p) + ['notas' => prepararNotas($notas)]);
 }
 
 // --- Páginas y catálogo ----------------------------------------------------------------------
@@ -366,7 +370,7 @@ function listarEventos(): never {
     $base = 'SELECT * FROM eventos WHERE publicado = 1 AND borrada IS NULL';
     responder([
         'proximos' => array_map('prepararEvento', q("$base AND fecha >= ? ORDER BY fecha, id LIMIT $limite", [$hoy])->fetchAll()),
-        'pasados' => array_map('prepararEvento', q("$base AND fecha < ? ORDER BY fecha DESC, id DESC LIMIT 6", [$hoy])->fetchAll()),
+        'pasados' => array_map('prepararEvento', q("$base AND fecha < ? ORDER BY fecha DESC, id DESC LIMIT " . ($limite < 50 ? 6 : 300), [$hoy])->fetchAll()),
     ]);
 }
 

@@ -51,6 +51,9 @@ export default function Header() {
     root.classList.toggle('sidebar-open', !isHome && !hidden)
   }, [isHome, hidden])
 
+  // Al salir de la web (por ejemplo, al entrar al panel) se saca el lugar reservado para la barra
+  useEffect(() => () => document.documentElement.classList.remove('has-sidebar', 'sidebar-open'), [])
+
   return (
     <motion.header
       className={`site-header ${isHome ? 'is-pill' : 'is-side'} ${scrolled ? 'is-scrolled' : ''} ${collapsed ? 'is-collapsed' : ''}`}

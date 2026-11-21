@@ -1,12 +1,356 @@
 [
     {
+        "id": 2001,
+        "slug": "movimiento-rosa",
+        "titulo": "Movimiento Rosa",
+        "categoria": "programa",
+        "fecha": "2026-11-20T12:00:00",
+        "contenido": "<p>En Mujeres en Red creemos que el equilibrio emocional y el encuentro colectivo son claves para cerrar brechas de desigualdad y transformar realidades.</p>\n<p>Por eso creamos <strong>Movimiento Rosa: Programa de Bienestar Comunitario</strong>, un programa que impulsa el empoderamiento y la autonomía de las mujeres de barrios periféricos de la gran San Miguel de Tucumán, a través de la educación emocional; el liderazgo resiliente; la comunicación asertiva, y la gestión financiera, transformándolas en <strong>promotoras activas de la salud emocional y el bienestar</strong> dentro de su propia comunidad.</p>\n<p>Los ejes del programa:</p>\n<ul>\n<li><strong>Educación emocional</strong></li>\n<li><strong>Liderazgo resiliente</strong></li>\n<li><strong>Comunicación asertiva</strong></li>\n<li><strong>Gestión financiera</strong></li>\n</ul>\n<p><strong>Gestionar para crecer, decidir para avanzar.</strong></p>\n",
+        "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-01.jpg",
+        "galeria": [
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-01.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-02.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-03.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-04.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-05.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-06.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-07.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-08.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-09.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-10.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-11.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-12.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-13.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-14.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-15.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-16.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-17.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-18.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-19.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-20.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-21.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-22.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-23.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-24.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-25.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-26.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-27.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-28.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-29.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-30.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-31.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-32.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-33.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-34.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-35.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-36.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-37.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-38.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-39.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-40.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-41.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-42.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-43.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-44.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-45.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-46.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-47.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-48.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-49.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-50.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/movimiento-rosa-51.jpg"
+            }
+        ]
+    },
+    {
+        "id": 2002,
+        "slug": "evento-activa",
+        "titulo": "ACTIVA",
+        "categoria": "networking",
+        "fecha": "2026-11-20T11:00:00",
+        "contenido": "<p>El liderazgo femenino es un motor clave para la equidad; el desarrollo social, y la transformación de nuestras comunidades.</p>\n<p>Así nace la idea de <strong>ACTIVA: Mujer Líder</strong>, una iniciativa de encuentro, inspiración y reconocimiento en el marco del Mes de la Mujer, que impulsa el empoderamiento y la autoconfianza de las mujeres líderes y emprendedoras tucumanas a través de charlas, herramientas de liderazgo y comunicación, espacios de networking y la visibilización de referentes locales, construyendo redes de colaboración que generan un impacto positivo en los ámbitos social, comunitario y organizacional.</p>\n",
+        "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-20.jpg",
+        "galeria": [
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-01.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-02.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-03.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-04.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-05.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-06.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-07.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-08.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-09.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-10.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-11.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-12.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-13.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-14.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-15.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-16.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-17.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-18.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-19.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-20.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-21.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-22.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/activa-23.jpg"
+            }
+        ]
+    },
+    {
         "id": 1775,
         "slug": "reuniones-de-voluntariado",
         "titulo": "Reuniones de Voluntariado",
-        "categoria": "networking",
+        "categoria": "voluntariado",
         "fecha": "2025-04-27T12:30:27",
         "contenido": "\n<p class=\"wp-block-paragraph\"><strong>El cambio social comienza por fortalecer a quienes lo impulsan</strong>. Por eso, cada mes, organizamos nuestras <strong>Reuniones de Voluntariado</strong>, un espacio de formación, inspiración y conexión pensado para potenciar a las mujeres que forman parte activa de nuestra fundación.</p>\n\n\n\n<p class=\"wp-block-paragraph\">El objetivo de estas reuniones es <strong>fortalecer el crecimiento personal y profesional de nuestras voluntarias</strong>, que luego llevan adelante, con pasión y compromiso, los distintos programas sociales que impulsamos: Mujer Emprendedora, Bienestar Integral, y Mujeres Conectadas en la Red.</p>\n\n\n\n<p class=\"wp-block-paragraph\">Cada encuentro es una oportunidad única para:</p>\n\n\n\n<ul class=\"wp-block-list\">\n<li><strong>Aprender de mujeres líderes y referentes sociales</strong>, que nos comparten sus experiencias y nos inspiran con su ejemplo.<br></li>\n\n\n\n<li><strong>Realizar networking</strong>, creando vínculos y redes de colaboración que enriquecen nuestro trabajo colectivo.<br></li>\n\n\n\n<li><strong>Practicar autogestión emocional</strong>, a través de dinámicas grupales, ejercicios de respiración consciente y técnicas de educación emocional, fundamentales para liderar proyectos con empatía y resiliencia.<br></li>\n</ul>\n\n\n\n<p class=\"wp-block-paragraph\">Nuestras reuniones mensuales son mucho más que una capacitación: son espacios de crecimiento, de comunidad y de empoderamiento real.<br>En Mujeres en Red creemos que cada voluntaria empoderada es una multiplicadora de oportunidades para otras mujeres.<br><strong>Juntas, construimos redes que transforman vidas.</strong></p>\n",
-        "foto": "https://mujeresenred.com.ar/wp-content/uploads/2025/04/b3e5c7b3-185b-41c5-9b27-b076aa571e50-scaled-e1745757265757.jpeg"
+        "foto": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/voluntariado-01.jpg",
+        "galeria": [
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/voluntariado-01.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/voluntariado-02.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/voluntariado-03.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/voluntariado-04.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/voluntariado-05.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/voluntariado-06.jpg"
+            }
+        ]
     },
     {
         "id": 1780,
@@ -14,8 +358,106 @@
         "titulo": "Coaching Fest",
         "categoria": "networking",
         "fecha": "2025-03-10T13:02:34",
-        "contenido": "\n<p class=\"wp-block-paragraph\">En Fundación Mujeres en Red impulsamos el <strong>Proyecto Coaching Fest</strong>, una propuesta de <strong>convocatoria abierta</strong> que invita a mujeres de todas las edades y trayectorias a vivir una experiencia transformadora.</p>\n\n\n\n<p class=\"wp-block-paragraph\">Cada edición del Coaching Fest tiene una <strong>temática especial</strong> enfocada en el desarrollo personal y profesional:</p>\n\n\n\n<ul class=\"wp-block-list\">\n<li><strong>Mujeres Emprendedoras</strong>: herramientas para impulsar sus proyectos y fortalecer su autogestión personal y desde ese lugar, liderar su emprendimiento.<br></li>\n\n\n\n<li><strong>Mujeres Líderes</strong>: estrategias para potenciar habilidades de conducción, gestión de equipos y comunicación efectiva.<br></li>\n\n\n\n<li><strong>Mujeres con Propósito</strong>: espacios de reflexión y acción para conectar con su misión personal y social.<br></li>\n</ul>\n\n\n\n<p class=\"wp-block-paragraph\">Realizamos <strong>tres encuentros anuales</strong>, diseñados para <strong>impactar, inspirar y transformar</strong> a través de dinámicas, charlas, talleres vivenciales y recursos de coaching.</p>\n\n\n\n<p class=\"wp-block-paragraph\">Nuestro objetivo es <strong>empoderar a cada mujer desde el autoconocimiento y la acción consciente</strong>, brindándoles herramientas prácticas que puedan aplicar en sus vidas personales, profesionales y comunitarias.</p>\n\n\n\n<p class=\"wp-block-paragraph\">En cada Coaching Fest sembramos nuevas redes, generamos alianzas y reforzamos el compromiso de construir una comunidad de mujeres más fuertes, libres y protagonistas de su propio cambio.</p>\n",
-        "foto": "https://mujeresenred.com.ar/wp-content/uploads/2025/04/20240928_1109471-1-scaled.jpg"
+        "contenido": "<p>El coaching, como disciplina, propone el uso de herramientas que pueden ser claves para potenciar habilidades; ganar claridad en los propios objetivos, y multiplicar el impacto de cada proyecto.</p>\n<p>Así nace <strong>Emprender Coaching Fest</strong>, un espacio de encuentro, acción y crecimiento que impulsa el empoderamiento de las mujeres, y fortalece la comunidad de coaches a través de sesiones de acompañamiento profesional; herramientas de desarrollo personal, y espacios estratégicos de networking, construyendo redes de contacto que potencian el liderazgo femenino y la autonomía económica en Tucumán y el NOA.</p>\n\n<p class=\"wp-block-paragraph\">En Fundación Mujeres en Red impulsamos el <strong>Proyecto Coaching Fest</strong>, una propuesta de <strong>convocatoria abierta</strong> que invita a mujeres de todas las edades y trayectorias a vivir una experiencia transformadora.</p>\n\n\n\n<p class=\"wp-block-paragraph\">Cada edición del Coaching Fest tiene una <strong>temática especial</strong> enfocada en el desarrollo personal y profesional:</p>\n\n\n\n<ul class=\"wp-block-list\">\n<li><strong>Mujeres Emprendedoras</strong>: herramientas para impulsar sus proyectos y fortalecer su autogestión personal y desde ese lugar, liderar su emprendimiento.<br></li>\n\n\n\n<li><strong>Mujeres Líderes</strong>: estrategias para potenciar habilidades de conducción, gestión de equipos y comunicación efectiva.<br></li>\n\n\n\n<li><strong>Mujeres con Propósito</strong>: espacios de reflexión y acción para conectar con su misión personal y social.<br></li>\n</ul>\n\n\n\n<p class=\"wp-block-paragraph\">Realizamos <strong>tres encuentros anuales</strong>, diseñados para <strong>impactar, inspirar y transformar</strong> a través de dinámicas, charlas, talleres vivenciales y recursos de coaching.</p>\n\n\n\n<p class=\"wp-block-paragraph\">Nuestro objetivo es <strong>empoderar a cada mujer desde el autoconocimiento y la acción consciente</strong>, brindándoles herramientas prácticas que puedan aplicar en sus vidas personales, profesionales y comunitarias.</p>\n\n\n\n<p class=\"wp-block-paragraph\">En cada Coaching Fest sembramos nuevas redes, generamos alianzas y reforzamos el compromiso de construir una comunidad de mujeres más fuertes, libres y protagonistas de su propio cambio.</p>\n",
+        "foto": "https://mujeresenred.com.ar/wp-content/uploads/2025/04/20240928_1109471-1-scaled.jpg",
+        "galeria": [
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-01.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-02.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-03.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-04.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-05.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-06.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-07.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-08.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-09.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-10.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-11.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-12.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-13.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-14.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-15.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-16.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-17.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-18.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-19.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-20.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-21.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-22.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-23.jpg"
+            },
+            {
+                "tipo": "foto",
+                "url": "https://mujeresenred.com.ar/wp-content/uploads/2026/11/coaching-fest-24.jpg"
+            }
+        ]
     },
     {
         "id": 203,

@@ -58,7 +58,7 @@ function FormularioEntrar({ onEntrar, titulo }) {
       <button className="adm-btn is-principal" disabled={enviando}>
         {enviando ? 'Entrando…' : 'Entrar'}
       </button>
-      <Link to="/" className="adm-link">
+      <Link to="/" className="adm-volver adm-entrar__volver">
         Volver a la web
       </Link>
     </form>

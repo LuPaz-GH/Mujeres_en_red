@@ -158,6 +158,13 @@ function panelResumen(): never {
 // --- Fotos -----------------------------------------------------------------------------------
 
 // POST /admin/fotos (formulario con el archivo en "foto") -> {url}
+function subirVideo(): never {
+    $u = requerirUsuaria();
+    $url = guardarVideo($_FILES['video'] ?? []);
+    registrar($u, 'subió', 'video', null, $url);
+    responder(['url' => $url]);
+}
+
 function subirFoto(): never {
     $u = requerirUsuaria();
     $url = guardarFoto($_FILES['foto'] ?? []);
@@ -204,6 +211,9 @@ function guardarNota(?string $id = null): never {
         'contenido' => $contenido,
         'foto' => ($d['foto'] ?? '') ?: null,
         'autora' => trim($d['autora'] ?? '') ?: $u['nombre'],
+        // Ficha de "Qué hacemos" de la que habla la nota (opcional): la nota aparece también en esa página
+        'portfolio_id' => !empty($d['portfolio_id']) && q('SELECT id FROM portfolio WHERE id = ? AND borrada IS NULL', [(int) $d['portfolio_id']])->fetch()
+            ? (int) $d['portfolio_id'] : null,
         'publicada' => $publicada,
     ];
 
@@ -303,7 +313,7 @@ function guardarProyecto(?string $id = null): never {
     $titulo = trim($d['titulo'] ?? '');
     if ($titulo === '') error('El proyecto necesita un título.');
     $categoria = $d['categoria'] ?? '';
-    if (!in_array($categoria, CATEGORIAS_PORTFOLIO, true)) error('Elegí si es un programa, un proyecto o networking.');
+    if (!in_array($categoria, CATEGORIAS_PORTFOLIO, true)) error('Elegí si es un programa, networking, voluntariado o DeporVida.');
     $publicada = !empty($d['publicada']) ? 1 : 0;
     $guardado = guardarFila('portfolio', [
         'slug' => slugUnico(($d['slug'] ?? '') ?: $titulo, 'portfolio', $id),
@@ -312,6 +322,7 @@ function guardarProyecto(?string $id = null): never {
         'fecha' => !empty($d['fecha']) ? date('Y-m-d H:i:s', strtotime($d['fecha'])) : ahora(),
         'contenido' => $d['contenido'] ?? '',
         'foto' => ($d['foto'] ?? '') ?: null,
+        'galeria' => json_encode(limpiarGaleria($d['galeria'] ?? []), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
         'publicada' => $publicada,
     ], $id);
     registrar($u, accionDeGuardar(!$id, (bool) ($anterior['publicada'] ?? false), (bool) $publicada), 'proyecto', $guardado, $titulo);

@@ -32,6 +32,7 @@ const RUTAS = [
     // Panel
     ['GET', '/admin/resumen', 'panelResumen'],
     ['POST', '/admin/fotos', 'subirFoto'],
+    ['POST', '/admin/videos', 'subirVideo'],
     ['GET', '/admin/notas', 'panelNotas'],
     ['POST', '/admin/notas', 'guardarNota'],
     ['GET', '/admin/notas/(\d+)', 'panelNota'],

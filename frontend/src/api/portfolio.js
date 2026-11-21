@@ -3,20 +3,35 @@
 // Cómo se agrupa cada ficha en la página "Qué hacemos" (mismo orden en que se muestran)
 export const CATEGORIAS = [
   { id: 'programa', singular: 'Programa', plural: 'Programas', bajada: 'Acompañamos a las mujeres todo el año con formación y apoyo.' },
-  { id: 'proyecto', singular: 'Proyecto', plural: 'Proyectos', bajada: 'Campañas y acciones sobre temas que nos importan.' },
   { id: 'networking', singular: 'Networking', plural: 'Networking', bajada: 'Encuentros para conocernos, conectarnos y crecer juntas.' },
+  { id: 'voluntariado', singular: 'Voluntariado', plural: 'Voluntariado', bajada: 'Formación y encuentro para las voluntarias que llevan adelante nuestros programas.' },
+  { id: 'deporvida', singular: 'DeporVida', plural: 'DeporVida', bajada: 'Nuestro programa de radio, todos los sábados por LV12.' },
 ]
+
+// Nombre de la categoría de una ficha (las viejas de "Proyecto", que ya no tiene botón, siguen diciendo "Proyecto")
+export const nombreCategoria = (id) => CATEGORIAS.find((c) => c.id === id)?.singular ?? 'Proyecto'
+
+// Fichas con página de un solo color (ej. Movimiento Rosa: toda rosa, también su tarjeta en el inicio)
+export const TEMAS = { 'movimiento-rosa': { nombre: 'rosa', color: 'var(--rosa)' } }
+
+// Fotos y videos de la galería de una ficha: los que se cargan en "Galería" del panel
+// y, por si quedó alguna, las fotos que estén dentro de la descripción
+export function galeriaDe(item, project) {
+  const galeria = item.galeria ?? []
+  const urls = new Set(galeria.map((g) => g.url))
+  return [...galeria, ...project.gallery.filter((url) => !urls.has(url)).map((url) => ({ tipo: 'foto', url }))]
+}
 
 // Ficha -> { kind: 'Programa', name: 'Mujer Emprendedora' }
 // (si el título todavía dice "Programa: ..." o "Proyecto: ..." se saca, porque ya se muestra como etiqueta)
 export function splitTitle(item) {
-  const kind = (CATEGORIAS.find((c) => c.id === item.categoria) ?? CATEGORIAS[1]).singular
+  const kind = nombreCategoria(item.categoria)
   return { kind, name: item.titulo.replace(/^(Proyecto|Programa)\s*:\s*/i, '') }
 }
 
 // Convierte el contenido en bloques para poder diseñar cada parte por separado:
 // tags (hashtags del comienzo), lead (primer párrafo), keys (ítems de la lista), keysIntro,
-// body (párrafos) y quote (último párrafo)
+// body (párrafos), quote (último párrafo) y gallery (las fotos que se agregaron en la descripción)
 export function parseProject(html) {
   const doc = new DOMParser().parseFromString(`<body>${html}</body>`, 'text/html')
   const blocks = []
@@ -31,13 +46,15 @@ export function parseProject(html) {
         if (startsWithStrong) {
           const title = strong.textContent.trim().replace(/:$/, '')
           strong.remove()
-          return { title, html: li.innerHTML.replace(/^\s*:\s*/, '').trim() }
+          return { title, html: li.innerHTML.replace(/^\s*[:,]\s*/, '').trim() }
         }
         return { title: null, html: li.innerHTML.trim() }
       })
       blocks.push({ type: 'list', items })
     }
   })
+
+  const gallery = [...new Set([...doc.body.querySelectorAll('img')].map((img) => img.getAttribute('src')).filter(Boolean))]
 
   let paragraphs = blocks.filter((b) => b.type === 'p')
 
@@ -63,5 +80,6 @@ export function parseProject(html) {
     keysIntro,
     body,
     quote,
+    gallery,
   }
 }

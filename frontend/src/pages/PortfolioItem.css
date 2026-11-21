@@ -273,7 +273,9 @@
 
 /* ---------- Texto en paneles ---------- */
 .pi-body {
-  background: var(--bg-about);
+  background:
+    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(255, 255, 255, 0.18), transparent 70%),
+    linear-gradient(160deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--violeta)));
   overflow: hidden;
 }
 
@@ -300,7 +302,7 @@
   padding: 2.2rem 2.2rem 2.2rem 2.6rem;
   border-radius: 30px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.93);
   border: 1px solid rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -384,7 +386,7 @@
 
 /* ---------- Invitación ---------- */
 .pi-cta {
-  background: var(--bg-news);
+  background: linear-gradient(180deg, var(--violeta), color-mix(in srgb, var(--violeta) 70%, #1a1427));
 }
 
 .pi-cta__card {
@@ -456,4 +458,232 @@
 /* ---------- Otros proyectos ---------- */
 .pi-more h2 {
   color: #fff;
+}
+
+/* ---------- Fotos y videos ---------- */
+.pi-gallery {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 55%, var(--violeta)), var(--violeta));
+  color: #fff;
+}
+
+/* ---------- Notas sobre la ficha ---------- */
+.pi-notas {
+  background: linear-gradient(160deg, var(--violeta), color-mix(in srgb, var(--accent) 60%, var(--violeta)));
+  scroll-margin-top: 1rem;
+}
+
+/* Títulos en blanco sobre los fondos de color */
+.pi-body .eyebrow,
+.pi-gallery .eyebrow,
+.pi-notas .eyebrow,
+.pi-gallery .title-xl,
+.pi-notas .title-xl {
+  color: #fff;
+  background: none;
+  -webkit-text-fill-color: #fff;
+}
+
+/* ---------- Un solo párrafo: texto grande con fotos al costado ---------- */
+.pi-historia__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.pi-panel--grande {
+  padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem) clamp(2.4rem, 4.5vw, 3.4rem);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.pi-panel--grande p {
+  font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+  line-height: 1.65;
+}
+
+.pi-historia__fotos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+  height: clamp(320px, 38vw, 480px);
+}
+
+.pi-historia__fotos--1 {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.pi-historia__fotos--2 {
+  grid-template-rows: 1fr;
+}
+
+.pi-historia__fotos--3 .pi-historia__foto:first-child {
+  grid-row: span 2;
+}
+
+.pi-historia__foto {
+  overflow: hidden;
+  border: 5px solid #fff;
+  border-radius: 24px;
+  box-shadow: 0 24px 50px -24px rgba(26, 20, 39, 0.6);
+}
+
+.pi-historia__foto:nth-child(2) {
+  rotate: 2deg;
+}
+
+.pi-historia__foto:nth-child(3) {
+  rotate: -2deg;
+}
+
+.pi-historia__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .pi-historia__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pi-historia__fotos {
+    height: 340px;
+  }
+}
+
+/* ==========================================================
+   Página toda rosa (Movimiento Rosa): cada sección en un tono de rosa vivo
+   ========================================================== */
+.pi--rosa {
+  --rosa-claro: #f47fb6;
+  --rosa-fuerte: #d63f86;
+  --rosa-oscuro: #b02a6b;
+  /* "Otros proyectos" usa el color de la página: acá, rosa */
+  --page: var(--rosa);
+  --page-deep: var(--rosa-oscuro);
+  background: var(--rosa);
+}
+
+.pi--rosa .pi-hero {
+  background:
+    radial-gradient(ellipse 50% 50% at 90% 10%, rgba(255, 255, 255, 0.3), transparent 70%),
+    radial-gradient(ellipse 60% 60% at 0% 100%, var(--rosa-oscuro), transparent 70%),
+    linear-gradient(135deg, var(--rosa-claro) 0%, var(--rosa) 50%, var(--rosa-fuerte) 100%);
+  background-size: 140% 140%;
+}
+
+.pi--rosa .pi-kind {
+  color: var(--rosa-oscuro);
+}
+
+.pi--rosa .pi-keys {
+  background: linear-gradient(160deg, var(--rosa-fuerte), var(--rosa));
+}
+
+.pi--rosa .pi-keys .eyebrow,
+.pi--rosa .pi-keys .lead,
+.pi--rosa .pi-keys .lead strong,
+.pi--rosa .pi-gallery .eyebrow,
+.pi--rosa .pi-gallery .title-xl,
+.pi--rosa .pi-notas .eyebrow,
+.pi--rosa .pi-notas .title-xl,
+.pi--rosa .pi-keys .title-xl {
+  color: #fff;
+  background: none;
+  -webkit-text-fill-color: #fff;
+}
+
+.pi--rosa .pi-key {
+  box-shadow: 0 30px 60px -28px rgba(120, 20, 70, 0.6);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12));
+  border: 2px solid rgba(255, 255, 255, 0.55);
+}
+
+.pi--rosa .pi-body {
+  background: linear-gradient(160deg, var(--rosa), var(--rosa-claro));
+}
+
+.pi--rosa .pi-panel {
+  --c: var(--rosa-oscuro);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.pi--rosa .pi-gallery {
+  background: linear-gradient(160deg, var(--rosa-claro), var(--rosa-fuerte));
+}
+
+.pi--rosa .pi-quote {
+  background: linear-gradient(120deg, var(--rosa-oscuro), var(--rosa-fuerte) 55%, var(--rosa));
+  background-size: 160% 160%;
+}
+
+.pi--rosa .pi-cta {
+  background: linear-gradient(160deg, var(--rosa-claro), var(--rosa));
+}
+
+.pi--rosa .pi-cta__card {
+  background: linear-gradient(120deg, var(--rosa-oscuro) 0%, var(--rosa-fuerte) 60%, var(--rosa-claro) 100%);
+}
+
+/* Los cuatro ejes en una sola fila en pantallas grandes */
+.pi--rosa .pi-keys__grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.pi--rosa .pi-hero__lead {
+  background: rgba(120, 20, 70, 0.45);
+}
+
+/* Con 4 tarjetas en fila, títulos un poco más chicos para que entren palabras largas ("Comunicación") */
+.pi--rosa .pi-key {
+  min-height: 240px;
+  padding: 2rem 1.5rem;
+}
+
+.pi--rosa .pi-key h3 {
+  font-size: clamp(1.35rem, 1.8vw, 1.7rem);
+  overflow-wrap: anywhere;
+}
+
+/* Página rosa: un solo degradé de arriba a abajo, sin cortes entre secciones */
+.pi--rosa {
+  background:
+    radial-gradient(ellipse 60% 25% at 100% 0%, rgba(255, 255, 255, 0.25), transparent 70%),
+    linear-gradient(180deg, var(--rosa-claro) 0%, var(--rosa) 30%, var(--rosa-fuerte) 70%, var(--rosa-oscuro) 100%);
+}
+
+.pi--rosa .pi-hero,
+.pi--rosa .pi-keys,
+.pi--rosa .pi-body,
+.pi--rosa .pi-gallery,
+.pi--rosa .pi-notas,
+.pi--rosa .pi-quote,
+.pi--rosa .pi-cta,
+main[data-page] .pi--rosa .pi-more {
+  background: transparent;
+  animation: none;
+}
+
+/* Contador y paginado en blanco sobre el rosa */
+.pi--rosa .galeria__cuenta {
+  color: #fff;
+}
+
+/* Portada: el marco toma la forma de la foto, así se ve entera (sin cortar personas a los costados) */
+.pi-hero__media {
+  aspect-ratio: auto;
+  padding: 0 6% 6% 0;
+}
+
+.pi-hero__frame {
+  position: relative;
+  inset: auto;
+}
+
+.pi-hero__frame img {
+  display: block;
+  height: auto;
+  max-height: 72vh;
 }

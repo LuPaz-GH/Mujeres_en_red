@@ -7,9 +7,11 @@ import {
   getCategoriasPanel,
   getNotaPanel,
   getNotasPanel,
+  getPortfolioPanel,
   guardarCategoria,
   guardarNota,
 } from '../api/admin'
+import { CATEGORIAS } from '../api/portfolio'
 import Pagination from '../components/Pagination'
 import { ErrorMessage, Loader } from '../components/Status'
 import {
@@ -95,28 +97,33 @@ export function Categorias() {
   )
 }
 
-const NOTA_NUEVA = { titulo: '', contenido: '', resumen: '', foto: '', autora: '', publicada: false, categorias: [], etiquetas: [] }
+const NOTA_NUEVA = { titulo: '', contenido: '', resumen: '', foto: '', autora: '', portfolio_id: null, publicada: false, categorias: [], etiquetas: [] }
 
 export function NotaEditar() {
   const { id } = useParams()
   const { data, loading, error } = useDatos(
     async () => {
-      const [nota, categorias] = await Promise.all([id ? getNotaPanel(id) : NOTA_NUEVA, getCategoriasPanel()])
-      return { nota, categorias }
+      const [nota, categorias, fichas] = await Promise.all([
+        id ? getNotaPanel(id) : NOTA_NUEVA,
+        getCategoriasPanel(),
+        getPortfolioPanel({ por_pagina: 100 }).then((r) => r.items),
+      ])
+      return { nota, categorias, fichas }
     },
     [id],
   )
   if (loading) return <Loader />
   if (error) return <ErrorMessage error={error} />
-  return <NotaForm key={id ?? 'nueva'} id={id} nota={data.nota} categoriasIniciales={data.categorias} />
+  return <NotaForm key={id ?? 'nueva'} id={id} nota={data.nota} categoriasIniciales={data.categorias} fichas={data.fichas} />
 }
 
-function NotaForm({ id, nota, categoriasIniciales }) {
+function NotaForm({ id, nota, categoriasIniciales, fichas }) {
   const navigate = useNavigate()
   const { campos, set, sucio, setSucio } = useFormulario({
     ...nota,
     fecha: nota.fecha || ahoraLocal(),
     foto: nota.foto || '',
+    portfolio_id: nota.portfolio_id ? String(nota.portfolio_id) : '',
     categorias: nota.categorias.map((c) => c.id ?? c),
     etiquetas: nota.etiquetas.map((e) => e.nombre ?? e).join(', '),
   })
@@ -188,6 +195,27 @@ function NotaForm({ id, nota, categoriasIniciales }) {
         </div>
 
         <aside className="adm-editar__lado">
+          <label className="adm-campo">
+            <span className="adm-campo__nombre">¿De qué programa o evento habla?</span>
+            <select value={campos.portfolio_id} onChange={(e) => set('portfolio_id', e.target.value)}>
+              <option value="">De ninguno en especial</option>
+              {CATEGORIAS.map((c) => {
+                const deEsta = fichas.filter((p) => p.categoria === c.id)
+                return (
+                  deEsta.length > 0 && (
+                    <optgroup key={c.id} label={c.plural}>
+                      {deEsta.map((p) => (
+                        <option key={p.id} value={p.id}>
+                          {p.titulo}
+                        </option>
+                      ))}
+                    </optgroup>
+                  )
+                )
+              })}
+            </select>
+            <small className="adm-ayuda">Si elegís uno, la nota aparece también en su página de "Qué hacemos", en "Novedades".</small>
+          </label>
           <CampoFoto valor={campos.foto} onChange={(url) => set('foto', url)} ayuda="La que se ve en el listado del blog." />
           <label className="adm-campo">
             <span className="adm-campo__nombre">Fecha</span>

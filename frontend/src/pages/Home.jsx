@@ -24,9 +24,9 @@ const Flower3D = lazy(() => import('../components/three/Flower3D'))
 const img = (path) => `/img/sitio/${path}`
 
 const PROGRAMS = [
-  { title: 'Voluntariado', image: img('2025/05/DSC_0199.jpg'), color: BRAND.verde, to: '#' },
-  { title: 'Comunicar para Transformar', image: img('2025/10/2.jpg'), color: BRAND.celeste, to: '#' },
-  { title: 'Coaching Fest', image: img('2025/12/DSC_0035.jpg'), color: BRAND.naranja, to: '#' },
+  { title: 'Voluntariado', image: img('2025/05/DSC_0199.jpg'), color: BRAND.verde, to: '/portfolio/reuniones-de-voluntariado' },
+  { title: 'Comunicar para Transformar', image: img('2025/10/2.jpg'), color: BRAND.celeste, to: '/comunicar-para-transformar-una-capacitacion-inedita-para-ongs-en-tucuman' },
+  { title: 'Coaching Fest', image: img('2025/12/DSC_0035.jpg'), color: BRAND.naranja, to: '/portfolio/proyecto-coaching-fest' },
 ]
 
 const HERO_WORDS = ['acompañan', 'sostienen', 'transforman']

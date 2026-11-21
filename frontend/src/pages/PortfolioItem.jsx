@@ -1,19 +1,25 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { getPortfolio, getProyecto } from '../api/api'
-import { parseProject, splitTitle } from '../api/portfolio'
+import { TEMAS, galeriaDe, parseProject, splitTitle } from '../api/portfolio'
 import { useApi } from '../api/useApi'
 import PortfolioGrid from '../components/PortfolioGrid'
 import Reveal from '../components/motion/Reveal'
 import Tilt from '../components/motion/Tilt'
 import FloatingPetals, { PetalShape } from '../components/motion/FloatingPetals'
 import { WhatsappIcon } from '../components/Icons'
+import Galeria from '../components/Galeria'
+import Pagination from '../components/Pagination'
+import PostCard from '../components/PostCard'
 import { ErrorMessage, Loader, NotFound } from '../components/Status'
 import { PETAL_COLORS } from '../data/brand'
 import { useSitio } from '../api/useSitio'
 import './pages.css'
 import './PortfolioItem.css'
+
+// Notas por página en "Novedades"
+const NOTAS_POR_PAGINA = 6
 
 export default function PortfolioItem() {
   const { slug } = useParams()
@@ -21,13 +27,30 @@ export default function PortfolioItem() {
   const { data: item, loading, error } = useApi(() => getProyecto(slug), [slug])
   const all = useApi(() => getPortfolio(), [])
   const WHATSAPP_URL = useSitio().whatsappUrl
+  const [paginaNotas, setPaginaNotas] = useState(1)
 
   const index = all.data ? all.data.findIndex((p) => p.slug === slug) : 0
-  const color = PETAL_COLORS[Math.max(index, 0) % PETAL_COLORS.length]
+  const tema = TEMAS[slug]?.nombre
+  const color = TEMAS[slug]?.color ?? PETAL_COLORS[Math.max(index, 0) % PETAL_COLORS.length]
   const others = all.data ? all.data.filter((p) => p.slug !== slug).slice(0, 3) : []
 
   const title = item ? splitTitle(item) : null
   const project = useMemo(() => (item ? parseProject(item.contenido) : null), [item])
+
+  const galeria = useMemo(() => (item ? galeriaDe(item, project) : []), [item, project])
+  // Tres fotos de la galería (repartidas, sin repetir la principal) para acompañar el texto
+  const fotosTexto = useMemo(() => {
+    const fotos = galeria.filter((g) => g.tipo === 'foto' && g.url !== item?.foto).map((g) => g.url)
+    if (fotos.length <= 3) return fotos
+    return [0, Math.floor(fotos.length / 3), Math.floor((fotos.length * 2) / 3)].map((i) => fotos[i])
+  }, [galeria, item])
+
+  // Al pasar a otra ficha, las notas vuelven a la primera página
+  const [slugNotas, setSlugNotas] = useState(slug)
+  if (slugNotas !== slug) {
+    setSlugNotas(slug)
+    setPaginaNotas(1)
+  }
 
   const pageName = title?.name
   useEffect(() => {
@@ -39,10 +62,17 @@ export default function PortfolioItem() {
   if (!item) return <NotFound />
 
   const image = item.foto
+  const notas = item.notas ?? []
+  const totalPaginasNotas = Math.ceil(notas.length / NOTAS_POR_PAGINA)
+  const notasDeLaPagina = notas.slice((paginaNotas - 1) * NOTAS_POR_PAGINA, paginaNotas * NOTAS_POR_PAGINA)
+  function irAPaginaNotas(n) {
+    setPaginaNotas(n)
+    document.getElementById('novedades')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+  }
   const kindLower = title.kind.toLowerCase()
 
   return (
-    <div className="pi" style={{ '--accent': color }}>
+    <div className={`pi${tema ? ` pi--${tema}` : ''}`} style={{ '--accent': color }}>
       {/* ---------- Portada ---------- */}
       <section className="pi-hero">
         <FloatingPetals opacity={0.6} />
@@ -147,7 +177,31 @@ export default function PortfolioItem() {
       )}
 
       {/* ---------- Texto ---------- */}
-      {project.body.length > 0 && (
+      {/* Un solo párrafo: más grande y acompañado de fotos, para que no quede chiquito y suelto */}
+      {project.body.length === 1 && (
+        <section className="section pi-body pi-historia">
+          <div className="container pi-historia__grid">
+            <Reveal className="pi-historia__texto">
+              <p className="eyebrow">Nuestra propuesta</p>
+              <div className="pi-panel pi-panel--grande" style={{ '--c': PETAL_COLORS[(index + 2) % 5] }}>
+                <PetalShape color="var(--c)" className="pi-panel__petal" />
+                <p dangerouslySetInnerHTML={{ __html: project.body[0].html }} />
+              </div>
+            </Reveal>
+            {fotosTexto.length > 0 && (
+              <div className={`pi-historia__fotos pi-historia__fotos--${fotosTexto.length}`}>
+                {fotosTexto.map((src, i) => (
+                  <Reveal key={src} delay={0.15 + i * 0.12} className="pi-historia__foto">
+                    <img src={src} alt="" loading="lazy" />
+                  </Reveal>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {project.body.length > 1 && (
         <section className="section pi-body">
           <div className="container pi-body__grid">
             {project.body.map((p, i) => (
@@ -158,6 +212,41 @@ export default function PortfolioItem() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </section>
+      )}
+
+      {/* ---------- Fotos y videos (se cargan en "Galería" del panel) ---------- */}
+      {galeria.length > 0 && (
+        <section className="section pi-gallery">
+          <div className="container">
+            <Reveal as="p" className="eyebrow">
+              En imágenes
+            </Reveal>
+            <Reveal as="h2" className="title-xl">
+              Así lo vivimos
+            </Reveal>
+            <Galeria key={slug} items={galeria} nombre={title.name} />
+          </div>
+        </section>
+      )}
+
+      {/* ---------- Notas del blog sobre esta ficha ---------- */}
+      {notas.length > 0 && (
+        <section className="section pi-notas" id="novedades">
+          <div className="container">
+            <Reveal as="p" className="eyebrow">
+              Novedades
+            </Reveal>
+            <Reveal as="h2" className="title-xl">
+              Lo último de {title.name}
+            </Reveal>
+            <div className="post-grid">
+              {notasDeLaPagina.map((n, i) => (
+                <PostCard key={n.id} post={n} accent={PETAL_COLORS[(index + i) % PETAL_COLORS.length]} />
+              ))}
+            </div>
+            <Pagination page={paginaNotas} totalPages={totalPaginasNotas} onChange={irAPaginaNotas} />
           </div>
         </section>
       )}

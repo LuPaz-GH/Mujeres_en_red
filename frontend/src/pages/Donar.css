@@ -4,7 +4,9 @@
 
 /* ---------- Impacto ---------- */
 .donate-impact {
-  background: var(--bg-about);
+  background:
+    radial-gradient(ellipse 50% 45% at 100% 0%, rgba(255, 255, 255, 0.2), transparent 70%),
+    linear-gradient(150deg, var(--violeta), color-mix(in srgb, var(--violeta) 60%, var(--rosa)));
   overflow: hidden;
 }
 
@@ -545,4 +547,17 @@
   margin: 0.15rem 0 0;
   font-size: 1.1rem;
   font-weight: 700;
+}
+
+/* Títulos y bajada en blanco sobre el violeta; tarjetas blancas */
+.donate-impact .eyebrow,
+.donate-impact .title-xl,
+.donate-impact .lead {
+  color: #fff;
+  background: none;
+  -webkit-text-fill-color: #fff;
+}
+
+.donate-impact .impact {
+  background: #fff;
 }

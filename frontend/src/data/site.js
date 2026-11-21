@@ -33,7 +33,7 @@ export const AJUSTES_INICIALES = {
   impacto: JSON.stringify([
     { numero: '14', texto: 'años acompañando a mujeres tucumanas' },
     { numero: '27', texto: 'emprendedoras en nuestro catálogo' },
-    { numero: '6', texto: 'instituciones que nos acompañan' },
+    { numero: '3', texto: 'instituciones que nos acompañan' },
   ]),
   razon_social: '',
   cuit: '',

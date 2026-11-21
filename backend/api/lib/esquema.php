@@ -47,6 +47,7 @@ function crearTablas(): void {
             contenido $largo,
             foto VARCHAR(500),
             autora VARCHAR(190),
+            portfolio_id INTEGER,
             publicada TINYINT NOT NULL DEFAULT 1,
             $papelera
         )",
@@ -72,6 +73,7 @@ function crearTablas(): void {
             fecha DATETIME NOT NULL,
             contenido $largo,
             foto VARCHAR(500),
+            galeria $largo,
             publicada TINYINT NOT NULL DEFAULT 1,
             $papelera
         )",

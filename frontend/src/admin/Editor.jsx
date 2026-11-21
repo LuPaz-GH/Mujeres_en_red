@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { subirFoto } from '../api/admin'
+import { subirFoto, subirVideo } from '../api/admin'
+import { direccionEmbebida, tipoDeLink } from '../api/galeria'
 import { Aviso } from './comun'
 import { useDialogos } from './Dialogos'
 import '../pages/Post.css'
@@ -59,6 +60,16 @@ function bloqueFotos(urls) {
   return plantilla.content.firstElementChild
 }
 
+// Video subido a la web o de YouTube, como bloque propio entre párrafos
+function bloqueVideo(tipo, url) {
+  const plantilla = document.createElement('template')
+  plantilla.innerHTML =
+    tipo !== 'video'
+      ? `<figure class="wp-block-embed is-type-video is-provider-${tipo}"><div class="wp-block-embed__wrapper"><iframe src="${direccionEmbebida({ tipo, url })}" title="${tipo === 'youtube' ? 'Video de YouTube' : 'Publicación de Instagram'}" allowfullscreen loading="lazy"></iframe></div></figure>`
+      : `<figure class="wp-block-video"><video controls preload="metadata" src="${url}"></video></figure>`
+  return plantilla.content.firstElementChild
+}
+
 function direccionCompleta(texto) {
   const url = texto.trim()
   if (/^(https?:|mailto:|\/)/i.test(url)) return url
@@ -77,6 +88,7 @@ function Boton({ titulo, onClick, children }) {
 export default function Editor({ valor, onChange, etiqueta }) {
   const editor = useRef(null)
   const inputFotos = useRef(null)
+  const inputVideo = useRef(null)
   const rango = useRef(null)
   const [subiendo, setSubiendo] = useState(false)
   const [error, setError] = useState('')
@@ -136,10 +148,13 @@ export default function Editor({ valor, onChange, etiqueta }) {
 
   // Las fotos van entre párrafos, después del párrafo donde estaba el cursor
   function insertarFotos(urls) {
+    insertarBloque(bloqueFotos(urls))
+  }
+
+  function insertarBloque(nuevo) {
     const raiz = editor.current
     let bloque = rango.current?.startContainer
     while (bloque && bloque.parentNode !== raiz) bloque = bloque.parentNode
-    const nuevo = bloqueFotos(urls)
     if (bloque && bloque !== raiz) bloque.after(nuevo)
     else raiz.append(nuevo)
     if (parrafoVacio(bloque)) bloque.remove()
@@ -165,6 +180,37 @@ export default function Editor({ valor, onChange, etiqueta }) {
     } finally {
       setSubiendo(false)
     }
+  }
+
+  async function subirVideoAlTexto(archivo) {
+    if (!archivo) return
+    setSubiendo(true)
+    setError('')
+    try {
+      insertarBloque(bloqueVideo('video', await subirVideo(archivo)))
+    } catch (e) {
+      setError(e.message)
+    } finally {
+      setSubiendo(false)
+    }
+  }
+
+  async function agregarLink() {
+    recordarPosicion()
+    const url = await pedir({
+      titulo: 'Agregar un video de YouTube o Instagram',
+      campo: 'Link del video o la publicación',
+      ayuda: 'https://www.youtube.com/watch?v=...  o  https://www.instagram.com/reel/...',
+      boton: 'Agregar',
+    })
+    if (!url) return
+    const tipo = tipoDeLink(url)
+    if (!tipo) {
+      setError('Ese link no es de YouTube ni de Instagram. Copialo desde el botón "Compartir" de la publicación.')
+      return
+    }
+    setError('')
+    insertarBloque(bloqueVideo(tipo, url))
   }
 
   // Al pegar de Word, de un mail o de otra web se toma solo el texto, sin los colores y letras de afuera
@@ -213,6 +259,22 @@ export default function Editor({ valor, onChange, etiqueta }) {
           <Boton titulo="Agregar fotos" onClick={() => inputFotos.current.click()}>
             {subiendo ? 'Subiendo…' : 'Fotos'}
           </Boton>
+          <Boton titulo="Agregar un video desde la compu o el celular (hasta 100 MB)" onClick={() => inputVideo.current.click()}>
+            Video
+          </Boton>
+          <Boton titulo="Agregar un video de YouTube o Instagram" onClick={agregarLink}>
+            YouTube / Instagram
+          </Boton>
+          <input
+            ref={inputVideo}
+            type="file"
+            accept="video/*"
+            hidden
+            onChange={(e) => {
+              subirVideoAlTexto(e.target.files[0])
+              e.target.value = ''
+            }}
+          />
           <input
             ref={inputFotos}
             type="file"
@@ -241,7 +303,7 @@ export default function Editor({ valor, onChange, etiqueta }) {
           onDrop={soltar}
         />
       </div>
-      <small className="adm-ayuda">Para borrar una foto, hacé clic en ella y apretá la tecla Borrar. Si elegís varias fotos a la vez, se arma una galería.</small>
+      <small className="adm-ayuda">Para borrar una foto o un video, hacé clic en él y apretá la tecla Borrar. Si elegís varias fotos a la vez, se arma una galería.</small>
       <Aviso tipo="error">{error}</Aviso>
     </div>
   )

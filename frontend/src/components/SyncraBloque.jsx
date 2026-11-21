@@ -4,8 +4,8 @@ import Reveal from './motion/Reveal'
 import './SyncraBloque.css'
 
 // Bloque del inicio que presenta a SYNCRA Studios (https://syncrastudios.com.ar/):
-// subtitulado inclusivo en vivo y accesibilidad. Textos tomados de su propia web, y con sus colores
-// (negro, grilla fina y amarillo), no los de la fundación.
+// subtitulado inclusivo en vivo y accesibilidad. Textos tomados de su propia web.
+// Fondo y detalles con los colores de la fundación; solo el logo conserva los de SYNCRA (negro, blanco y amarillo).
 
 const URL_SYNCRA = 'https://syncrastudios.com.ar/'
 const FRASE = 'Conectamos personas, palabra por palabra.'
@@ -41,7 +41,7 @@ function SubtituloEnVivo() {
 export default function SyncraBloque() {
   return (
     <section className="syncra" id="syncra">
-      {/* Pastillas grises y puntos amarillos, como en la web de SYNCRA */}
+      {/* Pastillas y puntos de adorno */}
       <div className="syncra__adorno" aria-hidden="true">
         {Array.from({ length: 14 }, (_, i) => (
           <span

@@ -50,7 +50,7 @@ export const getProyecto = (slug) => orNull(get(`/portfolio/${encodeURIComponent
 // { rubros: [{id, nombre}], fichas: [{nombre, rubro, descripcion, foto, links: [{tipo, url, texto}]}] }
 export const getCatalogo = () => get('/catalogo')
 
-// Eventos: { proximos: [del más cercano al más lejano], pasados: [los últimos 6] }
+// Eventos: { proximos: [del más cercano al más lejano], pasados: [del más nuevo al más viejo; 6 si se pide un límite] }
 export const getEventos = (limite = 50) => get('/eventos?limite=' + limite)
 
 // Instituciones que nos acompañan: [{ id, nombre, detalle, logo, link }]
