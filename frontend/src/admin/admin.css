@@ -2426,3 +2426,40 @@
 .adm-clave input::-ms-clear {
   display: none;
 }
+
+/* Fotos y videos del editor: botón "Quitar" encima */
+.adm-editor {
+  position: relative;
+}
+
+/* Los videos y las placas no "se tragan" el mouse: así se pueden marcar y quitar */
+.adm-editor__texto iframe,
+.adm-editor__texto video {
+  pointer-events: none;
+}
+
+.adm-editor__texto figure:hover,
+.adm-editor__texto img:hover {
+  outline: 3px solid var(--rosa);
+  outline-offset: 2px;
+}
+
+.adm-editor__quitar {
+  position: absolute;
+  z-index: 3;
+  min-height: 40px;
+  padding: 0.4rem 1rem;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: #c62828;
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+}
+
+.adm-editor__quitar:hover,
+.adm-editor__quitar:focus-visible {
+  background: #8e1c1c;
+}

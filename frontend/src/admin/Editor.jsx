@@ -70,6 +70,14 @@ function bloqueVideo(tipo, url) {
   return plantilla.content.firstElementChild
 }
 
+// Foto, video o placa de YouTube/Instagram sobre la que está el mouse (o que se tocó): la más chica que la contiene.
+// En una galería es cada foto por separado.
+function multimediaDe(objetivo, raiz) {
+  const el = objetivo?.closest?.('figure, video, iframe, img')
+  if (!el || !raiz.contains(el) || el === raiz) return null
+  return el.closest('figure') && raiz.contains(el.closest('figure')) ? el.closest('figure') : el
+}
+
 function direccionCompleta(texto) {
   const url = texto.trim()
   if (/^(https?:|mailto:|\/)/i.test(url)) return url
@@ -92,6 +100,9 @@ export default function Editor({ valor, onChange, etiqueta }) {
   const rango = useRef(null)
   const [subiendo, setSubiendo] = useState(false)
   const [error, setError] = useState('')
+  // Foto o video marcado, con su lugar dentro del editor, para mostrar encima el botón "Quitar"
+  const [marcado, setMarcado] = useState(null)
+  const caja = useRef(null)
   const { pedir } = useDialogos()
 
   // El contenido se pone una sola vez: después lo maneja el navegador mientras se escribe
@@ -103,6 +114,44 @@ export default function Editor({ valor, onChange, etiqueta }) {
   }, [])
 
   const avisar = () => onChange(serializar(editor.current))
+
+  // El botón va arriba a la derecha de la foto, pero si es muy alta (una placa de Instagram)
+  // baja con la pantalla para no quedar tapado por la barra de arriba
+  function ubicar(el) {
+    if (!el?.isConnected) return setMarcado(null)
+    const a = el.getBoundingClientRect()
+    const b = caja.current.getBoundingClientRect()
+    const barra = Math.max(0, ...[...document.querySelectorAll('.adm-barra, .adm-arriba')].map((x) => x.getBoundingClientRect().bottom))
+    const arriba = Math.min(Math.max(a.top + 8, barra + 12), a.bottom - 52)
+    setMarcado({ el, top: arriba - b.top, right: b.right - a.right + 8, tipo: el.querySelector?.('video, iframe') || /VIDEO|IFRAME/.test(el.tagName) ? 'video' : 'foto' })
+  }
+
+  function marcar(e) {
+    const el = multimediaDe(e.target, editor.current)
+    if (el) ubicar(el)
+  }
+
+  const marcadoEl = marcado?.el
+  useEffect(() => {
+    if (!marcadoEl) return
+    const seguir = () => ubicar(marcadoEl)
+    window.addEventListener('scroll', seguir, { passive: true })
+    return () => window.removeEventListener('scroll', seguir)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [marcadoEl])
+
+  function quitar() {
+    const el = marcado?.el
+    if (!el?.isConnected) return setMarcado(null)
+    const galeria = el.parentElement?.closest('figure.wp-block-gallery')
+    // Si era un video o una placa sola dentro de un párrafo, se va el párrafo entero
+    const padre = el.parentElement
+    el.remove()
+    if (galeria && !galeria.querySelector('img')) galeria.remove()
+    if (padre && padre !== editor.current && padre.tagName === 'P' && !padre.textContent.trim() && !padre.querySelector('img, video, iframe')) padre.remove()
+    setMarcado(null)
+    avisar()
+  }
 
   function comando(nombre, valor) {
     editor.current.focus()
@@ -239,7 +288,7 @@ export default function Editor({ valor, onChange, etiqueta }) {
   return (
     <div className="adm-campo">
       <span className="adm-campo__nombre">{etiqueta}</span>
-      <div className="adm-editor">
+      <div className="adm-editor" ref={caja} onMouseLeave={() => setMarcado(null)}>
         <div className="adm-editor__botones" role="toolbar" aria-label="Formato del texto">
           <Boton titulo="Negrita" onClick={() => comando('bold')}>
             <strong>N</strong>
@@ -300,10 +349,24 @@ export default function Editor({ valor, onChange, etiqueta }) {
           onKeyUp={recordarPosicion}
           onMouseUp={recordarPosicion}
           onPaste={pegar}
+          onMouseOver={marcar}
+          onClick={marcar}
+          onScroll={() => setMarcado(null)}
           onDrop={soltar}
         />
+        {marcado && (
+          <button
+            type="button"
+            className="adm-editor__quitar"
+            style={{ top: marcado.top, right: marcado.right }}
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={quitar}
+          >
+            ✕ Quitar {marcado.tipo === 'video' ? 'video' : 'foto'}
+          </button>
+        )}
       </div>
-      <small className="adm-ayuda">Para borrar una foto o un video, hacé clic en él y apretá la tecla Borrar. Si elegís varias fotos a la vez, se arma una galería.</small>
+      <small className="adm-ayuda">Para sacar una foto, un video o un link de YouTube o Instagram, pasá el mouse (o tocalo en el celular) y apretá "✕ Quitar". Después, guardá. Si elegís varias fotos a la vez, se arma una galería.</small>
       <Aviso tipo="error">{error}</Aviso>
     </div>
   )
