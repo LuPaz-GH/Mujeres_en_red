@@ -16,7 +16,7 @@ export async function request(path, options) {
 }
 
 // Pedidos de lectura: se guardan para no volver a pedir lo mismo al navegar
-async function get(path) {
+export async function get(path) {
   if (!cache.has(path)) cache.set(path, request(path).catch((e) => (cache.delete(path), Promise.reject(e))))
   return cache.get(path)
 }

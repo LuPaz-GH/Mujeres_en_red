@@ -15,6 +15,7 @@ const RUTAS = [
     ['GET', '/portfolio/([\w-]+)', 'verProyecto'],
     ['GET', '/paginas/([\w-]+)', 'verPagina'],
     ['GET', '/catalogo', 'verCatalogo'],
+    ['GET', '/buscar', 'buscarEnLaWeb'],
     ['GET', '/equipo', 'listarEquipo'],
     ['GET', '/eventos', 'listarEventos'],
     ['GET', '/instituciones', 'listarInstituciones'],

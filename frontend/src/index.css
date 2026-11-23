@@ -2615,3 +2615,39 @@ strong {
   inset: -8% 0;
   background-position: right center;
 }
+
+/* Lupa del buscador: en la píldora va al final (solo el ícono); en la barra lateral, debajo del logo */
+.site-header__buscar {
+  flex: none;
+  order: 1;
+}
+
+.site-header.is-pill .buscador-boton__texto {
+  display: none;
+}
+
+@media (min-width: 1081px) {
+  .site-header.is-side .site-header__buscar {
+    order: 0;
+  }
+
+  .site-header.is-side .buscador-boton {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* En el celular, al lado del botón del menú */
+@media (max-width: 1080px) {
+  .site-header__buscar {
+    order: 0;
+    margin-left: auto;
+  }
+
+  .site-header .buscador-boton__texto {
+    display: none;
+  }
+}

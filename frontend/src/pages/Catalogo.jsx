@@ -97,7 +97,7 @@ function BusinessCard({ entry, color }) {
 export default function Catalogo() {
   const { data: catalog, loading, error } = useApi(getCatalogo, [])
   const [category, setCategory] = useState(null)
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState(() => new URLSearchParams(window.location.search).get('buscar') ?? '')
   const [pageNum, setPageNum] = useState(1)
   const reduce = useReducedMotion()
   const gridTop = useRef(null)

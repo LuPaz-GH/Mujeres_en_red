@@ -411,3 +411,64 @@ function prepararTestimonio(array $t): array {
 function listarTestimonios(): never {
     responder(array_map('prepararTestimonio', q('SELECT * FROM testimonios WHERE publicado = 1 AND borrada IS NULL ORDER BY orden, id')->fetchAll()));
 }
+
+// --- Buscador de toda la web -----------------------------------------------------------------
+
+// "Tucumán Potencia" -> "tucuman potencia": sin tildes, mayúsculas ni etiquetas, para comparar
+function normalizarBusqueda(?string $texto): string {
+    $t = mb_strtolower(textoPlano($texto ?? ''), 'UTF-8');
+    return strtr($t, ['á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u', 'ü' => 'u', 'ñ' => 'n', 'à' => 'a', 'è' => 'e', 'ì' => 'i', 'ò' => 'o', 'ù' => 'u']);
+}
+
+// Pedacito del texto alrededor de la primera palabra encontrada
+function fragmento(string $texto, array $palabras): string {
+    $plano = textoPlano($texto);
+    $norm = normalizarBusqueda($plano);
+    $pos = null;
+    foreach ($palabras as $p) {
+        $i = mb_strpos($norm, $p);
+        if ($i !== false && ($pos === null || $i < $pos)) $pos = $i;
+    }
+    $desde = max(0, ($pos ?? 0) - 60);
+    $trozo = mb_substr($plano, $desde, 180);
+    return ($desde > 0 ? '…' : '') . trim($trozo) . (mb_strlen($plano) > $desde + 180 ? '…' : '');
+}
+
+// GET /buscar?q=texto : notas, fichas de Qué hacemos, eventos y emprendimientos del catálogo.
+// La web tiene poco contenido, así que se compara en PHP (igual en SQLite y MySQL, y sin importar las tildes).
+function buscarEnLaWeb(): never {
+    $q = trim(mb_substr($_GET['q'] ?? '', 0, 80));
+    $palabras = array_values(array_filter(preg_split('/\s+/u', normalizarBusqueda($q)), fn($p) => mb_strlen($p) >= 2));
+    if (!$palabras) responder(['q' => $q, 'resultados' => []]);
+
+    $resultados = [];
+    // Puntaje: cuenta más si la palabra está en el título
+    $probar = function (string $tipo, string $titulo, string $texto, array $extra) use ($palabras, &$resultados) {
+        $t = normalizarBusqueda($titulo);
+        $todo = $t . ' ' . normalizarBusqueda($texto);
+        $puntos = 0;
+        foreach ($palabras as $p) {
+            if (!str_contains($todo, $p)) return;
+            $puntos += str_contains($t, $p) ? 10 : 1;
+        }
+        $resultados[] = ['tipo' => $tipo, 'titulo' => $titulo, 'resumen' => fragmento($texto ?: $titulo, $palabras), 'puntos' => $puntos] + $extra;
+    };
+
+    foreach (q('SELECT slug, titulo, categoria, contenido, foto FROM portfolio WHERE publicada = 1 AND borrada IS NULL')->fetchAll() as $p) {
+        $probar('proyecto', $p['titulo'], $p['contenido'], ['url' => "/portfolio/{$p['slug']}", 'foto' => $p['foto'], 'detalle' => $p['categoria']]);
+    }
+    foreach (q('SELECT slug, titulo, resumen, contenido, foto, fecha FROM notas WHERE publicada = 1 AND borrada IS NULL')->fetchAll() as $n) {
+        $probar('nota', $n['titulo'], $n['resumen'] . ' ' . $n['contenido'], ['url' => "/{$n['slug']}", 'foto' => $n['foto'], 'detalle' => iso($n['fecha'])]);
+    }
+    foreach (q('SELECT titulo, fecha, lugar, descripcion, foto FROM eventos WHERE publicado = 1 AND borrada IS NULL')->fetchAll() as $e) {
+        $probar('evento', $e['titulo'], $e['lugar'] . ' ' . $e['descripcion'], ['url' => '/eventos', 'foto' => $e['foto'], 'detalle' => $e['fecha']]);
+    }
+    foreach (q('SELECT e.nombre, e.descripcion, e.foto, r.nombre AS rubro FROM emprendimientos e JOIN rubros r ON r.id = e.rubro_id
+        WHERE e.publicado = 1 AND e.borrada IS NULL AND r.borrada IS NULL')->fetchAll() as $f) {
+        $probar('emprendimiento', $f['nombre'], $f['rubro'] . ' ' . $f['descripcion'],
+            ['url' => '/catalogo?buscar=' . rawurlencode($f['nombre']), 'foto' => $f['foto'], 'detalle' => $f['rubro']]);
+    }
+
+    usort($resultados, fn($a, $b) => $b['puntos'] <=> $a['puntos'] ?: strcmp((string) $b['detalle'], (string) $a['detalle']));
+    responder(['q' => $q, 'resultados' => array_slice($resultados, 0, 40)]);
+}

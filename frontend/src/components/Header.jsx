@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/
 import { useSitio } from '../api/useSitio'
 import { MENU } from '../data/site'
 import { PETAL_COLORS } from '../data/brand'
+import Buscador from './Buscador'
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from './Icons'
 
 const HIDDEN_KEY = 'mujeresenred:menu-oculto'
@@ -70,6 +71,10 @@ export default function Header() {
             Mujeres <em>en</em> Red
           </span>
         </Link>
+
+        <div className="site-header__buscar">
+          <Buscador alAbrir={() => setOpen(false)} />
+        </div>
 
         <button
           className={`menu-toggle ${open ? 'is-open' : ''}`}
