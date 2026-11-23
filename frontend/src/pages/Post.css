@@ -440,6 +440,7 @@
   width: 100% !important;
   height: 100% !important;
   object-fit: cover;
+  object-position: center 22%; /* en fotos verticales no corta las caras */
   border-radius: 0;
   box-shadow: none;
   cursor: zoom-in;

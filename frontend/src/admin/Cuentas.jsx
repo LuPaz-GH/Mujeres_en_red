@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { borrarCuenta, getCuenta, getCuentas, guardarCuenta } from '../api/admin'
 import { formatDate } from '../api/api'
 import Pagination from '../components/Pagination'
+import CampoClave from './CampoClave'
 import { useBorrar } from './Dialogos'
 import { ErrorMessage, Loader } from '../components/Status'
 import { Aviso, Cabecera, Fila, Filtros, Total, useAvisoRecibido, useDatos, useFormulario, useListado } from './comun'
@@ -105,13 +106,15 @@ function CuentaForm({ id, cuenta }) {
           ))}
         </select>
       </label>
-      <label className="adm-campo">
-        <span className="adm-campo__nombre">{id ? 'Contraseña nueva' : 'Contraseña'}</span>
-        <input type="password" autoComplete="new-password" required={!id} minLength="8" value={campos.clave} onChange={(e) => set('clave', e.target.value)} />
-        <small className="adm-ayuda">
-          {id ? 'Dejala vacía para no cambiarla. Sirve si alguien se olvidó la suya.' : 'Al menos 8 caracteres. Después la persona la puede cambiar desde Mi cuenta.'}
-        </small>
-      </label>
+      <CampoClave
+        nombre={id ? 'Contraseña nueva' : 'Contraseña'}
+        ayuda={id ? 'Dejala vacía para no cambiarla. Sirve si alguien se olvidó la suya.' : 'Al menos 8 caracteres. Después la persona la puede cambiar desde Mi cuenta.'}
+        autoComplete="new-password"
+        required={!id}
+        minLength="8"
+        value={campos.clave}
+        onChange={(e) => set('clave', e.target.value)}
+      />
       <Aviso tipo="error">{error}</Aviso>
       <button className="adm-btn is-principal" disabled={guardando}>
         {guardando ? 'Guardando…' : 'Guardar'}

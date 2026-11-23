@@ -1,0 +1,138 @@
+/* Bloques propios de la página de DeporVida */
+.dv-aire {
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  background: linear-gradient(110deg, var(--naranja), #f08a2c);
+  color: #1a1427;
+}
+
+.dv-aire__fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem 2.5rem;
+}
+
+.dv-aire__vivo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  background: #1a1427;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dv-aire__vivo i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5a5a;
+}
+
+.dv-aire h2 {
+  margin: 0.6rem 0 0.2rem;
+  color: #fff;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+}
+
+.dv-aire__titulo p {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.dv-aire__diales {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.dv-aire__dial {
+  display: grid;
+  place-items: center;
+  min-width: 130px;
+  padding: 0.9rem 1.2rem;
+  border-radius: 24px;
+  background: #fff;
+  color: #1d3a8a;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.dv-aire__dial small {
+  margin-bottom: 0.3rem;
+  color: #b34f0c;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+}
+
+.dv-aire__links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 700;
+}
+
+.dv-aire__links li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  color: #1a1427;
+}
+
+.dv-aire__links svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.dv-sumate {
+  background: linear-gradient(160deg, var(--violeta), color-mix(in srgb, var(--rosa) 60%, var(--violeta)));
+}
+
+.dv-sumate .eyebrow,
+.dv-sumate .title-xl {
+  color: #fff;
+  background: none;
+  -webkit-text-fill-color: #fff;
+}
+
+.dv-sumate__grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1.5rem;
+}
+
+.dv-sumate__tarjeta {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-top: 8px solid var(--c);
+  border-radius: 28px;
+  background: #fff;
+}
+
+.dv-sumate__tarjeta h3 {
+  margin-bottom: 0.6rem;
+  font-size: 1.6rem;
+}
+
+.dv-sumate__tarjeta p {
+  margin: 0 0 1.2rem;
+  color: var(--ink);
+}
+
+.dv-sumate__tarjeta a {
+  margin-top: auto;
+  color: color-mix(in srgb, var(--c) 65%, #1a1427);
+  font-weight: 800;
+}

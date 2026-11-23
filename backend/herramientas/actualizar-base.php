@@ -54,7 +54,7 @@ q("UPDATE portfolio SET publicada = 0 WHERE categoria = 'proyecto'"); // quedan 
 // Fichas nuevas (Movimiento Rosa y Evento ACTIVA) y fotos de Coaching Fest y Voluntariado, si todavía no están
 require_once dirname(__DIR__) . '/api/lib/importar.php';
 foreach (json_decode(file_get_contents(dirname(__DIR__) . '/contenido/portfolio.json'), true) as $p) {
-    if (!in_array($p['slug'], ['movimiento-rosa', 'evento-activa', 'proyecto-coaching-fest', 'reuniones-de-voluntariado'], true)) continue;
+    if (!in_array($p['slug'], ['movimiento-rosa', 'evento-activa', 'proyecto-coaching-fest', 'reuniones-de-voluntariado', 'deporvida'], true)) continue;
     $galeria = array_map(fn($g) => ['tipo' => $g['tipo'], 'url' => fotoLocal($g['url'])], $p['galeria'] ?? []);
     $existe = q('SELECT id, galeria FROM portfolio WHERE slug = ?', [$p['slug']])->fetch();
     if ($existe) {
@@ -66,6 +66,30 @@ foreach (json_decode(file_get_contents(dirname(__DIR__) . '/contenido/portfolio.
     q('INSERT INTO portfolio (slug, titulo, categoria, fecha, contenido, foto, galeria, publicada) VALUES (?, ?, ?, ?, ?, ?, ?, 1)',
         [$p['slug'], $p['titulo'], $p['categoria'], str_replace('T', ' ', $p['fecha']), fotosLocales($p['contenido']), fotoLocal($p['foto']),
             json_encode($galeria, JSON_UNESCAPED_SLASHES)]);
+}
+
+// Mujer Emprendedora: portada nueva, solo si todavía tiene la de antes
+q("UPDATE portfolio SET foto = ? WHERE id = 201 AND foto LIKE '%feria-4%'", [config('uploads_url') . '/2026/11/mujer-emprendedora-portada.jpg']);
+
+// Bienestar Integral: portada nueva (solo si tiene la de antes) y texto sin el nombre de quien lo dirige
+q("UPDATE portfolio SET foto = ? WHERE id = 203 AND foto LIKE '%IMG_2125%'", [config('uploads_url') . '/2026/11/bienestar-integral-portada.jpg']);
+q('UPDATE portfolio SET contenido = REPLACE(contenido, ?, ?) WHERE id = 203',
+    ['Bajo la dirección de la <strong>Lic. Paola Santucho</strong>,llevamos adelante', 'Llevamos adelante']);
+
+// Marca Tucumán: portada nueva y cuatro fotos más en la galería del final de la nota (una sola vez)
+$nota = q("SELECT id, contenido FROM notas WHERE slug LIKE 'mujeres-en-red-recibe-la-distincion-marca-tucuman%'")->fetch();
+if ($nota && !str_contains($nota['contenido'], 'marca-tucuman-02.jpg')) {
+    $fotos = '';
+    foreach ([2, 3, 4, 1] as $n) {
+        $url = config('uploads_url') . "/2026/11/marca-tucuman-0$n.jpg";
+        $fotos .= "<figure class=\"wp-block-image size-large\"><a href=\"$url\"><img loading=\"lazy\" src=\"$url\" alt=\"\" /></a></figure>
+";
+    }
+    $fin = strrpos($nota['contenido'], '</figure>');
+    $contenido = $fin === false
+        ? $nota['contenido'] . "<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped\">$fotos</figure>"
+        : substr_replace($nota['contenido'], $fotos, $fin, 0);
+    q('UPDATE notas SET contenido = ?, foto = ? WHERE id = ?', [$contenido, config('uploads_url') . '/2026/11/marca-tucuman-01.jpg', $nota['id']]);
 }
 
 try {

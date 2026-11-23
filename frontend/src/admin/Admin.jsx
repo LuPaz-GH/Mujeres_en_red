@@ -6,6 +6,7 @@ import { ErrorMessage, Loader } from '../components/Status'
 import { Aviso, Cabecera } from './comun'
 import { DialogosProvider } from './Dialogos'
 import { Categorias, NotaEditar, Notas } from './Notas'
+import CampoClave from './CampoClave'
 import { ProyectoEditar, Proyectos } from './Portfolio'
 import { FichaEditar, Fichas, Rubros } from './Catalogo'
 import Inicio from './Inicio'
@@ -50,10 +51,7 @@ function FormularioEntrar({ onEntrar, titulo }) {
         <span className="adm-campo__nombre">Correo electrónico</span>
         <input type="email" required autoFocus autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} />
       </label>
-      <label className="adm-campo">
-        <span className="adm-campo__nombre">Contraseña</span>
-        <input type="password" required autoComplete="current-password" value={clave} onChange={(e) => setClave(e.target.value)} />
-      </label>
+      <CampoClave nombre="Contraseña" required autoComplete="current-password" value={clave} onChange={(e) => setClave(e.target.value)} />
       <Aviso tipo="error">{error}</Aviso>
       <button className="adm-btn is-principal" disabled={enviando}>
         {enviando ? 'Entrando…' : 'Entrar'}
@@ -93,18 +91,17 @@ function Cuenta({ usuaria }) {
       </p>
       <form onSubmit={guardar}>
         <h2>Cambiar la contraseña</h2>
-        <label className="adm-campo">
-          <span className="adm-campo__nombre">Contraseña actual</span>
-          <input type="password" name="actual" required autoComplete="current-password" value={campos.actual} onChange={set} />
-        </label>
-        <label className="adm-campo">
-          <span className="adm-campo__nombre">Contraseña nueva (al menos 8 caracteres)</span>
-          <input type="password" name="nueva" required minLength="8" autoComplete="new-password" value={campos.nueva} onChange={set} />
-        </label>
-        <label className="adm-campo">
-          <span className="adm-campo__nombre">Repetí la contraseña nueva</span>
-          <input type="password" name="repetida" required autoComplete="new-password" value={campos.repetida} onChange={set} />
-        </label>
+        <CampoClave nombre="Contraseña actual" name="actual" required autoComplete="current-password" value={campos.actual} onChange={set} />
+        <CampoClave
+          nombre="Contraseña nueva (al menos 8 caracteres)"
+          name="nueva"
+          required
+          minLength="8"
+          autoComplete="new-password"
+          value={campos.nueva}
+          onChange={set}
+        />
+        <CampoClave nombre="Repetí la contraseña nueva" name="repetida" required autoComplete="new-password" value={campos.repetida} onChange={set} />
         <Aviso tipo="error">{estado.error}</Aviso>
         <Aviso>{estado.aviso}</Aviso>
         <button className="adm-btn is-principal">Cambiar contraseña</button>

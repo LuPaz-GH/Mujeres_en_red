@@ -1319,7 +1319,89 @@ strong {
 }
 
 .portfolio-grid--parejo > :first-child .portfolio-card h3 {
-  font-size: inherit;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+}
+
+/* Una sola ficha: foto sin color encima y al lado un panel con el texto */
+.portfolio-grid.portfolio-grid--unica {
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+}
+
+.portfolio-grid--unica .portfolio-card a {
+  display: grid;
+  grid-template-columns: 1fr 1.65fr;
+  align-items: stretch;
+  min-height: 372px;
+}
+
+.portfolio-grid--unica .portfolio-card img {
+  position: static;
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 0;
+  height: 100%;
+  object-position: center 35%;
+}
+
+.portfolio-grid--unica .portfolio-card__shade,
+.portfolio-grid--unica .portfolio-card__num,
+.portfolio-grid--unica .portfolio-card__petal {
+  display: none;
+}
+
+.portfolio-grid--unica .portfolio-card__body {
+  z-index: 1;
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(1.4rem, 2.2vw, 2.2rem);
+  background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 70%, var(--violeta)), color-mix(in srgb, var(--accent) 25%, var(--violeta)));
+}
+
+.portfolio-grid.portfolio-grid--unica > :first-child .portfolio-card h3 {
+  font-size: clamp(1.8rem, 2.9vw, 2.6rem);
+  line-height: 1.05;
+}
+
+.portfolio-card__bajada {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  margin: 0.3rem 0 1.2rem;
+  color: #fff;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.portfolio-grid--unica .portfolio-card__more {
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #2a1f3d;
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .portfolio-grid--unica .portfolio-card a {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .portfolio-grid--unica .portfolio-card img {
+    grid-column: 1;
+    grid-row: 1;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .portfolio-grid--unica .portfolio-card__body {
+    grid-row: 2;
+  }
 }
 
 /* "Qué hacemos": botones Programas / Networking / Voluntariado / DeporVida */
@@ -2517,4 +2599,19 @@ strong {
   margin: 0 auto;
   aspect-ratio: auto;
   background: #fff;
+}
+
+/* "¿Por qué donar?": tarjeta más oscura y negritas blancas, para que se lea sobre una foto clara */
+.donate__card {
+  background: rgba(58, 32, 92, 0.62);
+}
+
+.donate__card strong {
+  color: #fff;
+}
+
+/* Encuadre a la derecha: la persona que queda al lado de la tarjeta se ve entera */
+.donate__bg {
+  inset: -8% 0;
+  background-position: right center;
 }

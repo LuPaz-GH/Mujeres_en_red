@@ -1546,3 +1546,16 @@
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* Fotos verticales en las tarjetas de notas: se muestra la parte de arriba, para no cortar caras */
+.news-feature__img,
+.news-item__img > img,
+.featured-post__img > img,
+.post-card__img > img {
+  object-position: center 18%;
+}
+
+/* Igual en las tarjetas de "Qué hacemos": así el número no tapa las caras en las fotos verticales */
+.portfolio-card a > img {
+  object-position: center 20%;
+}

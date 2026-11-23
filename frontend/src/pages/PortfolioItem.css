@@ -687,3 +687,70 @@ main[data-page] .pi--rosa .pi-more {
   height: auto;
   max-height: 72vh;
 }
+
+/* ---------- Secciones con subtítulo: fondo entero de un color del logo y tarjetas blancas ---------- */
+.pi-seccion {
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 100% 0%, rgba(255, 255, 255, 0.16), transparent 70%),
+    linear-gradient(135deg, var(--c), color-mix(in srgb, var(--c) 62%, #1a1427));
+  color: #fff;
+}
+
+.pi-seccion__titulo {
+  margin: 0 0 1.5rem;
+  color: #fff;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+.pi-seccion__texto {
+  max-width: 900px;
+  margin: 0 0 1rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  border-radius: 28px;
+  background: #fff;
+  color: var(--ink);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  line-height: 1.6;
+}
+
+.pi-seccion__grilla {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.pi-seccion__tarjeta {
+  padding: 2rem;
+  border-left: 8px solid var(--t);
+  border-radius: 28px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.pi-seccion__tarjeta h3 {
+  margin-bottom: 0.7rem;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+}
+
+.pi-seccion__tarjeta p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.pi-seccion__num {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: var(--t);
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+@media (max-width: 760px) {
+  .pi-seccion__grilla {
+    grid-template-columns: 1fr;
+  }
+}

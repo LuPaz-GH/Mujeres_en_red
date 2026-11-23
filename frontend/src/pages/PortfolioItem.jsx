@@ -9,6 +9,7 @@ import Reveal from '../components/motion/Reveal'
 import Tilt from '../components/motion/Tilt'
 import FloatingPetals, { PetalShape } from '../components/motion/FloatingPetals'
 import { WhatsappIcon } from '../components/Icons'
+import { DeporVidaAlAire, DeporVidaSumate } from '../components/DeporVida'
 import Galeria from '../components/Galeria'
 import Pagination from '../components/Pagination'
 import PostCard from '../components/PostCard'
@@ -145,6 +146,8 @@ export default function PortfolioItem() {
         </div>
       </section>
 
+      {slug === 'deporvida' && <DeporVidaAlAire />}
+
       {/* ---------- Ejes (los ítems de la lista) ---------- */}
       {project.keys.length > 0 && (
         <section className="section pi-keys">
@@ -216,6 +219,32 @@ export default function PortfolioItem() {
         </section>
       )}
 
+      {/* ---------- Secciones (cada subtítulo de la descripción) ---------- */}
+      {project.secciones.map((s, n) => (
+        <section key={s.titulo} className="section pi-seccion" style={{ '--c': PETAL_COLORS[(index + n + 1) % 5] }}>
+          <div className="container">
+            <Reveal as="h2" className="pi-seccion__titulo">
+              {s.titulo}
+            </Reveal>
+            {s.parrafos.map((p, i) => (
+              <Reveal key={i} as="p" className="pi-seccion__texto">
+                <span dangerouslySetInnerHTML={{ __html: p.html }} />
+              </Reveal>
+            ))}
+            {s.items.length > 0 && (
+              <div className="pi-seccion__grilla">
+                {s.items.map((it, i) => (
+                  <Reveal key={i} delay={(i % 2) * 0.1} className="pi-seccion__tarjeta" style={{ '--t': PETAL_COLORS[(index + n + i + 2) % 5] }}>
+                    {it.title ? <h3>{it.title}</h3> : <span className="pi-seccion__num">{String(i + 1).padStart(2, '0')}</span>}
+                    <p dangerouslySetInnerHTML={{ __html: it.html }} />
+                  </Reveal>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      ))}
+
       {/* ---------- Fotos y videos (se cargan en "Galería" del panel) ---------- */}
       {galeria.length > 0 && (
         <section className="section pi-gallery">
@@ -266,6 +295,8 @@ export default function PortfolioItem() {
         </section>
       )}
 
+      {slug === 'deporvida' && <DeporVidaSumate />}
+
       {/* ---------- Invitación ---------- */}
       <section className="section pi-cta">
         <div className="container">
@@ -274,7 +305,7 @@ export default function PortfolioItem() {
               <img src="/img/iso.png" alt="" className="pi-cta__flower" aria-hidden="true" />
               <div className="pi-cta__text">
                 <h2>¿Querés sumarte a {title.name}?</h2>
-                <p>Escribinos y te contamos cómo participar de la próxima edición.</p>
+                <p>Escribinos y te contamos cómo participar {slug === 'deporvida' ? 'del programa' : 'de la próxima edición'}.</p>
                 <div className="buttons">
                   <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn btn--white btn--large">
                     <WhatsappIcon /> WhatsApp

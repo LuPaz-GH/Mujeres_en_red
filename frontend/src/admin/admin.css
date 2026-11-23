@@ -2380,3 +2380,49 @@
   height: 100%;
   background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 40%, #d6249f 65%, #285aeb 100%);
 }
+
+/* Contraseña con ojito */
+.adm-clave {
+  position: relative;
+}
+
+.adm .adm-clave input,
+.adm-entrar .adm-clave input {
+  padding-right: 3.2rem;
+}
+
+.adm-clave button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: var(--violeta);
+  cursor: pointer;
+}
+
+.adm-clave button:hover {
+  color: var(--rosa);
+}
+
+.adm-clave button:focus-visible {
+  outline: 2px solid var(--violeta);
+  outline-offset: -3px;
+}
+
+.adm-clave svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Edge pone su propio ojito: se saca para que no haya dos */
+.adm-clave input::-ms-reveal,
+.adm-clave input::-ms-clear {
+  display: none;
+}

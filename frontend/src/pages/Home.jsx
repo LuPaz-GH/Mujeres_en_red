@@ -184,13 +184,13 @@ function About() {
 function Donate() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const bgY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%'])
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%'])
 
   return (
     <section className="donate" ref={ref}>
       <motion.div
         className="donate__bg"
-        style={{ y: bgY, backgroundImage: `url(${img('2025/12/DSC_0073.jpg')})` }}
+        style={{ y: bgY, backgroundImage: `url(${img('2026/11/por-que-donar.jpg')})` }}
       />
       <div className="donate__overlay" />
       <div className="container">

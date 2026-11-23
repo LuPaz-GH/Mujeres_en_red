@@ -122,7 +122,8 @@ const HISTORY = [
   {
     year: '2025',
     title: 'Marca Tucumán',
-    image: img('2025/12/20251117_105836.jpg'),
+    image: img('2026/11/marca-tucuman-01.jpg'),
+    vertical: true, // foto de pie: el marco es más alto para no cortar a nadie
     color: BRAND.naranja,
     text: 'El IDEP nos otorgó la distinción Marca Tucumán, un reconocimiento a nuestro compromiso con el desarrollo social y digital de la región.',
     link: '/mujeres-en-red-recibe-la-distincion-marca-tucuman-un-sello-de-calidad-y-orgullo-provincial',
@@ -343,7 +344,7 @@ function History() {
                 style={{ transformPerspective: 1200 }}
               >
                 <Tilt max={8} className="timeline__tilt">
-                  <div className="timeline__img">
+                  <div className={`timeline__img${h.vertical ? ' timeline__img--vertical' : ''}`}>
                     <img src={h.image} alt="" loading="lazy" />
                   </div>
                   <div className="timeline__body">
